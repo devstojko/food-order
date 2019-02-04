@@ -1,8 +1,12 @@
 import React from 'react';
+import webpackImg from '../images/webpack.png';
+import reactImg from '../images/react.svg';
 
 const App = () => (
   <div>
-    App Component Text
+    <h1>Webpack Setup Change</h1>
+    <img src={webpackImg} alt="webpack"/>
+    <img src={reactImg} alt="react"/>
   </div>
 );
 
