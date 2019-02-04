@@ -26,7 +26,16 @@ module.exports = {
         ]
       },
       {
-        test: /\.(jpg|jpeg|gif|png|svg)/,
+        test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+        use: {
+          loader: "file-loader",
+          options: {
+              name: "fonts/[name]-[hash:8].[ext]",
+          },
+        }
+      },
+      {
+        test: /\.(jpg|jpeg|gif|png|svg)$/,
         use: [
           {
             loader: 'file-loader',
@@ -43,7 +52,7 @@ module.exports = {
       template: './public/index.html'
     }),
     new MiniCSSExtractPlugin({
-      filename: '[name]-[contenthash].css'
+      filename: '[name]-[hash:8].css'
     }),
   ]
 }
