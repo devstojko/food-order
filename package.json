@@ -31,5 +31,8 @@
   },
   "devDependencies": {
     "babel-loader": "^7.1.5"
+  },
+  "resolutions": {
+    "terser": "3.14.1"
   }
 }
