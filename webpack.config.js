@@ -1,6 +1,6 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin");
 
 module.exports = {
   entry: './src/index.js',
@@ -20,7 +20,7 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          MiniCSSExtractPlugin.loader,
+          ExtractCssChunks.loader,
           "css-loader",
           "sass-loader"
         ]
@@ -51,8 +51,15 @@ module.exports = {
     new HTMLWebpackPlugin({
       template: './public/index.html'
     }),
-    new MiniCSSExtractPlugin({
-      filename: '[name]-[hash:8].css'
-    }),
+    new ExtractCssChunks(
+      {
+        filename: "[name].css",
+        chunkFilename: "[id].css",
+        hot: true,
+        orderWarning: true,
+        reloadAll: true,
+        cssModules: true
+      }
+    )
   ]
 }
