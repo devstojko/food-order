@@ -54,7 +54,7 @@ module.exports = {
     }),
     new ExtractCssChunks(
       {
-        filename: '[name].css',
+        filename: '[name]-[hash:8].css',
         chunkFilename: '[id].css',
         hot: true,
         orderWarning: true,
