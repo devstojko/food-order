@@ -1,7 +1,6 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -9,7 +8,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
-  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -64,6 +62,5 @@ module.exports = {
         cssModules: true
       }
     ),
-    new OptimizeCssAssetsPlugin()
   ]
 }
