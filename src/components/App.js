@@ -4,7 +4,7 @@ import reactImg from '../images/react.svg';
 
 const App = () => (
   <div>
-    <h1>Webpack Setup</h1>
+    <h1>Webpack Setup Changed</h1>
     <img src={webpackImg} alt="webpack"/>
     <img src={reactImg} alt="react"/>
     <button className="btn btn-primary">Button</button>
