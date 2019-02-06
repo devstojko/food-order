@@ -1,14 +1,19 @@
 import React from 'react';
-import webpackImg from '../images/webpack.png';
-import reactImg from '../images/react.svg';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import IndexPage from './IndexPage';
+import SignupPage from './SignupPage';
+import SigninPage from './SigninPage';
+import ForgotPasswordPage from './ForgotPasswordPage';
 
 const App = () => (
-  <div>
-    <h1>Webpack Setup Changed</h1>
-    <img src={webpackImg} alt="webpack"/>
-    <img src={reactImg} alt="react"/>
-    <button className="btn btn-primary">Button</button>
-  </div>
+  <BrowserRouter>
+    <Switch>
+      <Route exact path="/" component={IndexPage}/>
+      <Route path="/signup" component={SignupPage}/>
+      <Route path="/signin" component={SigninPage}/>
+      <Route path="/forgot-password" component={ForgotPasswordPage}/>
+    </Switch>
+  </BrowserRouter>
 );
 
 export default App;

@@ -1,15 +1,6 @@
 @import './variables';
-@import "~bootstrap/scss/bootstrap";
-
-@font-face {
-  font-family: 'forgottenregular';
-  src: url('./fonts/forgotten-webfont.woff2') format('woff2'),
-       url('./fonts/forgotten-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
+@import './homepage';
 
 body {
-  background: $bg;
-  font-family: "forgottenregular";
+  font-family: 'Sarabun', sans-serif;
 }
