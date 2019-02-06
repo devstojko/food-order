@@ -1,6 +1,7 @@
 .auth-page {
   height: 100vh;
   display: flex;
+  position: relative;
 
   &__image {
     width: 50%;
@@ -18,5 +19,26 @@
     @media screen and (max-width: 900px) {
       width: 100%;
     }
+  }
+
+  &__title {
+    color: $purple;
+    text-transform: uppercase;
+    letter-spacing: 7px;
+    margin-top: 60px;
+  }
+
+  &__subtitle {
+    color: $gray;
+  }
+
+  &__terms {
+    position: absolute;
+    bottom: 0;
+    transform: translateX(-50%);
+    margin-bottom: 24px;
+    font-size: 15px;
+    color: $purple;
+    font-weight: bold;
   }
 }

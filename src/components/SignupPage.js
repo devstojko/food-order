@@ -35,9 +35,9 @@ class SignupPage extends Component {
         <div className="auth-page__image"></div>
         <div className="auth-page__content">
           <h1 className="auth-page__title">food-order</h1>
-          <h3 className="auth-page__subtitle">
-            Please complete to create your account
-          </h3>
+          <p className="auth-page__subtitle">
+            Please complete to create your account.
+          </p>
           <form className="form" onSubmit={this.handleSubmit}>
             <input
               className="form__field"
@@ -95,7 +95,7 @@ class SignupPage extends Component {
           </form>
 
           <span className="auth-page__terms">
-            Terms of user. Privacy policy
+            Terms of use. Privacy policy
           </span>
         </div>
       </div>

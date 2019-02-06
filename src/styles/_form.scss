@@ -1,26 +1,33 @@
 .form {
   width: 60%;
   margin: 0 auto;
+  text-align: center;
 
   &__field {
     width: 100%;
     margin-bottom: 24px;
     padding: 12px 0;
     border: none;
-    border-bottom: 1px solid $lightgray;
+    border-bottom: 2px solid darken($whitesmoke, 3);
     font-family: 'Sarabun', sans-serif;
     font-size: 15px;
+    font-weight: bold;
+    color: lighten($black, 30);
 
     &::placeholder {
       color: $purple;
-      font-weight: bold;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $purple;
     }
   }
 
   &__submit {
     display: block;
+    margin: 24px auto;
     width: 160px;
-    margin: 0 auto 24px;
     padding: 12px;
     background: $purple;
     border: none;
@@ -31,6 +38,5 @@
 
   &__link {
     color: $purple;
-    font-weight: bold;
   }
 }

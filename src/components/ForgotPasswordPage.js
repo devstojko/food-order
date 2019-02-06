@@ -26,9 +26,9 @@ class ForgotPasswordPage extends Component {
         <div className="auth-page__image"></div>
         <div className="auth-page__content">
           <h1 className="auth-page__title">food-order</h1>
-          <h3 className="auth-page__subtitle">
+          <p className="auth-page__subtitle">
             Enter your email and we send you a password reset link
-          </h3>
+          </p>
           <form className="form" onSubmit={this.handleSubmit}>
             <input
               className="form__field"
@@ -43,7 +43,7 @@ class ForgotPasswordPage extends Component {
           </form>
 
           <span className="auth-page__terms">
-            Terms of user. Privacy policy
+            Terms of use. Privacy policy
           </span>
         </div>
       </div>
