@@ -89,7 +89,9 @@ class SignupPage extends Component {
             />
             
             <button className="form__submit">Sign Up</button>
-            <Link to="/signin">Already have an account? Sign in.</Link>
+            <Link className="form__link" to="/signin">
+              Already have an account? Sign in.
+            </Link>
           </form>
 
           <span className="auth-page__terms">

@@ -1,0 +1,36 @@
+.form {
+  width: 60%;
+  margin: 0 auto;
+
+  &__field {
+    width: 100%;
+    margin-bottom: 24px;
+    padding: 12px 0;
+    border: none;
+    border-bottom: 1px solid $lightgray;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 15px;
+
+    &::placeholder {
+      color: $purple;
+      font-weight: bold;
+    }
+  }
+
+  &__submit {
+    display: block;
+    width: 160px;
+    margin: 0 auto 24px;
+    padding: 12px;
+    background: $purple;
+    border: none;
+    border-radius: 5px;
+    color: $white;
+    font-weight: bold;
+  }
+
+  &__link {
+    color: $purple;
+    font-weight: bold;
+  }
+}
