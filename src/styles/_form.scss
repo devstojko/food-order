@@ -1,6 +1,6 @@
 .form {
   width: 60%;
-  margin: 0 auto;
+  margin: 36px auto 0;
   text-align: center;
 
   &__field {
@@ -22,11 +22,19 @@
       outline: none;
       border-color: $purple;
     }
+
+    &--inline {
+      width: 45%;
+    
+      &:first-child {
+        margin-right: 10%;
+      }
+    }
   }
 
   &__submit {
     display: block;
-    margin: 24px auto;
+    margin: 36px auto;
     width: 160px;
     padding: 12px;
     background: $purple;

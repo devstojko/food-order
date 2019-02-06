@@ -40,7 +40,7 @@ class SignupPage extends Component {
           </p>
           <form className="form" onSubmit={this.handleSubmit}>
             <input
-              className="form__field"
+              className="form__field form__field--inline"
               type="text"
               name="firstName"
               placeholder="First name"
@@ -48,7 +48,7 @@ class SignupPage extends Component {
               onChange={this.handleChange}
             />
             <input
-              className="form__field"
+              className="form__field form__field--inline"
               type="text"
               name="lastName"
               placeholder="Last name"
