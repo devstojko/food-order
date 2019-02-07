@@ -39,10 +39,10 @@ class ForgotPasswordPage extends Component {
               onChange={this.handleChange}
             />
             
-            <button className="form__submit">Send request</button>
+            <button className="form__btn btn btn--primary">Send request</button>
           </form>
 
-          <span className="auth-page__terms">
+          <span className="auth-page__terms text-primary">
             Terms of use. Privacy policy
           </span>
         </div>

@@ -1,7 +1,6 @@
 .form {
-  width: 60%;
+  width: 50%;
   margin: 36px auto 0;
-  text-align: center;
 
   &__field {
     width: 100%;
@@ -22,29 +21,13 @@
       outline: none;
       border-color: $purple;
     }
-
-    &--inline {
-      width: 45%;
-    
-      &:first-child {
-        margin-right: 10%;
-      }
-    }
-  }
-
-  &__submit {
-    display: block;
-    margin: 36px auto;
-    width: 160px;
-    padding: 12px;
-    background: $purple;
-    border: none;
-    border-radius: 5px;
-    color: $white;
-    font-weight: bold;
   }
 
   &__link {
     color: $purple;
+  }
+
+  &__btn {
+    margin: 32px auto;
   }
 }

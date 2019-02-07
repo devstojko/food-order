@@ -39,22 +39,24 @@ class SignupPage extends Component {
             Please complete to create your account.
           </p>
           <form className="form" onSubmit={this.handleSubmit}>
-            <input
-              className="form__field form__field--inline"
-              type="text"
-              name="firstName"
-              placeholder="First name"
-              value={firstName}
-              onChange={this.handleChange}
-            />
-            <input
-              className="form__field form__field--inline"
-              type="text"
-              name="lastName"
-              placeholder="Last name"
-              value={lastName}
-              onChange={this.handleChange}
-            />
+            <div className="two-item-row">
+              <input
+                className="form__field row-item"
+                type="text"
+                name="firstName"
+                placeholder="First name"
+                value={firstName}
+                onChange={this.handleChange}
+              />
+              <input
+                className="form__field row-item"
+                type="text"
+                name="lastName"
+                placeholder="Last name"
+                value={lastName}
+                onChange={this.handleChange}
+              />
+            </div>
             <input
               className="form__field"
               type="text"
@@ -88,13 +90,13 @@ class SignupPage extends Component {
               onChange={this.handleChange}
             />
             
-            <button className="form__submit">Sign Up</button>
+            <button className="form__btn btn btn--primary">Sign Up</button>
             <Link className="form__link" to="/signin">
               Already have an account? Sign in.
             </Link>
           </form>
 
-          <span className="auth-page__terms">
+          <span className="auth-page__terms text-primary">
             Terms of use. Privacy policy
           </span>
         </div>

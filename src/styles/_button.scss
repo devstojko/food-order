@@ -1,0 +1,22 @@
+.btn {
+  display: block;
+  width: 180px;
+  padding: 12px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.5rem;
+
+  &--primary {
+    border: 2px solid $purple;
+    background-color: $purple;
+    color: $white;
+  }
+
+  &--secondary {
+    border: 2px solid $purple;
+    background-color: $white;
+    color: $purple;
+  }
+}

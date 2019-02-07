@@ -1,0 +1,12 @@
+.two-item-row {
+  display: flex;
+  border: 1px solid red;
+
+  .row-item {
+    width: 46%;
+
+    &:first-child {
+      margin-right: 8%;
+    }
+  }
+}

@@ -1,15 +1,8 @@
 @import './variables';
 @import './mixins';
+@import './general';
+@import './layout';
 @import './form';
+@import './button';
 @import './homepage';
 @import './authpage';
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Sarabun', sans-serif;
-}

@@ -52,19 +52,33 @@ class SigninPage extends Component {
               value={password}
               onChange={this.handleChange}
             />
-            <input 
-              type="checkbox"
-              name="remember"
-              placeholder="Remember me"
-              value={remember}
-            />
-            <Link to="/forgot-password">Forgot Password</Link>
-
-            <button className="form__submit">Login</button>
-            <Link to="/signup">Sign up</Link>
+            <div className="two-item-row">
+              <div className="row-item">
+                <input
+                  type="checkbox"
+                  name="remember"
+                  placeholder="Remember me"
+                  value={remember}
+                />
+                <span className="text-primary">Remember me</span>
+              </div>
+              
+              <Link className="row-item text-primary" to="/forgot-password">
+                Forgot Password
+              </Link>
+            </div>
+            
+            <div className="two-item-row">
+              <button className="form__btn btn btn--primary row-item">
+                Login
+              </button>
+              <Link className="form__btn btn btn--secondary row-item" to="/signup">
+                Sign up
+              </Link>
+            </div>
           </form>
 
-          <span className="auth-page__terms">
+          <span className="auth-page__terms text-primary">
             Terms of use. Privacy policy
           </span>
         </div>
