@@ -2,30 +2,30 @@
   width: 55%;
   margin: 3.6rem auto 0;
 
-  &__field {
-    width: 100%;
-    margin-bottom: 2.4rem;
-    padding: 1.2rem 0;
-    border: none;
-    border-bottom: 2px solid darken($whitesmoke, 3);
-    font-family: 'Sarabun', sans-serif;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: lighten($black, 30);
+  // &__field {
+  //   width: 100%;
+  //   margin-bottom: 2.4rem;
+  //   padding: 1.2rem 0;
+  //   border: none;
+  //   border-bottom: 2px solid darken($whitesmoke, 3);
+  //   font-family: 'Sarabun', sans-serif;
+  //   font-size: 1.5rem;
+  //   font-weight: bold;
+  //   color: lighten($black, 30);
 
-    &::placeholder {
-      color: $purple;
-    }
+  //   &::placeholder {
+  //     color: purple;
+  //   }
 
-    &:focus {
-      outline: none;
-      border-color: $purple;
-    }
-  }
+  //   &:focus {
+  //     outline: none;
+  //     border-color: purple;
+  //   }
+  // }
 
   &__link {
     display: block;
-    color: $purple;
+    color: purple;
     text-align: center;
   }
 

@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import InputField from './InputField';
 
 class SignupPage extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
+      errors: {
+        firstName: '',
+        lastName: '',
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+      },
       firstName: '',
       lastName: '',
       username: '',
@@ -28,7 +37,7 @@ class SignupPage extends Component {
   }
 
   render() {
-    const { firstName, lastName, username, email, password, confirmPassword } = this.state;
+    const { errors, firstName, lastName, username, email, password, confirmPassword } = this.state;
 
     return (
       <div className="auth-page">
@@ -38,54 +47,54 @@ class SignupPage extends Component {
           <p className="auth-page__subtitle">
             Please complete to create your account.
           </p>
-          <form className="form" onSubmit={this.handleSubmit}>
-            <div className="two-item-row">
-              <input
-                className="form__field row-item"
-                type="text"
-                name="firstName"
-                placeholder="First name"
-                value={firstName}
-                onChange={this.handleChange}
-              />
-              <input
-                className="form__field row-item"
-                type="text"
-                name="lastName"
-                placeholder="Last name"
-                value={lastName}
-                onChange={this.handleChange}
-              />
-            </div>
-            <input
-              className="form__field"
+          <form className="form" onSubmit={this.handleSubmit}>    
+            <InputField
+              inline
+              type="text"
+              name="firstName"
+              label="First Name"
+              error={errors.firstName}
+              value={firstName}
+              onChange={this.handleChange}
+            />
+            <InputField
+              inline
+              type="text"
+              name="lastName"
+              label="Last Name"
+              error={errors.lastName}
+              value={lastName}
+              onChange={this.handleChange}
+            />
+            <InputField
               type="text"
               name="username"
-              placeholder="Username"
+              label="Username"
+              error={errors.username}
               value={username}
               onChange={this.handleChange}
             />
-            <input
-              className="form__field"
+            <InputField
               type="email"
               name="email"
-              placeholder="Email"
+              label="Email"
+              error={errors.email}
               value={email}
               onChange={this.handleChange}
             />
-            <input
-              className="form__field"
+            <InputField
               type="password"
               name="password"
-              placeholder="Password"
+              label="Password"
+              error={errors.password}
               value={password}
               onChange={this.handleChange}
             />
-            <input
-              className="form__field"
+            <InputField
               type="password"
               name="confirmPassword"
-              placeholder="Confirm Password"
+              label="Confirm Password"
+              error={errors.confirmPassword}
               value={confirmPassword}
               onChange={this.handleChange}
             />

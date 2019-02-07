@@ -4,7 +4,7 @@ class ForgotPasswordPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
+      email: ''
     }
 
     this.handleChange = this.handleChange.bind(this);

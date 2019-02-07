@@ -1,7 +1,7 @@
 import React from 'react';
 import './inputField.scss';
 
-const InputField = ({ type, name, label, value, onChange, required = true }) => (
+const InputField = ({ type, name, label, error, value, onChange, required = true }) => (
   <div className="field">
     <input
       className="field__text"
@@ -17,7 +17,7 @@ const InputField = ({ type, name, label, value, onChange, required = true }) => 
     <label className="field__label" htmlFor={name}>
       {label}
     </label>
-    {/* <span className="field__error">Some error here</span> */}
+    <span className="field__error">{error}</span>
   </div>
 );
 

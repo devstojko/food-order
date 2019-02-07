@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import InputField from './InputField';
 
 class SigninPage extends Component {
 
@@ -36,19 +37,19 @@ class SigninPage extends Component {
             Welcome back! Please login to your account.
           </p>
           <form className="form" onSubmit={this.handleSubmit}>
-            <input
-              className="form__field"
+            <InputField
               type="text"
               name="username"
-              placeholder="Username"
+              label="Username"
+              error={null}
               value={username}
               onChange={this.handleChange}
             />
-            <input
-              className="form__field"
+            <InputField
               type="password"
               name="password"
-              placeholder="Password"
+              label="Password"
+              error={'This field has an error'}
               value={password}
               onChange={this.handleChange}
             />
