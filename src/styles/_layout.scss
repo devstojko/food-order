@@ -8,16 +8,4 @@
       margin-right: 8%;
     }
   }
-
-  @include respond(phone) {
-    flex-wrap: wrap;
-
-    .row-item {
-      width: 100%;
-
-      &:first-child {
-        margin-right: 0;
-      }
-    }
-  }
 }

@@ -1,5 +1,5 @@
 .form {
-  width: 50%;
+  width: 55%;
   margin: 3.6rem auto 0;
 
   &__field {
@@ -24,11 +24,17 @@
   }
 
   &__link {
+    display: block;
     color: $purple;
+    text-align: center;
   }
 
   &__btn {
     margin: 3.2rem auto;
+  }
+
+  @include respond(tab-land) {
+    width: 45%;
   }
 
   @include respond(tab-port) {
@@ -39,13 +45,16 @@
       margin-bottom: 2rem;
     }
 
+    &__link {
+      font-size: 1.5rem;
+    }
+
     &__btn {
       margin: 2.4rem auto;
     }
   }
 
   @include respond(phone) {
-    border: 1px solid blue;
     width: 90%;
     margin: 1rem auto 0;
 
@@ -58,8 +67,13 @@
       font-weight: normal;
     }
 
+    &__link {
+      font-size: 1.4rem;
+      margin-top: 1.4rem;
+    }
+
     &__btn {
-      margin: 1.5rem auto;
+      margin: 1rem auto;
     }
   }
 }

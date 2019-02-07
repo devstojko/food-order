@@ -8,8 +8,8 @@ import ForgotPasswordPage from './ForgotPasswordPage';
 const App = () => (
   <BrowserRouter>
     {/* <SigninPage/> */}
-    <SignupPage/>
-    {/* <ForgotPasswordPage/> */}
+    {/* <SignupPage/> */}
+    <ForgotPasswordPage/>
     {/* <Switch>
       <Route exact path="/" component={IndexPage}/>
       <Route path="/signup" component={SignupPage}/>

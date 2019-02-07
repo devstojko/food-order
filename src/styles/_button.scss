@@ -1,7 +1,7 @@
 .btn {
   display: block;
-  width: 180px;
-  padding: 12px;
+  width: 18rem;
+  padding: 1.2rem;
   border-radius: 5px;
   font-weight: bold;
   text-align: center;
@@ -18,5 +18,16 @@
     border: 2px solid $purple;
     background-color: $white;
     color: $purple;
+  }
+
+  @include respond(tab-port) {
+    width: 16rem;
+    padding: 1rem;
+  }
+
+  @include respond(phone) {
+    width: 15rem;
+    padding: .8rem;
+    font-size: 1.4rem;
   }
 }
