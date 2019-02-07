@@ -1,12 +1,23 @@
 .two-item-row {
   display: flex;
-  border: 1px solid red;
 
   .row-item {
     width: 46%;
 
     &:first-child {
       margin-right: 8%;
+    }
+  }
+
+  @include respond(phone) {
+    flex-wrap: wrap;
+
+    .row-item {
+      width: 100%;
+
+      &:first-child {
+        margin-right: 0;
+      }
     }
   }
 }
