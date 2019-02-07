@@ -1,0 +1,83 @@
+.field {
+  border: 1px solid red;
+  position: relative;
+  margin-bottom: 45px;
+
+  &__text {
+    display: block;
+    padding: 10px;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid purple;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus ~ label,
+    &:valid ~ label {
+      top: -20px;
+      font-size: 14px;
+      color: red;
+    }
+
+    &:focus ~ .field__highlight {
+      animation: inputHighlighter 0.3s ease;
+    }
+  }
+
+  &__highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  &__bar {
+    position: relative;
+    display: block;
+    width: 300px;
+
+    &:before,
+    &:after {
+      content: '';
+      height: 2px;
+      width: 0;
+      bottom: 1px;
+      position: absolute;
+      background: red;
+      transition: 0.2s ease all;
+    }
+
+    &:before {
+      left: 50%;
+    }
+
+    &:after {
+      right: 50%;
+    }
+  }
+
+  &__label {
+    color: orange;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    transition: 0.2s ease all;
+  }
+
+  // &__error {
+  //   border: 1px solid blue;
+  // }
+}
+
+@keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
