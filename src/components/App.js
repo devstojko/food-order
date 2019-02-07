@@ -7,15 +7,12 @@ import ForgotPasswordPage from './ForgotPasswordPage';
 
 const App = () => (
   <BrowserRouter>
-    {/* <SigninPage/> */}
-    {/* <SignupPage/> */}
-    <ForgotPasswordPage/>
-    {/* <Switch>
+    <Switch>
       <Route exact path="/" component={IndexPage}/>
       <Route path="/signup" component={SignupPage}/>
       <Route path="/signin" component={SigninPage}/>
       <Route path="/forgot-password" component={ForgotPasswordPage}/>
-    </Switch> */}
+    </Switch>
   </BrowserRouter>
 );
 
