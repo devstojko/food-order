@@ -3,6 +3,8 @@
 @import './general';
 @import './layout';
 @import './form';
-@import './button';
 @import './homepage';
 @import './authpage';
+
+@import '../components/Button/Button';
+@import '../components/InputField/InputField';
