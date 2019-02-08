@@ -1,11 +1,14 @@
 .field {
   position: relative;
-  margin-bottom: 45px;
-  border: 1px solid red;
+  margin-bottom: 45px;  // change
 
   &--inline {
     width: 46%;
+    display: inline-block;
     
+    &:first-child {
+      margin-right: 8%;
+    }
   }
 
   &__text {
@@ -13,15 +16,17 @@
     padding: 10px;
     width: 100%;
     border: none;
-    border-bottom: 1px solid darken(whitesmoke, 3);
+    border-bottom: 1px solid darken(whitesmoke, 3); // change
     font-family: 'Sarabun', sans-serif;
     font-size: 1.5rem;
     font-weight: bold;
+    letter-spacing: 1.5px;
     color: lighten(black, 30);
 
     &:focus {
       outline: none;
       border-color: purple;
+      transition: 0.2s ease all
     }
 
     &:focus ~ .field__label,
@@ -44,11 +49,11 @@
   &__highlight {
     position: absolute;
     height: 60%;
-    width: 100px;
+    width: 40%;
     top: 25%;
     left: 0;
     pointer-events: none;
-    opacity: 0.5;
+    opacity: 0.3;
   }
 
   &__bar {
@@ -77,29 +82,35 @@
 
   &__label {
     color: purple;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: normal;
     position: absolute;
     pointer-events: none;
-    left: 5px;
+    left: 10px;
     top: 10px;
     transition: 0.2s ease all;
   }
 
   &__error {
-    // border: 1px solid blue;
+    padding: 0 10px;
     position: absolute;
-    display: block;
     color: red;
     width: 100%;
-    height: 30px;
+    height: 25px;
     font-size: 14px;
+    letter-spacing: 1px;
     display: flex;
     align-items: center;
   }
 }
 
 @keyframes inputHighlighter {
-	from { background: purple; }
-  to 	{ width:0; background:transparent; }
+	from { 
+    background: purple; 
+  }
+
+  to { 
+    width: 0; 
+    background: transparent;
+  }
 }

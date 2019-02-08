@@ -1,8 +1,17 @@
 import React from 'react';
 import './inputField.scss';
 
-const InputField = ({ type, name, label, error, value, onChange, required = true }) => (
-  <div className="field">
+const InputField = ({ 
+  type, 
+  name, 
+  label, 
+  error, 
+  value, 
+  onChange, 
+  required = true, 
+  inline = false
+}) => (
+  <div className={'field ' + (inline ? 'field--inline' : '')}>
     <input
       className="field__text"
       type={type}

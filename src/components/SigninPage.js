@@ -7,6 +7,10 @@ class SigninPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      errors: {
+        username: '',
+        password: ''
+      },
       username: '',
       password: '',
       remember: true // connect to the actual checkbox later
@@ -26,7 +30,7 @@ class SigninPage extends Component {
   }
 
   render() {
-    const { username, password, remember } = this.state;
+    const { errors, username, password, remember } = this.state;
 
     return (
       <div className="auth-page">
@@ -41,7 +45,7 @@ class SigninPage extends Component {
               type="text"
               name="username"
               label="Username"
-              error={null}
+              error={errors.username}
               value={username}
               onChange={this.handleChange}
             />
@@ -49,7 +53,7 @@ class SigninPage extends Component {
               type="password"
               name="password"
               label="Password"
-              error={'This field has an error'}
+              error={errors.password}
               value={password}
               onChange={this.handleChange}
             />

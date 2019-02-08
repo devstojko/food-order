@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import InputField from './InputField';
 
 class ForgotPasswordPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: ''
+      email: '',
+      emailError: ''
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -30,11 +32,11 @@ class ForgotPasswordPage extends Component {
             Enter your email and we send you a password reset link
           </p>
           <form className="form" onSubmit={this.handleSubmit}>
-            <input
-              className="form__field"
+            <InputField
               type="email"
               name="email"
-              placeholder="Email"
+              label="Email"
+              error={this.state.emailError}
               value={this.state.email}
               onChange={this.handleChange}
             />
