@@ -1,5 +1,6 @@
 import React from 'react';
 import './inputField.scss';
+import PropTypes from 'prop-types';
 
 const InputField = ({ 
   type, 
@@ -29,5 +30,16 @@ const InputField = ({
     <span className="field__error">{error}</span>
   </div>
 );
+
+InputField.propTypes = {
+  type: PropTypes.string,
+  name: PropTypes.string,
+  label: PropTypes.string,
+  error: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  required: PropTypes.bool,
+  inline: PropTypes.bool
+}
 
 export default InputField;
