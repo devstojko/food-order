@@ -81,7 +81,7 @@ class SigninPage extends Component {
             />
 
             <Link to="/signup" className="form__btn row-item">
-              <Button type="secondary" text="Sign up" />
+              <Button text="Sign up" className="btn--secondary" />
             </Link>
           </div>
         </form>

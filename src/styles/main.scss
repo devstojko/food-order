@@ -1,10 +1,9 @@
-@import './variables';
-@import './mixins';
-@import './general';
-@import './layout';
-@import './form';
-@import './homepage';
-@import './authpage';
+@import './global';
+// @import './layout';
+// @import './form';
+// @import './homepage';
 
-@import '../components/Button/Button';
-@import '../components/InputField/InputField';
+// // component styles
+// @import '../components/Button/Button';
+// @import '../components/InputField/InputField';
+// @import '../components/AuthPageWrapper/AuthPageWrapper';
