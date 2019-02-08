@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import InputField from './InputField';
+import Button from './Button';
 
 class SignupPage extends Component {
 
@@ -99,7 +100,7 @@ class SignupPage extends Component {
               onChange={this.handleChange}
             />
             
-            <button className="form__btn btn btn--primary">Sign Up</button>
+            <Button type="primary" text="Sign Up" className="form__btn"/>
             <Link className="form__link" to="/signin">
               Already have an account? Sign in.
             </Link>

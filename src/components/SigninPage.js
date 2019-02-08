@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import InputField from './InputField';
+import Button from './Button';
 
 class SigninPage extends Component {
 
@@ -74,11 +75,10 @@ class SigninPage extends Component {
             </div>
             
             <div className="two-item-row">
-              <button className="form__btn btn btn--primary row-item">
-                Login
-              </button>
-              <Link className="form__btn btn btn--secondary row-item" to="/signup">
-                Sign up
+              <Button type="primary" text="Login" className="form__btn row-item"/>
+              
+              <Link to="/signup" className="form__btn row-item">
+                <Button type="secondary" text="Sign up"/>
               </Link>
             </div>
           </form>

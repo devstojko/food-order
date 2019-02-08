@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import InputField from './InputField';
+import Button from './Button';
 
 class ForgotPasswordPage extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class ForgotPasswordPage extends Component {
               onChange={this.handleChange}
             />
             
-            <button className="form__btn btn btn--primary">Send request</button>
+            <Button type="primary" text="Send request" className="form__btn" />
           </form>
 
           <span className="auth-page__terms text-primary">
