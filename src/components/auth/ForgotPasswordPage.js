@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import InputField from './InputField';
-import Button from './Button';
+import InputField from '../common/InputField';
+import Button from '../common/Button';
 
 class ForgotPasswordPage extends Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class ForgotPasswordPage extends Component {
     this.state = {
       email: '',
       emailError: ''
-    }
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,7 +26,7 @@ class ForgotPasswordPage extends Component {
   render() {
     return (
       <div className="auth-page">
-        <div className="auth-page__image"></div>
+        <div className="auth-page__image" />
         <div className="auth-page__content">
           <h1 className="auth-page__title">food-order</h1>
           <p className="auth-page__subtitle">
@@ -41,7 +41,7 @@ class ForgotPasswordPage extends Component {
               value={this.state.email}
               onChange={this.handleChange}
             />
-            
+
             <Button type="primary" text="Send request" className="form__btn" />
           </form>
 

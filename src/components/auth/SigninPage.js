@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AuthPageWrapper from './AuthPageWrapper';
-import InputField from './InputField';
-import Button from './Button';
+import InputField from '../common/InputField';
+import Button from '../common/Button';
 
 class SigninPage extends Component {
   constructor(props) {

@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import IndexPage from './IndexPage';
-import SignupPage from './SignupPage';
-import SigninPage from './SigninPage';
-import ForgotPasswordPage from './ForgotPasswordPage';
+import SignupPage from './auth/SignupPage';
+import SigninPage from './auth/SigninPage';
+import ForgotPasswordPage from './auth/ForgotPasswordPage';
 
 const App = () => (
   <BrowserRouter>
-    {/* <SignupPage /> */}
-    <SigninPage />
+    <SignupPage />
+    {/* <SigninPage /> */}
     {/* <Switch>
       <Route exact path="/" component={IndexPage}/>
       <Route path="/signup" component={SignupPage}/>

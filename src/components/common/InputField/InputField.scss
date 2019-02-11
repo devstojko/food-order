@@ -1,5 +1,5 @@
-@import '../../styles/common/variables';
-@import '../../styles/common/mixins';
+@import '../../../styles/common/variables';
+@import '../../../styles/common/mixins';
 
 .field {
   position: relative;
@@ -16,26 +16,26 @@
 
   &__text {
     display: block;
-    padding: 10px;
+    padding: 1rem;
     width: 100%;
     border: none;
-    border-bottom: 1px solid darken(whitesmoke, 3); // change
+    border-bottom: 1px solid $lightgray;
     font-family: 'Sarabun', sans-serif;
     font-size: 1.5rem;
-    letter-spacing: 1.5px;
-    color: black;
+    letter-spacing: 1px;
+    color: lighten($black, 5);
 
     &:focus {
       outline: none;
-      border-color: purple;
-      transition: 0.2s ease all
+      border-color: $purple;
+      transition: 0.2s ease all;
     }
 
     &:focus ~ .field__label,
     &:valid ~ .field__label {
-      top: -20px;
-      font-size: 14px;
-      color: purple;
+      top: -2rem;
+      font-size: 1.4rem;
+      color: $purple;
     }
 
     &:focus ~ .field__bar:before,
@@ -69,7 +69,7 @@
       width: 0;
       bottom: 1px;
       position: absolute;
-      background: purple;
+      background: $purple;
       transition: 0.2s ease all;
     }
 
@@ -83,17 +83,18 @@
   }
 
   &__label {
-    color: purple;
-    font-size: 16px;
+    color: $purple;
+    font-size: 1.6rem;
     font-weight: normal;
     position: absolute;
     pointer-events: none;
-    left: 10px;
-    top: 10px;
+    left: 1rem;
+    top: 1rem;
     transition: 0.2s ease all;
   }
 
   &__error {
+    // not yet styled as it should be
     padding: 0 10px;
     position: absolute;
     color: red;
@@ -108,7 +109,7 @@
 
 @keyframes inputHighlighter {
 	from { 
-    background: purple; 
+    background: $purple; 
   }
 
   to { 
