@@ -1,0 +1,60 @@
+.form {
+  width: 55%;
+  margin: 3.6rem auto 0;
+
+
+  &__link {
+    display: block;
+    color: purple;
+    text-align: center;
+  }
+
+  &__btn {
+    margin: 3.2rem auto;
+    text-decoration: none;
+  }
+
+  @include respond(tab-land) {
+    width: 45%;
+  }
+
+  @include respond(tab-port) {
+    width: 60%;
+    margin: 2.4rem auto 0;
+
+    &__field {
+      margin-bottom: 2rem;
+    }
+
+    &__link {
+      font-size: 1.5rem;
+    }
+
+    &__btn {
+      margin: 2.4rem auto;
+    }
+  }
+
+  @include respond(phone) {
+    width: 90%;
+    margin: 1rem auto 0;
+
+    &__field {
+      margin-bottom: 1.5rem;
+      padding: 1rem 0;
+      border: none;
+      border-bottom: 1px solid darken($whitesmoke, 3);
+      font-size: 1.4rem;
+      font-weight: normal;
+    }
+
+    &__link {
+      font-size: 1.4rem;
+      margin-top: 1.4rem;
+    }
+
+    &__btn {
+      margin: 1rem auto;
+    }
+  }
+}

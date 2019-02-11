@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Button.scss';
 
 const Button = ({ text, className = '' }) => (
   <button className={`btn  ${className}`}>{text}</button>
