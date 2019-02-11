@@ -18,6 +18,39 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    &__form {
+      width: 55%;
+      padding: 2rem 0;
+      text-align: center;
+    
+    //   @include respond(tab-land) {
+    //     width: 45%;
+    //   }
+    
+    //   @include respond(tab-port) {
+    //     width: 60%;
+    //     margin: 2.4rem auto 0;
+    
+    //     &__field {
+    //       margin-bottom: 2rem;
+    //     }
+    //   }
+    
+    //   @include respond(phone) {
+    //     width: 90%;
+    //     margin: 1rem auto 0;
+    
+        // &__field {
+        //   margin-bottom: 1.5rem;
+        //   padding: 1rem 0;
+        //   border: none;
+        //   border-bottom: 1px solid darken($whitesmoke, 3);
+        //   font-size: 1.4rem;
+        //   font-weight: normal;
+        // }
+      // }
+    }
   }
 
   &__terms {

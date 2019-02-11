@@ -7,14 +7,14 @@ import ForgotPasswordPage from './auth/ForgotPasswordPage';
 
 const App = () => (
   <BrowserRouter>
-    <SignupPage />
+    {/* <SignupPage /> */}
     {/* <SigninPage /> */}
-    {/* <Switch>
-      <Route exact path="/" component={IndexPage}/>
-      <Route path="/signup" component={SignupPage}/>
-      <Route path="/signin" component={SigninPage}/>
-      <Route path="/forgot-password" component={ForgotPasswordPage}/>
-    </Switch> */}
+    <Switch>
+      <Route exact path="/" component={IndexPage} />
+      <Route path="/signup" component={SignupPage} />
+      <Route path="/signin" component={SigninPage} />
+      <Route path="/forgot-password" component={ForgotPasswordPage} />
+    </Switch>
   </BrowserRouter>
 );
 

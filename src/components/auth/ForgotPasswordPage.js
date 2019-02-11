@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AuthPageWrapper from './AuthPageWrapper';
 import InputField from '../common/InputField';
 import Button from '../common/Button';
 
@@ -25,31 +26,24 @@ class ForgotPasswordPage extends Component {
 
   render() {
     return (
-      <div className="auth-page">
-        <div className="auth-page__image" />
-        <div className="auth-page__content">
-          <h1 className="auth-page__title">food-order</h1>
-          <p className="auth-page__subtitle">
-            Enter your email and we send you a password reset link
-          </p>
-          <form className="form" onSubmit={this.handleSubmit}>
-            <InputField
-              type="email"
-              name="email"
-              label="Email"
-              error={this.state.emailError}
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
+      <AuthPageWrapper image="test" imagePosition="right">
+        <h1 className="title-primary">food-order</h1>
+        <p className="subtitle">
+          Enter your email and we send you a password reset link
+        </p>
+        <form className="auth-page__content__form" onSubmit={this.handleSubmit}>
+          <InputField
+            type="email"
+            name="email"
+            label="Email"
+            error={this.state.emailError}
+            value={this.state.email}
+            onChange={this.handleChange}
+          />
 
-            <Button type="primary" text="Send request" className="form__btn" />
-          </form>
-
-          <span className="auth-page__terms text-primary">
-            Terms of use. Privacy policy
-          </span>
-        </div>
-      </div>
+          <Button type="primary" text="Send request" />
+        </form>
+      </AuthPageWrapper>
     );
   }
 }

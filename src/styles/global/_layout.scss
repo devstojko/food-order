@@ -1,0 +1,11 @@
+.two-item-row {
+  display: flex;
+
+  .row-item {
+    width: 46%;
+
+    &:first-child {
+      margin-right: 8%;
+    }
+  }
+}

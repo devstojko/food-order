@@ -34,13 +34,11 @@ class SigninPage extends Component {
     const { errors, username, password, remember } = this.state;
 
     return (
-      <AuthPageWrapper image="test" imagePosition="right">
-        <h1 className="auth-page__title">food-order</h1>
-        <p className="auth-page__subtitle">
-          Welcome back! Please login to your account.
-        </p>
+      <AuthPageWrapper image="test" imagePosition="left">
+        <h1 className="title-primary">food-order</h1>
+        <p className="subtitle">Welcome back! Please login to your account.</p>
 
-        <form className="form" onSubmit={this.handleSubmit}>
+        <form className="auth-page__content__form" onSubmit={this.handleSubmit}>
           <InputField
             type="text"
             name="username"
@@ -74,14 +72,12 @@ class SigninPage extends Component {
           </div>
 
           <div className="two-item-row">
-            <Button
-              type="primary"
-              text="Login"
-              className="form__btn row-item"
-            />
+            <div className="row-item">
+              <Button type="primary" text="Login" />
+            </div>
 
-            <Link to="/signup" className="form__btn row-item">
-              <Button text="Sign up" className="btn--secondary" />
+            <Link to="/signup" className="row-item">
+              <Button type="secondary" text="Sign up" />
             </Link>
           </div>
         </form>
