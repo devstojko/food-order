@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/devstojko/food-order#readme",
   "dependencies": {
+    "firebase": "^5.8.2",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
