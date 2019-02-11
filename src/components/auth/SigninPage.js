@@ -76,7 +76,10 @@ class SigninPage extends Component {
               <Button type="primary" text="Login" />
             </div>
 
-            <Link to="/signup" className="row-item">
+            <Link
+              to="/signup"
+              className="row-item"
+              style={{ textDecoration: 'none' }}>
               <Button type="secondary" text="Sign up" />
             </Link>
           </div>

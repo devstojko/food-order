@@ -7,5 +7,9 @@
     &:first-child {
       margin-right: 8%;
     }
+
+    & > .btn {
+      width: 100%;
+    }
   }
 }
