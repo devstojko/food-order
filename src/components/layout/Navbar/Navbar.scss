@@ -1,0 +1,36 @@
+@import '../../../styles/common/variables';
+@import '../../../styles/common/mixins';
+
+.navbar {
+  background-color: $purple;
+  font-size: 1.8rem;
+  height: $navbar-height;
+  width: 100%;
+
+  .container {
+    display: flex;
+  }
+
+  &__link-group {
+    height: $navbar-height;
+    display: flex;
+
+    &--right {
+      margin-left: auto;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $white;
+    height: 100%;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    &:hover {
+      background: darken($purple, 5);
+    }
+  }
+}
