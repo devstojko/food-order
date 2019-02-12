@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import AuthLinks from './AuthLinks';
+import NonAuthLinks from './NonAuthLinks';
 import './Navbar.scss';
 
 const Navbar = ({ authUser }) => (
@@ -17,25 +19,6 @@ const Navbar = ({ authUser }) => (
       </div>
     </div>
   </nav>
-);
-
-const AuthLinks = () => (
-  <React.Fragment>
-    <span className="navbar__link" onClick={console.log('Logout')}>
-      Logout
-    </span>
-  </React.Fragment>
-);
-
-const NonAuthLinks = () => (
-  <React.Fragment>
-    <Link to="/signup" className="navbar__link">
-      Sign Up
-    </Link>
-    <Link to="/signin" className="navbar__link">
-      Sign In
-    </Link>
-  </React.Fragment>
 );
 
 const mapStateToProps = state => ({ authUser: state.auth });
