@@ -1,26 +1,30 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { firebase } from './firebase';
-import { AuthUserContext } from './AuthUserContext';
+import React from 'react';
+import { connect } from 'react-redux';
+import { auth } from './index';
 
-export const withAuthorization = condition => Component => {
-  class WithAuthorization extends Component {
+const withAuthorization = condition => Component => {
+  class WithAuthorization extends React.Component {
     componentDidMount() {
-      firebase.auth.onAuthStateChanged(authUser => {
+      this.listener = auth.onAuthStateChanged(authUser => {
         if (!condition(authUser)) {
+          console.log('REDIRECT HAPPENED');
           this.props.history.push('/signin');
         }
       });
     }
 
+    componentWillUnmount() {
+      this.listener();
+    }
+
     render() {
-      return (
-        <AuthUserContext.Consumer>
-          {authUser => (authUser ? <Component /> : null)}
-        </AuthUserContext.Consumer>
-      );
+      // don't render anything if there is no user in redux state
+      return this.props.authUser ? <Component {...this.props} /> : null;
     }
   }
 
-  return withRouter(withAuthorization);
+  const mapStateToProps = state => ({ authUser: state.auth });
+  return connect(mapStateToProps)(WithAuthorization);
 };
+
+export default withAuthorization;

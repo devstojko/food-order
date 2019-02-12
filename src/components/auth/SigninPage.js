@@ -32,6 +32,7 @@ class SigninPage extends Component {
 
     const { email, password } = this.state;
     this.props.signIn(email, password);
+    this.props.history.push('/home'); // this needs to happen only when the signIn is completed because signIn is async
   }
 
   render() {
