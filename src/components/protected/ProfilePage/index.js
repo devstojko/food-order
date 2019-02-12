@@ -1,5 +1,7 @@
 import React from 'react';
+import withAuthorzation from '../../../firebase/withAuthorization';
 
 const ProfilePage = () => <div>Profile Page</div>;
 
-export default ProfilePage;
+const condition = authUser => !!authUser;
+export default withAuthorzation(condition)(ProfilePage);

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AuthPageWrapper from './AuthPageWrapper';
 import InputField from '../common/InputField';
 import Button from '../common/Button';
+import { auth } from '../../firebase';
 
 class ForgotPasswordPage extends Component {
   constructor(props) {
@@ -21,7 +22,9 @@ class ForgotPasswordPage extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
+    // validate email later?
+    auth.sendPasswordResetEmail(this.state.email);
+    // show a notification that reset link is sent
   }
 
   render() {
