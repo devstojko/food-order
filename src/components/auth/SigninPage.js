@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import AuthPageWrapper from './AuthPageWrapper';
 import InputField from '../common/InputField';
 import Button from '../common/Button';
+import { signIn } from '../../store/actions/authActions';
 
 class SigninPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       errors: {
-        username: '',
+        email: '',
         password: ''
       },
-      username: '',
+      email: '',
       password: '',
       remember: true // connect to the actual checkbox later
     };
@@ -27,11 +29,13 @@ class SigninPage extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
+
+    const { email, password } = this.state;
+    this.props.signIn(email, password);
   }
 
   render() {
-    const { errors, username, password, remember } = this.state;
+    const { errors, email, password, remember } = this.state;
 
     return (
       <AuthPageWrapper
@@ -42,11 +46,11 @@ class SigninPage extends Component {
 
         <form className="auth-page__content__form" onSubmit={this.handleSubmit}>
           <InputField
-            type="text"
-            name="username"
-            label="Username"
-            error={errors.username}
-            value={username}
+            type="email"
+            name="email"
+            label="Email"
+            error={errors.email}
+            value={email}
             onChange={this.handleChange}
           />
           <InputField
@@ -91,4 +95,7 @@ class SigninPage extends Component {
   }
 }
 
-export default SigninPage;
+export default connect(
+  null,
+  { signIn }
+)(SigninPage);

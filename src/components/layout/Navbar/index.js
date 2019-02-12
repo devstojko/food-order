@@ -1,26 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AuthUserContext } from '../../../firebase/AuthUserContext';
+import { connect } from 'react-redux';
 import './Navbar.scss';
 
-const Navbar = () => (
-  <AuthUserContext.Consumer>
-    {authUser => (
-      <nav className="navbar">
-        <div className="container">
-          <div className="navbar__link-group">
-            <Link to="/" className="navbar__link">
-              Food Order
-            </Link>
-          </div>
+const Navbar = ({ authUser }) => (
+  <nav className="navbar">
+    <div className="container">
+      <div className="navbar__link-group">
+        <Link to="/" className="navbar__link">
+          Food Order
+        </Link>
+      </div>
 
-          <div className="navbar__link-group navbar__link-group--right">
-            {authUser ? <AuthLinks /> : <NonAuthLinks />}
-          </div>
-        </div>
-      </nav>
-    )}
-  </AuthUserContext.Consumer>
+      <div className="navbar__link-group navbar__link-group--right">
+        {authUser ? <AuthLinks /> : <NonAuthLinks />}
+      </div>
+    </div>
+  </nav>
 );
 
 const AuthLinks = () => (
@@ -42,4 +38,6 @@ const NonAuthLinks = () => (
   </React.Fragment>
 );
 
-export default Navbar;
+const mapStateToProps = state => ({ authUser: state.auth });
+
+export default connect(mapStateToProps)(Navbar);
