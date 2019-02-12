@@ -1,5 +1,5 @@
 import { SIGN_IN, LOG_OUT } from './types';
-import { auth } from '../../firebase/firebase';
+import { auth } from '../../firebase';
 
 export const signIn = (email, password) => dispatch => {
   auth

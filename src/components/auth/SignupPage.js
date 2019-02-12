@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { auth } from '../../firebase';
 import AuthPageWrapper from './AuthPageWrapper';
 import InputField from '../common/InputField';
 import Button from '../common/Button';
@@ -34,7 +35,17 @@ class SignupPage extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
+    // validate data before creating a user LATER
+    const { email, password } = this.state;
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(user => {
+        // create the user in the database LATER
+        console.log('USER CREATED: ', user);
+        // clear the state & maybe show a success message
+        this.props.history.push('/signin');
+      })
+      .catch();
   }
 
   render() {
