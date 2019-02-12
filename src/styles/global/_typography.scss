@@ -2,6 +2,7 @@
   color: $purple;
   text-transform: uppercase;
   letter-spacing: 7px;
+  text-align: center;
 
   @include respond(phone) {
     letter-spacing: 5px;

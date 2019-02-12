@@ -6,7 +6,8 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, '..', 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -31,8 +32,8 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-              name: 'fonts/[name]-[hash:8].[ext]',
-          },
+            name: 'fonts/[name]-[hash:8].[ext]'
+          }
         }
       },
       {
@@ -52,15 +53,13 @@ module.exports = {
     new HTMLWebpackPlugin({
       template: './public/index.html'
     }),
-    new ExtractCssChunks(
-      {
-        filename: '[name]-[hash:8].css',
-        chunkFilename: '[id].css',
-        hot: true,
-        orderWarning: true,
-        reloadAll: true,
-        cssModules: true
-      }
-    ),
+    new ExtractCssChunks({
+      filename: '[name]-[hash:8].css',
+      chunkFilename: '[id].css',
+      hot: true,
+      orderWarning: true,
+      reloadAll: true,
+      cssModules: true
+    })
   ]
-}
+};
