@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import AuthPageImage from './AuthPageImage';
 import AuthPageFooter from './AuthPageFooter';
 import PropTypes from 'prop-types';
 import './AuthPageWrapper.scss';
@@ -7,9 +8,7 @@ const AuthPageWrapper = ({ image, imagePosition, children }) => (
   <div className="auth-page">
     {imagePosition === 'left' ? (
       <Fragment>
-        <div className="auth-page__image testing-css-access">
-          CHANGE LATER{image}
-        </div>
+        <AuthPageImage src={image} />
         <div className="auth-page__content">
           {children}
           <AuthPageFooter />
@@ -21,7 +20,7 @@ const AuthPageWrapper = ({ image, imagePosition, children }) => (
           {children}
           <AuthPageFooter />
         </div>
-        <div className="auth-page__image">CHANGE LATER{image}</div>
+        <AuthPageImage src={image} />
       </Fragment>
     )}
   </div>

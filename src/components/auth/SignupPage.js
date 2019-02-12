@@ -49,7 +49,9 @@ class SignupPage extends Component {
     } = this.state;
 
     return (
-      <AuthPageWrapper image="test" imagePosition="left">
+      <AuthPageWrapper
+        image="https://www.actaturcica.com/wp-content/uploads/2018/07/Red-Mountains-Landscape-Wallpaper.jpg"
+        imagePosition="left">
         <h1 className="title-primary">food-order</h1>
         <p className="subtitle">Please complete to create your account.</p>
         <form className="auth-page__content__form" onSubmit={this.handleSubmit}>

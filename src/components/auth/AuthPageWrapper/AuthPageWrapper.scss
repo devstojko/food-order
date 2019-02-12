@@ -8,7 +8,8 @@
 
   &__image {
     width: 50%;
-    background: $whitesmoke;
+    height: 100%;
+    object-fit: cover
   }
 
   &__content {
