@@ -28,6 +28,10 @@ class Firebase {
     return this.auth.signInWithEmailAndPassword(email, password);
   }
 
+  doSignInWithGoogle() {
+    return app.auth().signInWithPopup(new app.auth.GoogleAuthProvider());
+  }
+
   doLogOut() {
     return this.auth.signOut();
   }
