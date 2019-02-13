@@ -1,10 +1,5 @@
 import React from 'react';
-import withAuthorization from '../../../firebase/withAuthorization';
 
-const HomePage = () => {
-  console.log('ENTERED HOME');
-  return <div>Home Page</div>;
-};
+const HomePage = () => <h1>Home Page</h1>;
 
-const condition = authUser => !!authUser;
-export default withAuthorization(condition)(HomePage);
+export default HomePage;
