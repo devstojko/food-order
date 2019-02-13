@@ -31,8 +31,7 @@ class SigninPage extends Component {
     e.preventDefault();
 
     const { email, password } = this.state;
-    this.props.signIn(email, password);
-    this.props.history.push('/home'); // this needs to happen only when the signIn is completed because signIn is async
+    this.props.signIn(email, password, () => this.props.history.push('/home'));
   }
 
   render() {
@@ -95,6 +94,11 @@ class SigninPage extends Component {
     );
   }
 }
+
+// export default connect(
+//   null,
+//   { signIn }
+// )(withNonAuth(SigninPage));
 
 export default connect(
   null,

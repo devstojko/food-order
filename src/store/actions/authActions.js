@@ -1,7 +1,7 @@
 import { SIGN_IN, LOG_OUT } from './types';
 import { auth } from '../../firebase';
 
-export const signIn = (email, password) => dispatch => {
+export const signIn = (email, password, cb) => dispatch => {
   auth
     .signInWithEmailAndPassword(email, password)
     .then(data => {
@@ -10,6 +10,7 @@ export const signIn = (email, password) => dispatch => {
         type: SIGN_IN,
         user: { name: data.user.email }
       });
+      cb();
     })
     .catch(error => {
       console.log('ERROR: ', error);

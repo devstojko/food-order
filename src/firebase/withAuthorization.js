@@ -7,7 +7,6 @@ const withAuthorization = condition => Component => {
     componentDidMount() {
       this.listener = auth.onAuthStateChanged(authUser => {
         if (!condition(authUser)) {
-          console.log('REDIRECT HAPPENED');
           this.props.history.push('/signin');
         }
       });

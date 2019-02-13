@@ -18,3 +18,29 @@ if (!firebase.app.length) {
 
 export const auth = firebase.auth();
 export const db = firebase.firestore();
+
+// class Firebase {
+//   constructor() {
+//     firebase.initializeApp(config);
+
+//     this.auth = firebase.auth();
+//     this.firestore = firebase.firestore();
+//   }
+
+//   // auth methods
+//   doSignUp(email, password) {
+//     this.auth.createUserWithEmailAndPassword(email, password);
+//   }
+
+//   doSignIn(email, password) {
+//     this.auth.signInWithEmailAndPassword(email, password);
+//   }
+
+//   // doLogOut, doResetPassword ...
+
+//   // db methods
+//   // getUser, getAllUsers, saveUser...
+// }
+
+// const firebase = new Firebase();
+// export default firebase;
