@@ -15,8 +15,6 @@ import NotFoundPage from './static/NotFoundPage';
 class App extends Component {
   componentDidMount() {
     this.listener = firebase.auth.onAuthStateChanged(authUser => {
-      console.log('this should run');
-      console.log(authUser);
       if (authUser) this.props.setUser(authUser);
     });
   }
