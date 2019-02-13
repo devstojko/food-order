@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { auth } from './index';
+import firebase from './index';
 
 const withAuthorization = condition => Component => {
   class WithAuthorization extends React.Component {
     componentDidMount() {
-      this.listener = auth.onAuthStateChanged(authUser => {
+      this.listener = firebase.auth.onAuthStateChanged(authUser => {
         if (!condition(authUser)) {
           this.props.history.push('/signin');
         }
@@ -22,7 +22,7 @@ const withAuthorization = condition => Component => {
     }
   }
 
-  const mapStateToProps = state => ({ authUser: state.auth });
+  const mapStateToProps = ({ authUser }) => ({ authUser });
   return connect(mapStateToProps)(WithAuthorization);
 };
 

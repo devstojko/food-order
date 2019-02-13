@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setUser } from '../store/actions/authActions';
+import firebase from '../firebase';
 import Navbar from './layout/Navbar';
 import LandingPage from './static/LandingPage';
 import SignupPage from './auth/SignupPage';
@@ -9,22 +12,41 @@ import HomePage from './protected/HomePage';
 import ProfilePage from './protected/ProfilePage';
 import NotFoundPage from './static/NotFoundPage';
 
-const App = () => (
-  <BrowserRouter>
-    <React.Fragment>
-      <Navbar />
-      <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route path="/signup" component={SignupPage} />
-        <Route path="/signin" component={SigninPage} />
-        <Route path="/forgot-password" component={ForgotPasswordPage} />
-        <Route path="/home" component={HomePage} />
-        <Route path="/profile" component={ProfilePage} />
-        <Route path="/404" component={NotFoundPage} />
-        <Redirect to="/404" />
-      </Switch>
-    </React.Fragment>
-  </BrowserRouter>
-);
+class App extends Component {
+  componentDidMount() {
+    this.listener = firebase.auth.onAuthStateChanged(authUser => {
+      console.log('this should run');
+      console.log(authUser);
+      if (authUser) this.props.setUser(authUser);
+    });
+  }
 
-export default App;
+  componentWillUnmount() {
+    this.listener();
+  }
+
+  render() {
+    return (
+      <BrowserRouter>
+        <React.Fragment>
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <Route path="/signup" component={SignupPage} />
+            <Route path="/signin" component={SigninPage} />
+            <Route path="/forgot-password" component={ForgotPasswordPage} />
+            <Route path="/home" component={HomePage} />
+            <Route path="/profile" component={ProfilePage} />
+            <Route path="/404" component={NotFoundPage} />
+            <Redirect to="/404" />
+          </Switch>
+        </React.Fragment>
+      </BrowserRouter>
+    );
+  }
+}
+
+export default connect(
+  null,
+  { setUser }
+)(App);

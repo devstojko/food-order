@@ -1,9 +1,14 @@
-import { SIGN_IN, LOG_OUT } from './types';
+import { SET_USER, SIGN_IN, LOG_OUT } from './types';
 import firebase from '../../firebase';
+
+export const setUser = user => ({
+  type: SET_USER,
+  user
+});
 
 export const signIn = (email, password, cb) => dispatch => {
   firebase
-    .doSignUp(email, password)
+    .doSignIn(email, password)
     .then(data => {
       // user data
       console.log(data);

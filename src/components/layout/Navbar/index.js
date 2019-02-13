@@ -21,6 +21,6 @@ const Navbar = ({ authUser }) => (
   </nav>
 );
 
-const mapStateToProps = state => ({ authUser: state.auth });
+const mapStateToProps = ({ authUser }) => ({ authUser });
 
 export default connect(mapStateToProps)(Navbar);
