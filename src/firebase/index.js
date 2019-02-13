@@ -1,4 +1,4 @@
-import * as firebase from 'firebase/app';
+import * as app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
@@ -10,37 +10,39 @@ const config = {
   storageBucket: 'food-order-react.appspot.com',
   messagingSenderId: '447817230109'
 };
-firebase.initializeApp(config);
 
-if (!firebase.app.length) {
-  firebase.initializeApp(config);
+class Firebase {
+  constructor() {
+    app.initializeApp(config);
+
+    this.auth = app.auth();
+    this.firestore = app.firestore();
+  }
+
+  // auth methods
+  doSignUp(email, password) {
+    return this.auth.createUserWithEmailAndPassword(email, password);
+  }
+
+  doSignIn(email, password) {
+    return this.auth.signInWithEmailAndPassword(email, password);
+  }
+
+  doLogOut() {
+    return this.auth.signOut();
+  }
+
+  doPasswordReset(email) {
+    return this.auth.sendPasswordResetEmail(email);
+  }
+
+  doPasswordUpdate(password) {
+    return this.auth.currentUser.updatePassword(password);
+  }
+
+  // db methods
+  // getUser, getAllUsers, saveUser...
 }
 
-export const auth = firebase.auth();
-export const db = firebase.firestore();
-
-// class Firebase {
-//   constructor() {
-//     firebase.initializeApp(config);
-
-//     this.auth = firebase.auth();
-//     this.firestore = firebase.firestore();
-//   }
-
-//   // auth methods
-//   doSignUp(email, password) {
-//     this.auth.createUserWithEmailAndPassword(email, password);
-//   }
-
-//   doSignIn(email, password) {
-//     this.auth.signInWithEmailAndPassword(email, password);
-//   }
-
-//   // doLogOut, doResetPassword ...
-
-//   // db methods
-//   // getUser, getAllUsers, saveUser...
-// }
-
-// const firebase = new Firebase();
-// export default firebase;
+const firebase = new Firebase();
+export default firebase;

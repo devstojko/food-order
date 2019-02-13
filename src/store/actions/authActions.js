@@ -1,10 +1,11 @@
 import { SIGN_IN, LOG_OUT } from './types';
-import { auth } from '../../firebase';
+import firebase from '../../firebase';
 
 export const signIn = (email, password, cb) => dispatch => {
-  auth
-    .signInWithEmailAndPassword(email, password)
+  firebase
+    .doSignUp(email, password)
     .then(data => {
+      // user data
       console.log(data);
       dispatch({
         type: SIGN_IN,
@@ -18,7 +19,7 @@ export const signIn = (email, password, cb) => dispatch => {
 };
 
 export const logOut = () => dispatch => {
-  auth.signOut().then(() =>
+  firebase.doLogOut().then(() =>
     dispatch({
       type: LOG_OUT
     })
