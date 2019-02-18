@@ -12,7 +12,8 @@ export const signIn = (email, password) => dispatch => {
     .doSignIn(email, password)
     .then(data => {
       const user = {
-        email: data.user.email
+        email: data.user.email,
+        id: data.user.uid
       };
       dispatch(setUser(user));
       toastr.success('Signed in', 'Welcome to food order.');

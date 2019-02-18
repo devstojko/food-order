@@ -20,7 +20,8 @@ class App extends Component {
     this.listener = firebase.auth.onAuthStateChanged(authUser => {
       if (authUser) {
         const user = {
-          email: authUser.email
+          email: authUser.email,
+          id: authUser.uid
         };
         this.props.setUser(user);
       }

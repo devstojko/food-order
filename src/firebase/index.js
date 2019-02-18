@@ -51,6 +51,13 @@ class Firebase {
       .doc(id)
       .set({ ...user });
   }
+
+  fetchUser(id) {
+    return this.firestore
+      .collection('users')
+      .doc(id)
+      .get();
+  }
 }
 
 const firebase = new Firebase();
