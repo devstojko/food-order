@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { toastr } from 'react-redux-toastr';
 import firebase from '../../../firebase';
 import InputField from '../../common/InputField';
 import Button from '../../common/Button';
@@ -24,7 +25,7 @@ const INITIAL_STATE = {
 class SignupForm extends Component {
   constructor(props) {
     super(props);
-    this.state = INITIAL_STATE;
+    this.state = { ...INITIAL_STATE };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,11 +43,13 @@ class SignupForm extends Component {
       .doSignUp(email, password)
       .then(user => {
         // create the user in the database LATER
-        console.log('USER CREATED: ', user);
-        // clear the state & maybe show a success message
-        this.props.history.push('/signin');
+        this.setState({ ...INITIAL_STATE });
+        toastr.success(
+          'Registration successful',
+          'Welcome to food order website'
+        );
       })
-      .catch(err => console.log('ERROR ', err));
+      .catch(err => toastr.error('There was an error', err.message));
   }
 
   render() {
@@ -113,7 +116,7 @@ class SignupForm extends Component {
           onChange={this.handleChange}
         />
 
-        <Button text="Sign Up" type="primary" />
+        <Button text="Sign Up" style="primary" type="submit" />
         <Link className="link" to="/signin">
           Already have an account? Sign in.
         </Link>

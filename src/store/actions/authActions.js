@@ -12,23 +12,25 @@ export const signIn = (email, password, cb) => dispatch => {
     .doSignIn(email, password)
     .then(data => {
       // user data
-      console.log(data);
+      // console.log(data);
       dispatch({
         type: SIGN_IN,
         user: { name: data.user.email }
       });
-      toastr.success('SignIn successful!', 'Welcome to food order.');
+      toastr.success('Signed in', 'Welcome to food order.');
       cb();
     })
-    .catch(error => {
-      console.log('ERROR: ', error);
-    });
+    .catch(err => toastr.error('There was an error', err.message));
 };
 
 export const logOut = () => dispatch => {
-  firebase.doLogOut().then(() =>
-    dispatch({
-      type: LOG_OUT
+  firebase
+    .doLogOut()
+    .then(() => {
+      dispatch({
+        type: LOG_OUT
+      });
+      toastr.success('Logged out successfully', 'Thanks for stopping by.');
     })
-  );
+    .catch(err => toastr.error('There was an error', err.message));
 };

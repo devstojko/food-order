@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { toastr } from 'react-redux-toastr';
 import InputField from '../../common/InputField';
 import Button from '../../common/Button';
 import firebase from '../../../firebase';
@@ -21,9 +22,15 @@ export default class ForgotPasswordForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // validate email later?
-    firebase.doPasswordReset(this.state.email);
-    // show a notification that reset link is sent
+    firebase
+      .doPasswordReset(this.state.email)
+      .then(() =>
+        toastr.success(
+          'Password reset requested',
+          'Please check your email address for a reset link'
+        )
+      )
+      .catch(err => toastr.success('There was an error', err.message));
   }
 
   render() {
@@ -38,7 +45,7 @@ export default class ForgotPasswordForm extends Component {
           onChange={this.handleChange}
         />
 
-        <Button type="primary" text="Send request" />
+        <Button style="primary" type="submit" text="Send request" />
       </form>
     );
   }

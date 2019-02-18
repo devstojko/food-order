@@ -10,8 +10,6 @@ const SigninPage = () => (
     <h1 className="title-primary">food-order</h1>
     <p className="subtitle">Welcome back! Please login to your account.</p>
     <SigninForm />
-    OR
-    <button onClick={firebase.doSignInWithGoogle}>Sign in with Google</button>
   </AuthPageWrapper>
 );
 

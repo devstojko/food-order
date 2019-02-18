@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { toastr } from 'react-redux-toastr';
 import InputField from '../../common/InputField';
 import Button from '../../common/Button';
 import { signIn } from '../../../store/actions/authActions';
+import firebase from '../../../firebase';
 
 const INITIAL_STATE = {
   errors: {
@@ -21,6 +23,7 @@ class SigninPage extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleGoogleSignin = this.handleGoogleSignin.bind(this);
   }
 
   handleChange(e) {
@@ -32,6 +35,14 @@ class SigninPage extends Component {
 
     const { email, password } = this.state;
     this.props.signIn(email, password, () => this.props.history.push('/home'));
+  }
+
+  handleGoogleSignin() {
+    console.log('clickd');
+    firebase
+      .doSignInWithGoogle()
+      .then(() => toastr.success('Signed in', 'Welcome to food order'))
+      .catch(err => toastr.error('There was an error', err.message));
   }
 
   render() {
@@ -73,15 +84,17 @@ class SigninPage extends Component {
 
         <div className="two-item-row">
           <div className="row-item">
-            <Button type="primary" text="Login" />
+            <Button style="primary" type="submit" text="Login" />
           </div>
 
-          <Link
-            to="/signup"
-            className="row-item"
-            style={{ textDecoration: 'none' }}>
-            <Button type="secondary" text="Sign up" />
-          </Link>
+          <div className="row-item">
+            <Button
+              style="secondary"
+              type="button"
+              text="Sign in with Google"
+              onClick={this.handleGoogleSignin}
+            />
+          </div>
         </div>
       </form>
     );

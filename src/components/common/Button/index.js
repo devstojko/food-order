@@ -2,13 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Button.scss';
 
-const Button = ({ text, type = 'primary' }) => (
-  <button className={`btn btn--${type}`}>{text}</button>
+const Button = ({ text, type, onClick, style = 'primary' }) => (
+  <button
+    onClick={onClick ? onClick : null}
+    type={type}
+    className={`btn btn--${style}`}>
+    {text}
+  </button>
 );
 
 Button.propTypes = {
-  type: PropTypes.oneOf(['primary', 'secondary']),
-  text: PropTypes.string
+  style: PropTypes.oneOf(['primary', 'secondary']),
+  text: PropTypes.string,
+  type: PropTypes.string,
+  onClick: PropTypes.func
 };
 
 export default Button;
