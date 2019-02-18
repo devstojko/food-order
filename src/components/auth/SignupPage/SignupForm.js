@@ -38,12 +38,23 @@ class SignupForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
     // validate data before creating a user LATER
-    const { email, password } = this.state;
+    const { firstName, lastName, username, email, password } = this.state;
+    const user = {
+      email,
+      firstName,
+      lastName,
+      username,
+      password
+    };
+
     firebase
       .doSignUp(email, password)
-      .then(user => {
-        // create the user in the database LATER
+      .then(data => {
+        // save the user to firestore
+        firebase.saveUser(data.user.uid, user);
+        // clear state
         this.setState({ ...INITIAL_STATE });
+        // show notification
         toastr.success(
           'Registration successful',
           'Welcome to food order website'

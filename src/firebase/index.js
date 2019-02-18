@@ -45,7 +45,12 @@ class Firebase {
   }
 
   // db methods
-  // getUser, getAllUsers, saveUser...
+  saveUser(id, user) {
+    return this.firestore
+      .collection('users')
+      .doc(id)
+      .set({ ...user });
+  }
 }
 
 const firebase = new Firebase();
