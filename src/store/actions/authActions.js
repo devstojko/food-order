@@ -1,5 +1,5 @@
 import { toastr } from 'react-redux-toastr';
-import { SET_USER, SIGN_IN, LOG_OUT } from './types';
+import { SET_USER, LOG_OUT } from './types';
 import firebase from '../../firebase';
 
 export const setUser = user => ({
@@ -7,18 +7,15 @@ export const setUser = user => ({
   user
 });
 
-export const signIn = (email, password, cb) => dispatch => {
+export const signIn = (email, password) => dispatch => {
   firebase
     .doSignIn(email, password)
     .then(data => {
-      // user data
-      // console.log(data);
-      dispatch({
-        type: SIGN_IN,
-        user: { name: data.user.email }
-      });
+      const user = {
+        email: data.user.email
+      };
+      dispatch(setUser(user));
       toastr.success('Signed in', 'Welcome to food order.');
-      cb();
     })
     .catch(err => toastr.error('There was an error', err.message));
 };

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setUser } from '../store/actions/authActions';
@@ -18,7 +19,10 @@ class App extends Component {
   componentDidMount() {
     this.listener = firebase.auth.onAuthStateChanged(authUser => {
       if (authUser) {
-        this.props.setUser(authUser);
+        const user = {
+          email: authUser.email
+        };
+        this.props.setUser(user);
       }
     });
   }
@@ -50,6 +54,10 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  setUser: PropTypes.func
+};
 
 export default connect(
   null,

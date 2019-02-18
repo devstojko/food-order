@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logOut } from '../../../store/actions/authActions';
@@ -13,6 +14,10 @@ const AuthLinks = ({ logOut }) => (
     </span>
   </React.Fragment>
 );
+
+AuthLinks.propTypes = {
+  logOut: PropTypes.func
+};
 
 export default connect(
   null,

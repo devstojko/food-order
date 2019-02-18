@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './inputField.scss';
 
 const InputField = ({
-  type,
+  type = 'text',
   name,
   label,
   error,
@@ -33,11 +33,11 @@ const InputField = ({
 
 InputField.propTypes = {
   type: PropTypes.string,
-  name: PropTypes.string,
-  label: PropTypes.string,
-  error: PropTypes.string,
-  value: PropTypes.string,
-  onChange: PropTypes.func,
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  error: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   required: PropTypes.bool,
   inline: PropTypes.bool
 };

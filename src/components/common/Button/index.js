@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Button.scss';
 
-const Button = ({ text, type, onClick, style = 'primary' }) => (
+const Button = ({ text, type = 'button', onClick, style = 'primary' }) => (
   <button
     onClick={onClick ? onClick : null}
     type={type}
@@ -13,7 +13,7 @@ const Button = ({ text, type, onClick, style = 'primary' }) => (
 
 Button.propTypes = {
   style: PropTypes.oneOf(['primary', 'secondary']),
-  text: PropTypes.string,
+  text: PropTypes.string.isRequired,
   type: PropTypes.string,
   onClick: PropTypes.func
 };

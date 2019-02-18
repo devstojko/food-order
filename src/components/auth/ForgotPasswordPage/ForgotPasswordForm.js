@@ -24,12 +24,17 @@ export default class ForgotPasswordForm extends Component {
     e.preventDefault();
     firebase
       .doPasswordReset(this.state.email)
-      .then(() =>
+      .then(() => {
+        this.setState({
+          email: '',
+          emailError: ''
+        });
+
         toastr.success(
           'Password reset requested',
           'Please check your email address for a reset link'
-        )
-      )
+        );
+      })
       .catch(err => toastr.success('There was an error', err.message));
   }
 

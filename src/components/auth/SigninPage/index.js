@@ -1,7 +1,6 @@
 import React from 'react';
 import AuthPageWrapper from '../AuthPageWrapper';
 import SigninForm from './SigninForm';
-import firebase from '../../../firebase';
 
 const SigninPage = () => (
   <AuthPageWrapper

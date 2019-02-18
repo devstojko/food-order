@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import AuthLinks from './AuthLinks';
@@ -22,5 +23,9 @@ const Navbar = ({ authUser }) => (
 );
 
 const mapStateToProps = ({ authUser }) => ({ authUser });
+
+Navbar.propTypes = {
+  authUser: PropTypes.object
+};
 
 export default connect(mapStateToProps)(Navbar);

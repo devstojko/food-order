@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toastr } from 'react-redux-toastr';
@@ -34,11 +35,11 @@ class SigninPage extends Component {
     e.preventDefault();
 
     const { email, password } = this.state;
-    this.props.signIn(email, password, () => this.props.history.push('/home'));
+    this.setState({ ...INITIAL_STATE });
+    this.props.signIn(email, password);
   }
 
   handleGoogleSignin() {
-    console.log('clickd');
     firebase
       .doSignInWithGoogle()
       .then(() => toastr.success('Signed in', 'Welcome to food order'))
@@ -100,6 +101,10 @@ class SigninPage extends Component {
     );
   }
 }
+
+SigninPage.propTypes = {
+  signIn: PropTypes.func.isRequired
+};
 
 export default connect(
   null,

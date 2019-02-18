@@ -28,7 +28,8 @@ const AuthPageWrapper = ({ image, imagePosition, children }) => (
 
 AuthPageWrapper.propTypes = {
   image: PropTypes.string,
-  imagePosition: PropTypes.oneOf(['left', 'right'])
+  imagePosition: PropTypes.oneOf(['left', 'right']),
+  children: PropTypes.node.isRequired
 };
 
 export default AuthPageWrapper;
