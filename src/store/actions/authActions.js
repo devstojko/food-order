@@ -1,3 +1,4 @@
+import { toastr } from 'react-redux-toastr';
 import { SET_USER, SIGN_IN, LOG_OUT } from './types';
 import firebase from '../../firebase';
 
@@ -16,6 +17,7 @@ export const signIn = (email, password, cb) => dispatch => {
         type: SIGN_IN,
         user: { name: data.user.email }
       });
+      toastr.success('SignIn successful!', 'Welcome to food order.');
       cb();
     })
     .catch(error => {
