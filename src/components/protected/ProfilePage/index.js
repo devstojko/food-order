@@ -12,15 +12,16 @@ class ProfilePage extends Component {
   }
 
   componentDidMount() {
-    firebase
-      .fetchUser(this.props.authUser.id)
-      .then(doc => this.setState({ user: doc.data() }))
-      .catch(err => toastr.error('Unable to fetch the user', err.message));
+    this.getUserProfile();
   }
 
   componentWillReceiveProps(newProps) {
+    this.getUserProfile();
+  }
+
+  getUserProfile() {
     firebase
-      .fetchUser(newProps.authUser.id)
+      .fetchUser(this.props.authUser.id)
       .then(doc => this.setState({ user: doc.data() }))
       .catch(err => toastr.error('Unable to fetch the user', err.message));
   }
@@ -32,7 +33,7 @@ class ProfilePage extends Component {
       <div className="container">
         {user && (
           <React.Fragment>
-            <h1>User Data</h1>
+            <h1 className="title-primary">User Data</h1>
             <h3>{user.firstName}</h3>
             <h3>{user.lastName}</h3>
             <h3>{user.email}</h3>

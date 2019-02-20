@@ -1,6 +1,41 @@
 @import '../../../styles/common/variables';
 @import '../../../styles/common/mixins';
 
+.hamburger {
+  display: none;
+  margin-left: auto;
+
+  div {
+    width: 3.5rem;
+    height: .5rem;
+    background-color: $white;
+    margin: .6rem 0;
+  }
+
+  @include respond(phone) {
+    display: block;
+
+    div {
+      width: 2.5rem;
+      height: .3rem;
+      margin: .4rem 0;
+    }
+  }
+}
+
+.phone-links {
+  position: absolute;
+  top: $navbar-height;
+  left: 0;
+  width: 100%;
+  background: $purple;
+  z-index: 1000;
+
+  .navbar__link {
+    padding: 1.2rem;
+  }
+}
+
 .navbar {
   background-color: $purple;
   font-size: 1.8rem;
@@ -9,6 +44,7 @@
 
   .container {
     display: flex;
+    align-items: center;
   }
 
   &__link-group {
@@ -17,6 +53,10 @@
 
     &--right {
       margin-left: auto;
+
+      @include respond(phone) {
+        display: none;
+      }
     }
   }
 
@@ -32,5 +72,9 @@
     &:hover {
       background: darken($purple, 5);
     }
+  }
+
+  @include respond(phone) {
+    font-size: 1.6rem;
   }
 }

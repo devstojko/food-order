@@ -3,7 +3,7 @@
 
 .field {
   position: relative;
-  margin-bottom: 4rem;
+  margin-bottom: 4.5rem;
 
   &--inline {
     width: 46%;
@@ -19,7 +19,7 @@
     padding: 1rem;
     width: 100%;
     border: none;
-    border-bottom: 1px solid $lightgray;
+    border-bottom: 2px solid $lightgray;
     font-family: 'Sarabun', sans-serif;
     font-size: 1.6rem;
     letter-spacing: 1px;
@@ -98,12 +98,12 @@
   }
 
   &__error {
-    padding: 0 10px;
+    padding: 0 1rem;
     position: absolute;
     color: $red;
     width: 100%;
-    height: 25px;
-    font-size: 15px;
+    height: 2.4rem;
+    font-size: 1.5rem;
     display: flex;
     align-items: center;
   }
