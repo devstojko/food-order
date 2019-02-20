@@ -3,39 +3,22 @@ import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toastr } from 'react-redux-toastr';
+import { Field, reduxForm } from 'redux-form';
 import InputField from '../../common/InputField';
 import Button from '../../common/Button';
 import { signIn } from '../../../store/actions/authActions';
 import firebase from '../../../firebase';
 
-const INITIAL_STATE = {
-  errors: {
-    email: '',
-    password: ''
-  },
-  email: '',
-  password: ''
-};
-
 class SigninPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { ...INITIAL_STATE };
 
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleGoogleSignin = this.handleGoogleSignin.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-
-    const { email, password } = this.state;
-    this.setState({ ...INITIAL_STATE });
+  handleSubmit(values) {
+    const { email, password } = values;
     this.props.signIn(email, password);
   }
 
@@ -47,34 +30,22 @@ class SigninPage extends Component {
   }
 
   render() {
-    const { errors, email, password, remember } = this.state;
+    const { handleSubmit } = this.props;
 
     return (
-      <form className="auth-page__content__form" onSubmit={this.handleSubmit}>
-        <InputField
-          type="email"
-          name="email"
-          label="Email"
-          error={errors.email}
-          value={email}
-          onChange={this.handleChange}
-        />
-        <InputField
-          type="password"
+      <form
+        className="auth-page__content__form"
+        onSubmit={handleSubmit(this.handleSubmit)}>
+        <Field name="email" type="email" label="Email" component={InputField} />
+        <Field
           name="password"
+          type="password"
           label="Password"
-          error={errors.password}
-          value={password}
-          onChange={this.handleChange}
+          component={InputField}
         />
         <div className="two-item-row">
           <div className="row-item">
-            <input
-              type="checkbox"
-              name="remember"
-              placeholder="Remember me"
-              value={remember}
-            />
+            <input type="checkbox" name="remember" placeholder="Remember me" />
             <span className="text-primary">Remember me</span>
           </div>
 
@@ -109,4 +80,4 @@ SigninPage.propTypes = {
 export default connect(
   null,
   { signIn }
-)(withRouter(SigninPage));
+)(withRouter(reduxForm({ form: 'signin' })(SigninPage)));
