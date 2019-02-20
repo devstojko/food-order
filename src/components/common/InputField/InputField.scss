@@ -21,9 +21,13 @@
     border: none;
     border-bottom: 1px solid $lightgray;
     font-family: 'Sarabun', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     letter-spacing: 1px;
     color: lighten($black, 5);
+
+    &--error {
+      border-bottom: 2px solid $red;
+    }
 
     &:focus {
       outline: none;
@@ -94,14 +98,12 @@
   }
 
   &__error {
-    // not yet styled as it should be
     padding: 0 10px;
     position: absolute;
-    color: red;
+    color: $red;
     width: 100%;
     height: 25px;
-    font-size: 14px;
-    letter-spacing: 1px;
+    font-size: 15px;
     display: flex;
     align-items: center;
   }
@@ -109,13 +111,16 @@
   @include respond(tab-port) {
     margin-bottom: 3.5rem;
     font-size: 1.5rem;
-    // errors ?
+
+    &__error {
+      height: 2rem;
+      font-size: 1.3rem;
+    }
   }
 
   @include respond(phone) {
     margin-bottom: 3rem;
     font-size: 1.3rem;
-    // errors ?
   }
 }
 

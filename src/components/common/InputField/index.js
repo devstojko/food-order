@@ -16,7 +16,9 @@ const InputField = ({
     <div className={'field ' + (inline ? 'field--inline' : '')}>
       <input
         {...input}
-        className="field__text"
+        className={
+          'field__text ' + (touched && error ? 'field__text--error' : '')
+        }
         type={type}
         required={required}
       />
