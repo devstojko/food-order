@@ -30,12 +30,10 @@ class SigninPage extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
-
     return (
       <form
         className="auth-page__content__form"
-        onSubmit={handleSubmit(this.handleSubmit)}>
+        onSubmit={this.props.handleSubmit(this.handleSubmit)}>
         <Field name="email" type="email" label="Email" component={InputField} />
         <Field
           name="password"

@@ -33,7 +33,7 @@ const InputField = ({
 InputField.propTypes = {
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   label: PropTypes.string.isRequired,
   required: PropTypes.bool,
   inline: PropTypes.bool

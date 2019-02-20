@@ -1,44 +1,20 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { toastr } from 'react-redux-toastr';
-import firebase from '../../../firebase';
+import { Field, reduxForm } from 'redux-form';
 import InputField from '../../common/InputField';
+import firebase from '../../../firebase';
 import Button from '../../common/Button';
-
-const INITIAL_STATE = {
-  errors: {
-    firstName: '',
-    lastName: '',
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  },
-  firstName: '',
-  lastName: '',
-  username: '',
-  email: '',
-  password: '',
-  confirmPassword: ''
-};
 
 class SignupForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { ...INITIAL_STATE };
 
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    // validate data before creating a user LATER
-    const { firstName, lastName, username, email, password } = this.state;
+  handleSubmit(values) {
+    const { firstName, lastName, username, email, password } = values;
     const user = {
       email,
       firstName,
@@ -52,8 +28,6 @@ class SignupForm extends Component {
       .then(data => {
         // save the user to firestore
         firebase.saveUser(data.user.uid, user);
-        // clear state
-        this.setState({ ...INITIAL_STATE });
         // show notification
         toastr.success(
           'Registration successful',
@@ -64,67 +38,35 @@ class SignupForm extends Component {
   }
 
   render() {
-    const {
-      errors,
-      firstName,
-      lastName,
-      username,
-      email,
-      password,
-      confirmPassword
-    } = this.state;
-
     return (
-      <form className="auth-page__content__form" onSubmit={this.handleSubmit}>
-        <InputField
+      <form
+        className="auth-page__content__form"
+        onSubmit={this.props.handleSubmit(this.handleSubmit)}>
+        <Field
           inline
-          type="text"
           name="firstName"
           label="First Name"
-          error={errors.firstName}
-          value={firstName}
-          onChange={this.handleChange}
+          component={InputField}
         />
-        <InputField
+        <Field
           inline
-          type="text"
           name="lastName"
           label="Last Name"
-          error={errors.lastName}
-          value={lastName}
-          onChange={this.handleChange}
+          component={InputField}
         />
-        <InputField
-          type="text"
-          name="username"
-          label="Username"
-          error={errors.username}
-          value={username}
-          onChange={this.handleChange}
-        />
-        <InputField
-          type="email"
-          name="email"
-          label="Email"
-          error={errors.email}
-          value={email}
-          onChange={this.handleChange}
-        />
-        <InputField
+        <Field name="username" label="Username" component={InputField} />
+        <Field type="email" name="email" label="Email" component={InputField} />
+        <Field
           type="password"
           name="password"
           label="Password"
-          error={errors.password}
-          value={password}
-          onChange={this.handleChange}
+          component={InputField}
         />
-        <InputField
+        <Field
           type="password"
           name="confirmPassword"
           label="Confirm Password"
-          error={errors.confirmPassword}
-          value={confirmPassword}
-          onChange={this.handleChange}
+          component={InputField}
         />
 
         <Button text="Sign Up" style="primary" type="submit" />
@@ -136,4 +78,4 @@ class SignupForm extends Component {
   }
 }
 
-export default withRouter(SignupForm);
+export default withRouter(reduxForm({ form: 'signup' })(SignupForm));
