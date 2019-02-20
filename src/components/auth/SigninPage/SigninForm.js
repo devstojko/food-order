@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toastr } from 'react-redux-toastr';
 import { Field, reduxForm } from 'redux-form';
@@ -78,4 +78,4 @@ SigninPage.propTypes = {
 export default connect(
   null,
   { signIn }
-)(withRouter(reduxForm({ form: 'signin' })(SigninPage)));
+)(reduxForm({ form: 'signin' })(SigninPage));

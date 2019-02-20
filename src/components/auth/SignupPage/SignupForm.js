@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { toastr } from 'react-redux-toastr';
 import { Field, reduxForm } from 'redux-form';
 import InputField from '../../common/InputField';
@@ -78,4 +78,4 @@ class SignupForm extends Component {
   }
 }
 
-export default withRouter(reduxForm({ form: 'signup' })(SignupForm));
+export default reduxForm({ form: 'signup' })(SignupForm);

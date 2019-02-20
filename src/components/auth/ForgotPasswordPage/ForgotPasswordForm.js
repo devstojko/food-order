@@ -1,57 +1,40 @@
 import React, { Component } from 'react';
 import { toastr } from 'react-redux-toastr';
+import { Field, reduxForm } from 'redux-form';
 import InputField from '../../common/InputField';
 import Button from '../../common/Button';
 import firebase from '../../../firebase';
 
-export default class ForgotPasswordForm extends Component {
+class ForgotPasswordForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      email: '',
-      emailError: ''
-    };
 
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
+  handleSubmit(values) {
     firebase
-      .doPasswordReset(this.state.email)
-      .then(() => {
-        this.setState({
-          email: '',
-          emailError: ''
-        });
-
+      .doPasswordReset(values.email)
+      .then(() =>
         toastr.success(
           'Password reset requested',
-          'Please check your email address for a reset link'
-        );
-      })
+          'Please check your email for a reset link'
+        )
+      )
       .catch(err => toastr.success('There was an error', err.message));
   }
 
   render() {
     return (
-      <form className="auth-page__content__form" onSubmit={this.handleSubmit}>
-        <InputField
-          type="email"
-          name="email"
-          label="Email"
-          error={this.state.emailError}
-          value={this.state.email}
-          onChange={this.handleChange}
-        />
+      <form
+        className="auth-page__content__form"
+        onSubmit={this.props.handleSubmit(this.handleSubmit)}>
+        <Field type="email" name="email" label="Email" component={InputField} />
 
         <Button style="primary" type="submit" text="Send request" />
       </form>
     );
   }
 }
+
+export default reduxForm({ form: 'forgotpw' })(ForgotPasswordForm);
