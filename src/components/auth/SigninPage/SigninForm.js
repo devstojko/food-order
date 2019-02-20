@@ -8,6 +8,7 @@ import InputField from '../../common/InputField';
 import Button from '../../common/Button';
 import { signIn } from '../../../store/actions/authActions';
 import firebase from '../../../firebase';
+import validate from './validation';
 
 class SigninPage extends Component {
   constructor(props) {
@@ -78,4 +79,4 @@ SigninPage.propTypes = {
 export default connect(
   null,
   { signIn }
-)(reduxForm({ form: 'signin' })(SigninPage));
+)(reduxForm({ form: 'signin', validate })(SigninPage));

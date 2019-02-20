@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import InputField from '../../common/InputField';
 import Button from '../../common/Button';
 import firebase from '../../../firebase';
+import validate from './validation';
 
 class ForgotPasswordForm extends Component {
   constructor(props) {
@@ -37,4 +38,4 @@ class ForgotPasswordForm extends Component {
   }
 }
 
-export default reduxForm({ form: 'forgotpw' })(ForgotPasswordForm);
+export default reduxForm({ form: 'forgotpw', validate })(ForgotPasswordForm);
