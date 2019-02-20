@@ -73,7 +73,8 @@ class SigninPage extends Component {
 }
 
 SigninPage.propTypes = {
-  signIn: PropTypes.func.isRequired
+  signIn: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired
 };
 
 export default connect(

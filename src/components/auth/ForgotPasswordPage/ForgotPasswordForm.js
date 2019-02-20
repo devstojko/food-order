@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { toastr } from 'react-redux-toastr';
 import { Field, reduxForm } from 'redux-form';
 import InputField from '../../common/InputField';
@@ -37,5 +38,9 @@ class ForgotPasswordForm extends Component {
     );
   }
 }
+
+ForgotPasswordForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired
+};
 
 export default reduxForm({ form: 'forgotpw', validate })(ForgotPasswordForm);

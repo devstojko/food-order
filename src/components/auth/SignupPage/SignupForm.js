@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { toastr } from 'react-redux-toastr';
 import { Field, reduxForm } from 'redux-form';
@@ -78,5 +79,9 @@ class SignupForm extends Component {
     );
   }
 }
+
+SignupForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired
+};
 
 export default reduxForm({ form: 'signup', validate })(SignupForm);
