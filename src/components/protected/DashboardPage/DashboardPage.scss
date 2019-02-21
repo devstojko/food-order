@@ -1,0 +1,7 @@
+@import '../../../styles/common/variables';
+
+.dashboard {
+  display: flex;
+
+  height: calc(100vh - #{$navbar-height});
+}

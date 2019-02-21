@@ -23,7 +23,7 @@ class NonAuthOnlyRoute extends React.Component {
         {...rest}
         render={props =>
           !!this.props.authUser ? (
-            <Redirect to="/home" />
+            <Redirect to="/dashboard" />
           ) : (
             <Component {...this.props} />
           )

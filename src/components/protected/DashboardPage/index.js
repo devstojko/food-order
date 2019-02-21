@@ -1,9 +1,17 @@
 import React from 'react';
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
+import DashboardContent from './DashboardContent';
+import './DashboardPage.scss';
 
-const HomePage = () => (
-  <div className="container">
-    <h1 className="title-primary">Home Page</h1>
+const DashboardPage = () => (
+  <div>
+    <Navbar />
+    <div className="dashboard">
+      <Sidebar />
+      <DashboardContent />
+    </div>
   </div>
 );
 
-export default HomePage;
+export default DashboardPage;

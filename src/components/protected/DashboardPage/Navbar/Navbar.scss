@@ -1,0 +1,26 @@
+@import '../../../../styles/common/variables';
+
+.navbar {
+  height: $navbar-height;
+  display: flex;
+
+  &__logo {
+    background: $purple;
+    width: $sidebar-width;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    color: $white;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: bold;
+  }
+
+  &__search {
+
+  }
+
+  &__links {
+
+  }
+}
