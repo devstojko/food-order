@@ -1,5 +1,5 @@
 .title-primary {
-  color: $purple;
+  color: $purple-dark;
   text-transform: uppercase;
   letter-spacing: 7px;
   text-align: center;
@@ -23,7 +23,7 @@
 
 .text-primary {
   font-size: 1.5rem;
-  color: $purple;
+  color: $purple-dark;
   font-weight: bold;
   text-decoration: none;
 
@@ -34,7 +34,7 @@
 }
 
 .link {
-  color: $purple;
+  color: $purple-dark;
 
   @include respond(tab-port) {
     font-size: 1.5rem;

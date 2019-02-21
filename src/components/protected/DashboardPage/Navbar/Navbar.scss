@@ -63,15 +63,16 @@
   &__separator {
     height: 4rem;
     border-left: 1px solid $lightgray;
+    margin-right: 2rem;
   }
 
   &__user {
     position: relative;
-    width: 200px;
+    min-width: 200px;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
 
     &:hover .navbar__dropdown {
       display: block;
@@ -83,6 +84,7 @@
     width: 4.5rem;
     border-radius: 50%;
     border: 1px solid $lightgray;
+    margin: 0 1.5rem;
   }
 
   &__dropdown {
