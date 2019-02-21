@@ -31,7 +31,7 @@
 
     &:focus {
       outline: none;
-      border-color: $purple;
+      border-color: $purple-dark;
       transition: 0.2s ease all;
     }
 
@@ -39,7 +39,7 @@
     &:valid ~ .field__label {
       top: -2rem;
       font-size: 1.4rem;
-      color: $purple;
+      color: $purple-dark;
     }
 
     &:focus ~ .field__bar:before,
@@ -73,7 +73,7 @@
       width: 0;
       bottom: 1px;
       position: absolute;
-      background: $purple;
+      background: $purple-dark;
       transition: 0.2s ease all;
     }
 
@@ -87,7 +87,7 @@
   }
 
   &__label {
-    color: $purple;
+    color: $purple-dark;
     font-size: 1.6rem;
     font-weight: normal;
     position: absolute;
@@ -126,7 +126,7 @@
 
 @keyframes inputHighlighter {
 	from { 
-    background: $purple; 
+    background: $purple-dark; 
   }
 
   to { 

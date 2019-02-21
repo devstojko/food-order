@@ -1,7 +1,7 @@
 @import '../../../../styles/common/variables';
 
 .sidebar {
-  background: $purple;
+  background: $purple-dark;
   width: $sidebar-width;
   min-width: $sidebar-width;
 
@@ -16,7 +16,8 @@
     }
 
     &:hover {
-      background: darken($purple, 5);
+      background: darken($purple-dark, 5);
+      border-left: 3px solid $purple;
     }
   }
 }

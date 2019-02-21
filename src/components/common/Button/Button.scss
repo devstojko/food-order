@@ -14,15 +14,15 @@
   font-size: 1.5rem;
 
   &--primary {
-    border: 2px solid $purple;
-    background-color: $purple;
+    border: 2px solid $purple-dark;
+    background-color: $purple-dark;
     color: $white;
   }
 
   &--secondary {
-    border: 2px solid $purple;
+    border: 2px solid $purple-dark;
     background-color: $white;
-    color: $purple;
+    color: $purple-dark;
   }
 
   @include respond(tab-port) {

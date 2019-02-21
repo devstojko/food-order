@@ -3,10 +3,9 @@
 .navbar {
   height: $navbar-height;
   display: flex;
-  box-shadow: 0 0 3px $lightgray;
 
   &__logo {
-    background: darken($purple, 5);
+    background: darken($purple-dark, 5);
     width: $sidebar-width;
     display: flex;
     align-items: center;
@@ -28,7 +27,7 @@
       display: flex;
       align-items: center;
       font-size: 2rem;
-      margin-right: 1rem;
+      margin-right: 2rem;
     }
 
     input {
@@ -41,12 +40,66 @@
       }
 
       &::placeholder {
-        color: $purple;
+        color: $purple-dark;
       }
     }
   }
 
   &__links {
-    border: 1px solid black;
+    display: flex;
+  }
+
+  &__icons {
+    display: flex;
+    align-items: center;
+
+    .fas {
+      color: darken($gray, 5);
+      font-size: 2rem;
+      margin: 0 2rem 0 1rem;
+    }
+  }
+
+  &__separator {
+    height: 4rem;
+    border-left: 1px solid $lightgray;
+  }
+
+  &__user {
+    position: relative;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 1.8rem;
+
+    &:hover .navbar__dropdown {
+      display: block;
+    }
+  }
+
+  &__avatar {
+    height: 4.5rem;
+    width: 4.5rem;
+    border-radius: 50%;
+    border: 1px solid $lightgray;
+  }
+
+  &__dropdown {
+    display: none;
+    position: absolute;
+    width: 200px;
+    top: $navbar-height;
+    left: 0;
+    background: $white;
+    border: 1px solid $whitesmoke;
+
+    &-link {
+      padding: 1.4rem;
+
+      &:hover {
+        background: $whitesmoke;
+      }
+    }
   }
 }
