@@ -1,0 +1,64 @@
+@import '../../../styles/common/variables';
+
+.card {
+  background: $white;
+  border: 1px solid $lightgray;
+  width: 400px; // change later
+  margin-bottom: 3rem;
+
+  &__header {
+    padding: 1rem 2rem;
+    display: flex;
+    font-size: 1.5rem;
+    color: $gray;
+  }
+
+  &__status {
+    margin-left: auto;
+    font-size: 1.3rem;
+    border-radius: 2rem;
+    padding: 2px;
+    width: 8rem;
+    text-align: center;
+    font-weight: bold;
+    color: $black;
+    opacity: 0.5;
+
+    &--active {
+      background: $green;
+    }
+
+    &--ordering {
+      background: $orange;
+    }
+  }
+
+  &__content {
+    padding: 2rem;
+  }
+
+  &__footer {
+    display: flex;
+    padding: 1rem 2rem;
+  }
+
+  &__user {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    border: 1px solid $lightgray;
+    margin-right: 1rem;
+  }
+
+  &__info {
+    p {
+      margin: 0 0 5px;
+      font-size: 1.4rem;
+    }
+
+    span {
+      font-size: 1.3rem;
+      color: darken($gray, 15);
+    }
+  }
+}

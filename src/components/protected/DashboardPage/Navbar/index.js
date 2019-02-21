@@ -21,6 +21,7 @@ const Navbar = ({ authUser, logOut }) => (
 
       <div className="navbar__user">
         {authUser.email}
+        <i className="fas fa-angle-down" />
         <img className="navbar__avatar" src={userImg} alt="user" />
         <div className="navbar__dropdown">
           <div className="navbar__dropdown-link">Random Link 1</div>

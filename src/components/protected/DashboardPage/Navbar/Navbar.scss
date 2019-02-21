@@ -74,6 +74,10 @@
     justify-content: space-around;
     font-size: 1.6rem;
 
+    .fa-angle-down {
+      margin-left: 1rem;
+    }
+
     &:hover .navbar__dropdown {
       display: block;
     }
