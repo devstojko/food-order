@@ -3,13 +3,14 @@
 .navbar {
   height: $navbar-height;
   display: flex;
+  box-shadow: 0 0 3px $lightgray;
 
   &__logo {
-    background: $purple;
+    background: darken($purple, 5);
     width: $sidebar-width;
     display: flex;
     align-items: center;
-    padding: 2rem;
+    padding: 2.5rem;
     color: $white;
     text-transform: uppercase;
     letter-spacing: 3px;
@@ -18,10 +19,34 @@
   }
 
   &__search {
+    flex: 1;
+    display: flex;
+    padding: 0 2.5rem;
 
+    .fa-search {
+      color: $gray;
+      display: flex;
+      align-items: center;
+      font-size: 2rem;
+      margin-right: 1rem;
+    }
+
+    input {
+      border: none;
+      font-size: 1.6rem;
+      width: 100%;
+
+      &:focus {
+        outline: none;
+      }
+
+      &::placeholder {
+        color: $purple;
+      }
+    }
   }
 
   &__links {
-
+    border: 1px solid black;
   }
 }

@@ -3,10 +3,20 @@
 .sidebar {
   background: $purple;
   width: $sidebar-width;
+  min-width: $sidebar-width;
 
   &__item {
-    border: 1px solid red;
-    padding: 2rem;
+    padding: 2rem 3rem;
     color: $white;
+    font-size: 1.7rem;
+    cursor: pointer;
+
+    i {
+      margin-right: 1.5rem;
+    }
+
+    &:hover {
+      background: darken($purple, 5);
+    }
   }
 }
