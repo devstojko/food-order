@@ -3,4 +3,10 @@
 .sidebar {
   background: $purple;
   width: $sidebar-width;
+
+  &__item {
+    border: 1px solid red;
+    padding: 2rem;
+    color: $white;
+  }
 }
