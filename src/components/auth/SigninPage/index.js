@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import AuthPageWrapper from '../AuthPageWrapper';
 import SigninForm from './SigninForm';
 
@@ -9,6 +10,9 @@ const SigninPage = () => (
     <h1 className="title-primary">food-order</h1>
     <p className="subtitle">Welcome back! Please login to your account.</p>
     <SigninForm />
+    <Link className="link" to="/signup">
+      Don't have an account? Sign up.
+    </Link>
   </AuthPageWrapper>
 );
 

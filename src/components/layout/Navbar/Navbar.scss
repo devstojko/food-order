@@ -1,80 +1,32 @@
 @import '../../../styles/common/variables';
 @import '../../../styles/common/mixins';
 
-.hamburger {
-  display: none;
-  margin-left: auto;
+// use this later
+// .hamburger {
+//   display: none;
+//   margin-left: auto;
 
-  div {
-    width: 3.5rem;
-    height: .5rem;
-    background-color: $white;
-    margin: .6rem 0;
-  }
+//   div {
+//     width: 3.5rem;
+//     height: .5rem;
+//     background-color: $white;
+//     margin: .6rem 0;
+//   }
 
-  @include respond(phone) {
-    display: block;
+//   @include respond(phone) {
+//     display: block;
 
-    div {
-      width: 2.5rem;
-      height: .3rem;
-      margin: .4rem 0;
-    }
-  }
-}
-
-.phone-links {
-  position: absolute;
-  top: $navbar-height;
-  left: 0;
-  width: 100%;
-  background: $purple;
-  z-index: 1000;
-
-  .navbar__link {
-    padding: 1.2rem;
-  }
-}
+//     div {
+//       width: 2.5rem;
+//       height: .3rem;
+//       margin: .4rem 0;
+//     }
+//   }
+// }
 
 .navbar {
   background-color: $purple;
   font-size: 1.8rem;
   height: $navbar-height;
   width: 100%;
-
-  .container {
-    display: flex;
-    align-items: center;
-  }
-
-  &__link-group {
-    height: $navbar-height;
-    display: flex;
-
-    &--right {
-      margin-left: auto;
-
-      @include respond(phone) {
-        display: none;
-      }
-    }
-  }
-
-  &__link {
-    text-decoration: none;
-    color: $white;
-    height: 100%;
-    padding: 0 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    &:hover {
-      background: darken($purple, 5);
-    }
-  }
-
-  @include respond(phone) {
-    font-size: 1.6rem;
-  }
 }

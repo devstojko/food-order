@@ -2,7 +2,7 @@
 @import '../../../styles/common/mixins';
 
 .auth-page {
-  height: calc(100vh - #{$navbar-height});
+  height: 100vh;
   display: flex;
   position: relative;
 

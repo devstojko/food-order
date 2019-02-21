@@ -1,7 +1,7 @@
 @import '../../../styles/common/variables';
 
 .not-found {
-  height: calc(100vh - #{$navbar-height});
+  height: 100vh;
   background-color: $whitesmoke;
   padding: 2rem;
 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { toastr } from 'react-redux-toastr';
 import { Field, reduxForm } from 'redux-form';
 import InputField from '../../common/InputField';
@@ -72,9 +71,6 @@ class SignupForm extends Component {
         />
 
         <Button text="Sign Up" style="primary" type="submit" />
-        <Link className="link" to="/signin">
-          Already have an account? Sign in.
-        </Link>
       </form>
     );
   }
