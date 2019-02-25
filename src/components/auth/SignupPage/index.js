@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AuthPageWrapper from '../AuthPageWrapper';
+import AuthPageLayout from '../../layout/AuthPageLayout';
 import SignupForm from './SignupForm';
 
 const SignupPage = () => (
-  <AuthPageWrapper
+  <AuthPageLayout
     image="https://www.actaturcica.com/wp-content/uploads/2018/07/Red-Mountains-Landscape-Wallpaper.jpg"
     imagePosition="left">
     <h1 className="title-primary">food-order</h1>
@@ -13,7 +13,7 @@ const SignupPage = () => (
     <Link className="link" to="/signin">
       Already have an account? Sign in.
     </Link>
-  </AuthPageWrapper>
+  </AuthPageLayout>
 );
 
 export default SignupPage;

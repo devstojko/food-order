@@ -1,17 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import ReduxToastr from 'react-redux-toastr';
 import { setUser } from '../store/actions/authActions';
 import firebase from '../firebase';
-import ProtectedRoute from './auth/ProtectedRoute';
-import NonAuthOnlyRoute from './auth/NonAuthOnlyRoute';
-import SignupPage from './auth/SignupPage';
-import SigninPage from './auth/SigninPage';
-import ForgotPasswordPage from './auth/ForgotPasswordPage';
-import DashboardPage from './protected/DashboardPage';
-import ProfilePage from './protected/ProfilePage';
-import NotFoundPage from './static/NotFoundPage';
+import AppRouter from './routing/AppRouter';
 
 class App extends Component {
   componentDidMount() {
@@ -31,23 +24,14 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <React.Fragment>
-          <Switch>
-            <NonAuthOnlyRoute path="/signup" component={SignupPage} />
-            <NonAuthOnlyRoute path="/signin" component={SigninPage} />
-            <NonAuthOnlyRoute
-              path="/forgot-password"
-              component={ForgotPasswordPage}
-            />
-            <ProtectedRoute path="/" component={DashboardPage} />
-            <ProtectedRoute path="/dashboard" component={DashboardPage} />
-            <ProtectedRoute path="/profile" component={ProfilePage} />
-            <Route path="/404" component={NotFoundPage} />
-            <Redirect to="/404" />
-          </Switch>
-        </React.Fragment>
-      </BrowserRouter>
+      <Fragment>
+        <ReduxToastr
+          position="bottom-right"
+          transitionIn="fadeIn"
+          transtitionOut="fadeOut"
+        />
+        <AppRouter />
+      </Fragment>
     );
   }
 }

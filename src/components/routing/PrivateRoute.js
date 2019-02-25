@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import firebase from '../../firebase';
 
-class ProtectedRoute extends React.Component {
+class PrivateRoute extends React.Component {
   componentDidMount() {
     // listen to firebase signin/logout
     this.listener = firebase.auth.onAuthStateChanged(authUser => {
@@ -44,4 +44,4 @@ class ProtectedRoute extends React.Component {
 }
 
 const mapStateToProps = ({ authUser }) => ({ authUser });
-export default connect(mapStateToProps)(withRouter(ProtectedRoute));
+export default connect(mapStateToProps)(withRouter(PrivateRoute));

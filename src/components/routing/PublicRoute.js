@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import firebase from '../../firebase';
 
-class NonAuthOnlyRoute extends React.Component {
+class PublicRoute extends React.Component {
   componentDidMount() {
     // listen to firebase signin/logout
     this.listener = firebase.auth.onAuthStateChanged(authUser => {
@@ -34,4 +34,4 @@ class NonAuthOnlyRoute extends React.Component {
 }
 
 const mapStateToProps = ({ authUser }) => ({ authUser });
-export default connect(mapStateToProps)(withRouter(NonAuthOnlyRoute));
+export default connect(mapStateToProps)(withRouter(PublicRoute));

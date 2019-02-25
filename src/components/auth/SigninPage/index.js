@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AuthPageWrapper from '../AuthPageWrapper';
+import AuthPageLayout from '../../layout/AuthPageLayout';
 import SigninForm from './SigninForm';
 
 const SigninPage = () => (
-  <AuthPageWrapper
+  <AuthPageLayout
     image="https://images.pexels.com/photos/1108234/pexels-photo-1108234.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
     imagePosition="left">
     <h1 className="title-primary">food-order</h1>
@@ -13,7 +13,7 @@ const SigninPage = () => (
     <Link className="link" to="/signup">
       Don't have an account? Sign up.
     </Link>
-  </AuthPageWrapper>
+  </AuthPageLayout>
 );
 
 export default SigninPage;
