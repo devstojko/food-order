@@ -1,15 +1,14 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
-import DashboardContent from './DashboardContent';
 import './DashboardPage.scss';
 
-const DashboardPage = () => (
+const DashboardPage = ({ children }) => (
   <div>
     <Navbar />
     <div className="dashboard">
       <Sidebar />
-      <DashboardContent />
+      {children}
     </div>
   </div>
 );

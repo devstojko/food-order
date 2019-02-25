@@ -16,7 +16,7 @@ const AppRouter = () => (
       <PublicRoute path="/signup" component={SignupPage} />
       <PublicRoute path="/signin" component={SigninPage} />
       <PublicRoute path="/forgot-password" component={ForgotPasswordPage} />
-      <PrivateRoute path="/" component={HomePage} />
+      <PrivateRoute exact path="/" component={HomePage} />
       <PrivateRoute path="/chat" component={ChatPage} />
       <PrivateRoute path="/profile-settings" component={ProfileSettingsPage} />
       <Route path="/404" component={NotFoundPage} />

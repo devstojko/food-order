@@ -21,4 +21,6 @@ const Card = ({ status }) => (
   </div>
 );
 
+// proptypes ?
+
 export default Card;
