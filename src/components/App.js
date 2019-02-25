@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReduxToastr from 'react-redux-toastr';
 import { setUser } from '../store/actions/authActions';
+import { startLoading, finishLoading } from '../store/actions/loadingActions';
 import firebase from '../firebase';
 import AppRouter from './routing/AppRouter';
 
 class App extends Component {
   componentDidMount() {
+    this.props.startLoading();
     this.listener = firebase.auth.onAuthStateChanged(authUser => {
       if (authUser) {
         this.props.setUser({
@@ -15,6 +17,8 @@ class App extends Component {
           id: authUser.uid
         });
       }
+
+      this.props.finishLoading();
     });
   }
 
@@ -30,17 +34,22 @@ class App extends Component {
           transitionIn="fadeIn"
           transtitionOut="fadeOut"
         />
-        <AppRouter />
+        {this.props.loading ? <h1>Loading</h1> : <AppRouter />}
       </Fragment>
     );
   }
 }
 
 App.propTypes = {
-  setUser: PropTypes.func
+  loading: PropTypes.bool.isRequired,
+  setUser: PropTypes.func.isRequired,
+  startLoading: PropTypes.func.isRequired,
+  finishLoading: PropTypes.func.isRequired
 };
 
+const mapStateToProps = ({ loading }) => ({ loading });
+
 export default connect(
-  null,
-  { setUser }
+  mapStateToProps,
+  { setUser, startLoading, finishLoading }
 )(App);
