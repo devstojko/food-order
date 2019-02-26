@@ -6,6 +6,8 @@
   min-width: $sidebar-width;
 
   &__item {
+    display: block;
+    text-decoration: none;
     padding: 2rem 3rem;
     color: $whitesmoke;
     font-size: 1.7rem;
