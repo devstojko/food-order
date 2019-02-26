@@ -1,0 +1,24 @@
+.conversation {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    height: 8.5rem;
+    border: 1px solid blue;
+  }
+
+  &__body {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  &__msg {
+    height: 4rem; //temp
+  }
+
+  &__msg-box {
+    height: 15rem;
+    border: 1px solid red;
+  }
+}

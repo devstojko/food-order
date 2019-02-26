@@ -1,0 +1,10 @@
+.chat-list {
+  flex: 1;
+  background: pink;
+  overflow-y: auto;
+
+  &__item {
+    height: 8rem;
+    border: 1px solid black;
+  }
+}
