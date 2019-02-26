@@ -8,7 +8,7 @@ const DashboardPage = ({ children }) => (
     <Navbar />
     <div className="dashboard">
       <Sidebar />
-      {children}
+      <main className="dashboard__content">{children}</main>
     </div>
   </div>
 );

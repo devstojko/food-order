@@ -1,13 +1,12 @@
 @import '../../../styles/common/variables';
 
-.dashboard-content {
+.homepage {
   background: $purple-light;
   width: 100%;
-  padding: 0 6rem;
-}
 
-.dashboard-title {
-  color: $purple-dark;
-  margin: 4.5rem 0;
-  font-weight: normal;
+  .homepage__title {
+    color: $purple-dark;
+    margin: 0 0 4rem;
+    font-weight: normal;
+  }
 }

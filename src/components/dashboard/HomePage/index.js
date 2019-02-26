@@ -3,8 +3,8 @@ import Card from '../../common/Card';
 import './HomePage.scss';
 
 const HomePage = () => (
-  <main className="dashboard-content">
-    <h1 className="dashboard-title">Kragujevac</h1>
+  <main className="homepage">
+    <h1 className="homepage__title">Kragujevac</h1>
 
     <Card status="active" />
     <Card status="ordering" />

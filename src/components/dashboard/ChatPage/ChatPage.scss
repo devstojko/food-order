@@ -1,0 +1,15 @@
+.chat {
+  border: 1px solid black;
+  display: flex;
+  height: 100%;
+
+  &__sidebar {
+    flex: 1;
+    border: 1px solid blue;
+  }
+
+  &__main-area {
+    flex: 2;
+    border: 1px solid red;
+  }
+}
