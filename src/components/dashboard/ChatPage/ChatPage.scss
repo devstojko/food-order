@@ -1,3 +1,5 @@
+@import '../../../styles/common/variables';
+
 .chat {
   border: 1px solid black;
   display: flex;
@@ -12,7 +14,12 @@
 
   &__search {
     height: 8.5rem;
-    border-bottom: 1px solid green;
+    background: $white;
+    border-bottom: 1px solid $lightgray;
+    border-right: 1px solid $lightgray;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
   }
 
   &__main-area {

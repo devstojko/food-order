@@ -19,30 +19,9 @@
 
   &__search {
     flex: 1;
+    padding: 0 3rem;
     display: flex;
-    padding: 0 2.5rem;
-
-    .fa-search {
-      color: $gray;
-      display: flex;
-      align-items: center;
-      font-size: 2rem;
-      margin-right: 2rem;
-    }
-
-    input {
-      border: none;
-      font-size: 1.6rem;
-      width: 100%;
-
-      &:focus {
-        outline: none;
-      }
-
-      &::placeholder {
-        color: $purple-dark;
-      }
-    }
+    align-items: center;
   }
 
   &__links {
@@ -81,14 +60,6 @@
     &:hover .navbar__dropdown {
       display: block;
     }
-  }
-
-  &__avatar {
-    height: 4.5rem;
-    width: 4.5rem;
-    border-radius: 50%;
-    border: 1px solid $lightgray;
-    margin: 0 1.5rem;
   }
 
   &__dropdown {

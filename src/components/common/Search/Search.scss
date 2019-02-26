@@ -1,0 +1,31 @@
+@import '../../../styles/common/variables';
+
+.search {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  height: 3.5rem;
+
+  .fa-search {
+    color: $gray;
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    margin-right: 5px;
+  }
+
+  input {
+    border: none;
+    font-size: 1.4rem;
+    width: 100%;
+    padding: 6px;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: $purple-dark;
+    }
+  }
+}

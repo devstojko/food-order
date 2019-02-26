@@ -1,16 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { logOut } from '../../../../store/actions/authActions';
-import userImg from '../../../../images/user.png';
+import Search from '../../../common/Search';
+import Avatar from '../../../common/Avatar';
 import './Navbar.scss';
 
 const Navbar = ({ authUser, logOut }) => (
   <nav className="navbar">
     <div className="navbar__logo">Food-Order</div>
     <div className="navbar__search">
-      <i className="fas fa-search" />
-      <input type="text" placeholder="Search transactions, invoices or help" />
+      <Search placeholder="Search transactions, invoices or help" />
     </div>
+
     <div className="navbar__links">
       <div className="navbar__icons">
         <i className="fas fa-question-circle" />
@@ -22,7 +23,7 @@ const Navbar = ({ authUser, logOut }) => (
       <div className="navbar__user">
         {authUser.email}
         <i className="fas fa-angle-down" />
-        <img className="navbar__avatar" src={userImg} alt="user" />
+        <Avatar />
         <div className="navbar__dropdown">
           <div className="navbar__dropdown-link">Random Link 1</div>
           <div className="navbar__dropdown-link">Random Link 2</div>
