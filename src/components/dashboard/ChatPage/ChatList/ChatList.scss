@@ -1,10 +1,40 @@
+@import '../../../../styles/common/variables';
+
 .chat-list {
   flex: 1;
-  background: pink;
   overflow-y: auto;
+}
 
-  &__item {
-    height: 8rem;
-    border: 1px solid black;
+.chat-item {
+  padding: 0 2rem 0 0.5rem;
+  height: 8rem;
+  border-bottom: 1px solid $lightgray;
+  display: flex;
+  align-items: center;
+  color: $darkgray;
+
+  &:hover {
+    background: $purple-light;
+  }
+
+  &__text {
+    flex: 1;
+    height: 4.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    strong {
+      font-size: 1.5rem;
+    }
+
+    span {
+      font-size: 1.3rem;
+    }
+  }
+
+  &__time {
+    height: 4.5rem;
+    font-size: 1.2rem;
   }
 }
