@@ -10,7 +10,6 @@ export const getConversations = () => dispatch => {
         conversations.push({ id: doc.id, ...doc.data() });
       });
 
-      console.log(conversations);
       dispatch({
         type: GET_CONVERSATIONS,
         payload: conversations
