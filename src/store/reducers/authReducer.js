@@ -1,4 +1,4 @@
-import { SET_USER, LOG_OUT } from '../actions/types.js';
+import { SET_USER, LOG_OUT } from 'actions/types.js';
 
 export default function authReducer(state = null, action) {
   switch (action.type) {

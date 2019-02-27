@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import AuthPageImage from './AuthPageImage';
 import AuthPageFooter from './AuthPageFooter';
-import PropTypes from 'prop-types';
 import './AuthPageWrapper.scss';
 
 const AuthPageWrapper = ({ image, imagePosition, children }) => (

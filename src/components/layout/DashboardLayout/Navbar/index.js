@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { logOut } from '../../../../store/actions/authActions';
-import Search from '../../../common/Search';
-import Avatar from '../../../common/Avatar';
+import { logOut } from 'actions/authActions';
+import Search from 'common/Search';
+import Avatar from 'common/Avatar';
 import './Navbar.scss';
 
 const Navbar = ({ authUser, logOut }) => (

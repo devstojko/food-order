@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ConversationHeader from './ConversationHeader';
 import ConversationBody from './ConversationBody';
-import firebase from '../../../../firebase';
-import './Conversation.scss';
 import ConversationForm from './ConversationForm';
+import firebase from 'fb';
+import './Conversation.scss';
 
 class Conversation extends Component {
   constructor(props) {

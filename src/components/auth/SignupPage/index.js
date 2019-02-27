@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AuthPageLayout from '../../layout/AuthPageLayout';
+import AuthPageLayout from 'layout/AuthPageLayout';
 import SignupForm from './SignupForm';
 
 const SignupPage = () => (

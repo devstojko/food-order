@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { toastr } from 'react-redux-toastr';
 import { Field, reduxForm } from 'redux-form';
-import InputField from '../../common/InputField';
-import firebase from '../../../firebase';
-import Button from '../../common/Button';
+import InputField from 'common/InputField';
+import Button from 'common/Button';
+import firebase from 'fb';
 import validate from './validation';
 
 class SignupForm extends Component {

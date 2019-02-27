@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getConversations } from '../../../../store/actions/conversationActions';
-import Avatar from '../../../common/Avatar';
+import { getConversations } from 'actions/conversationActions';
+import Avatar from 'common/Avatar';
 import './ChatList.scss';
 
 const ChatListItem = () => (

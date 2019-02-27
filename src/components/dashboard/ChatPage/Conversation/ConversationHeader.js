@@ -1,5 +1,5 @@
 import React from 'react';
-import Avatar from '../../../common/Avatar';
+import Avatar from 'common/Avatar';
 
 const ConversationHeader = () => (
   <div className="conversation__header">
@@ -8,7 +8,7 @@ const ConversationHeader = () => (
       <strong>User Name</strong>
       <span>Account Manager</span>
     </div>
-    <i className="fas fa-times"></i>
+    <i className="fas fa-times" />
   </div>
 );
 

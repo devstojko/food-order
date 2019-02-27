@@ -1,5 +1,5 @@
 import React from 'react';
-import userImg from '../../../images/user.png';
+import userImg from 'images/user.png';
 import './Card.scss';
 
 const Card = ({ status }) => (

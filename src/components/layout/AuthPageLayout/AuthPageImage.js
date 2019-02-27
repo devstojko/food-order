@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import defaultImg from '../../../images/default.jpg';
+import defaultImg from 'images/default.jpg';
 
 const AuthPageImage = ({ src }) => (
   <img
