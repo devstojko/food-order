@@ -58,6 +58,10 @@ class Firebase {
       .doc(id)
       .get();
   }
+
+  fetchConversations() {
+    return this.firestore.collection('conversations').get();
+  }
 }
 
 const firebase = new Firebase();

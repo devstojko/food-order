@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getConversations } from '../../../../store/actions/conversationActions';
 import Avatar from '../../../common/Avatar';
 import './ChatList.scss';
-
-const dummyChats = [1, 2, 3, 4, 5, 6];
 
 const ChatListItem = () => (
   <div className="chat-item">
@@ -15,12 +15,25 @@ const ChatListItem = () => (
   </div>
 );
 
-const ChatList = () => (
-  <div className="chat-list">
-    {dummyChats.map(c => (
-      <ChatListItem key={c} />
-    ))}
-  </div>
-);
+class ChatList extends Component {
+  componentDidMount() {
+    this.props.getConversations();
+  }
 
-export default ChatList;
+  render() {
+    return (
+      <div className="chat-list">
+        {this.props.conversations.map(c => (
+          <ChatListItem key={c.id} chat={c} />
+        ))}
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = ({ conversations }) => ({ conversations });
+
+export default connect(
+  mapStateToProps,
+  { getConversations }
+)(ChatList);
