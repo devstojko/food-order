@@ -78,7 +78,7 @@ class Firebase {
       .collection('conversations')
       .doc(convID)
       .collection('messages')
-      .add({ msg });
+      .add({ text: msg });
   }
 
   // fetchConversationMessages(convID) {

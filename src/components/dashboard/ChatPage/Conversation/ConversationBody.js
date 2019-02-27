@@ -1,29 +1,15 @@
 import React from 'react';
 import Message from './Message';
 
-const ConversationBody = () => (
-  <div className="conversation__body">
-    <Message />
-    <Message />
-    <Message />
-    <Message />
-    <Message />
-    <Message />
-    <Message />
-    <Message />
-    <Message />
-    <Message />
-    <Message />
-    <Message />
-    <Message />
-    <Message />
-    <Message />
-    <Message />
-    <Message />
-    <Message />
-    <Message />
-    <Message />
-  </div>
-);
+const ConversationBody = ({ messages }) => {
+  console.log(messages);
+  return (
+    <div className="conversation__body">
+      {messages.map(m => (
+        <Message key={m.id} text={m.text} />
+      ))}
+    </div>
+  );
+};
 
 export default ConversationBody;

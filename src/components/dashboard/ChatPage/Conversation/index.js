@@ -3,24 +3,29 @@ import ConversationHeader from './ConversationHeader';
 import ConversationBody from './ConversationBody';
 import ConversationMsgBox from './ConversationMsgBox';
 import './Conversation.scss';
-// testing
 import firebase from '../../../../firebase';
 
-// const Conversation = () => (
-//   <div className="conversation">
-//     <ConversationHeader />
-//     <ConversationBody />
-//     <ConversationMsgBox />
-//   </div>
-// );
-
-// lw7EHSp12goiesEO8tpS
-
 class Conversation extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      messages: []
+    };
+  }
+
   componentDidMount() {
+    // change from static id
     firebase.listenForMessages('lw7EHSp12goiesEO8tpS', doc => {
-      console.log('doc changed');
-      console.log(doc.data());
+      const msg = { id: doc.id, ...doc.data() };
+      console.log(msg);
+      console.log(this.state.messages);
+      this.setState({ messages: [...this.state.messages, msg] });
+      // this.setState(state => {
+      //   console.log(state);
+      //   const updatedMessages = state.messages.push(msg);
+      //   return { messages: updatedMessages };
+      // });
     });
   }
 
@@ -28,7 +33,7 @@ class Conversation extends Component {
     return (
       <div className="conversation">
         <ConversationHeader />
-        <ConversationBody />
+        <ConversationBody messages={this.state.messages} />
         <ConversationMsgBox />
       </div>
     );
