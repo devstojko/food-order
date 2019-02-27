@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ConversationHeader from './ConversationHeader';
 import ConversationBody from './ConversationBody';
 import ConversationMsgBox from './ConversationMsgBox';
-import './Conversation.scss';
 import firebase from '../../../../firebase';
+import './Conversation.scss';
 
 class Conversation extends Component {
   constructor(props) {
@@ -15,17 +15,13 @@ class Conversation extends Component {
   }
 
   componentDidMount() {
-    // change from static id
-    firebase.listenForMessages('lw7EHSp12goiesEO8tpS', doc => {
-      const msg = { id: doc.id, ...doc.data() };
-      console.log(msg);
-      console.log(this.state.messages);
-      this.setState({ messages: [...this.state.messages, msg] });
-      // this.setState(state => {
-      //   console.log(state);
-      //   const updatedMessages = state.messages.push(msg);
-      //   return { messages: updatedMessages };
-      // });
+    // change the ID from static
+    firebase.messagesCollection('lw7EHSp12goiesEO8tpS').onSnapshot(snapshot => {
+      this.setState({ messages: [] });
+      snapshot.forEach(doc => {
+        const msg = { id: doc.id, ...doc.data() };
+        this.setState({ messages: [...this.state.messages, msg] });
+      });
     });
   }
 

@@ -63,14 +63,11 @@ class Firebase {
     return this.firestore.collection('conversations').get();
   }
 
-  listenForMessages(convID, cb) {
+  messagesCollection(convID) {
     return this.firestore
       .collection('conversations')
       .doc(convID)
-      .collection('messages')
-      .onSnapshot(querySnapshot => {
-        querySnapshot.forEach(cb);
-      });
+      .collection('messages');
   }
 
   sendMessage(convID, msg) {
@@ -80,21 +77,6 @@ class Firebase {
       .collection('messages')
       .add({ text: msg });
   }
-
-  // fetchConversationMessages(convID) {
-  //   return this.firestore
-  //     .collection('conversations')
-  //     .doc(convID)
-  //     .collection('messages')
-  //     .get();
-  // }
-
-  // firebase
-  // .fetchConversationMessages(doc.id)
-  // .then(msgSnapshot => {
-  //   msgSnapshot.forEach(msg => console.log(msg.data()));
-  // })
-  // .catch(err => console.log(err));
 }
 
 const firebase = new Firebase();

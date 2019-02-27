@@ -40,15 +40,41 @@
   &__body {
     flex: 1;
     overflow-y: auto;
-  }
-
-  &__msg {
-    height: 4rem; //temp
-    border: 1px solid black;
+    padding: 1.5rem;
   }
 
   &__msg-box {
     height: 15rem;
     border: 1px solid red;
+  }
+}
+
+
+.message {
+  
+  margin-bottom: 1rem;
+  
+  &__text {
+    border-radius: .8rem;
+    width: 40%;
+    padding: 1rem;
+
+    &--left {
+      background: $purple-light;
+      margin-right: auto;
+      border-bottom-left-radius: 0;
+    }
+  
+    &--right {
+      background: $blue;
+      margin-left: auto;
+      border-bottom-right-radius: 0;
+      color: $white;
+    }
+  }
+
+  &__time {
+    font-size: 1rem;
+    color: $gray;
   }
 }
