@@ -1,9 +1,17 @@
 @import '../../../styles/common/variables';
 
 .avatar {
-  height: 4.5rem;
-  width: 4.5rem;
   border-radius: 50%;
   border: 1px solid $lightgray;
   margin: 0 1.5rem;
+
+  &--normal {
+    height: 4.5rem;
+    width: 4.5rem;
+  }
+
+  &--large {
+    height: 6rem;
+    width: 6rem;
+  }
 }

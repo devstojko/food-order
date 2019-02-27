@@ -4,17 +4,18 @@
   display: flex;
   height: 100%;
   background: $white;
+  border: 1px solid $lightgray;
 
   &__sidebar {
     flex: 1;
     display: flex;
     flex-direction: column;
+    border-right: 1px solid $lightgray;
   }
 
   &__search {
     height: 8.5rem;
     border-bottom: 1px solid $lightgray;
-    border-right: 1px solid $lightgray;
     padding: 0 2rem;
     display: flex;
     align-items: center;
