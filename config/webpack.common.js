@@ -8,6 +8,15 @@ module.exports = {
     path: path.resolve(__dirname, '..', 'dist'),
     filename: 'bundle.js'
   },
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
+    alias: {
+      common: path.resolve(__dirname, '../src/components/common'),
+      images: path.resolve(__dirname, '../src/images'),
+      actions: path.resolve(__dirname, '../src/store/actions'),
+      reducers: path.resolve(__dirname, '../src/store/reducers')
+    }
+  },
   module: {
     rules: [
       {

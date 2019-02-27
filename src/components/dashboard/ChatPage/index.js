@@ -1,5 +1,5 @@
 import React from 'react';
-import Search from '../../common/Search';
+import Search from 'common/Search';
 import ChatList from './ChatList';
 import Conversation from './Conversation';
 import './ChatPage.scss';
