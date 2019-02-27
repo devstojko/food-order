@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ConversationHeader from './ConversationHeader';
 import ConversationBody from './ConversationBody';
-import ConversationMsgBox from './ConversationMsgBox';
 import firebase from '../../../../firebase';
 import './Conversation.scss';
+import ConversationForm from './ConversationForm';
 
 class Conversation extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class Conversation extends Component {
       <div className="conversation">
         <ConversationHeader />
         <ConversationBody messages={this.state.messages} />
-        <ConversationMsgBox />
+        <ConversationForm />
       </div>
     );
   }
