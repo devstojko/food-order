@@ -59,11 +59,11 @@ class Firebase {
       .get();
   }
 
-  fetchConversations() {
-    return this.firestore.collection('conversations').get();
+  conversations() {
+    return this.firestore.collection('conversations');
   }
 
-  messagesCollection(convID) {
+  conversationMessages(convID) {
     return this.firestore
       .collection('conversations')
       .doc(convID)

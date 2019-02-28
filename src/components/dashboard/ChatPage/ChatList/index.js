@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { getConversations } from '@actions/conversationActions';
 import Avatar from '@common/Avatar';
+import firebase from '@fb';
 import './ChatList.scss';
 
-const ChatListItem = () => (
+const ChatListItem = ({ chat }) => (
   <div className="chat-item">
     <Avatar />
     <div className="chat-item__text">
@@ -16,14 +15,28 @@ const ChatListItem = () => (
 );
 
 class ChatList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      chats: []
+    };
+  }
+
   componentDidMount() {
-    this.props.getConversations();
+    firebase.conversations().onSnapshot(snapshot => {
+      this.setState({ chats: [] });
+      snapshot.forEach(doc => {
+        const chat = { id: doc.id, ...doc.data() };
+        this.setState({ chats: [...this.state.chats, chat] });
+      });
+    });
   }
 
   render() {
     return (
       <div className="chat-list">
-        {this.props.conversations.map(c => (
+        {this.state.chats.map(c => (
           <ChatListItem key={c.id} chat={c} />
         ))}
       </div>
@@ -31,9 +44,4 @@ class ChatList extends Component {
   }
 }
 
-const mapStateToProps = ({ conversations }) => ({ conversations });
-
-export default connect(
-  mapStateToProps,
-  { getConversations }
-)(ChatList);
+export default ChatList;

@@ -16,13 +16,15 @@ class Conversation extends Component {
 
   componentDidMount() {
     // change the ID from static
-    firebase.messagesCollection('lw7EHSp12goiesEO8tpS').onSnapshot(snapshot => {
-      this.setState({ messages: [] });
-      snapshot.forEach(doc => {
-        const msg = { id: doc.id, ...doc.data() };
-        this.setState({ messages: [...this.state.messages, msg] });
+    firebase
+      .conversationMessages('lw7EHSp12goiesEO8tpS')
+      .onSnapshot(snapshot => {
+        this.setState({ messages: [] });
+        snapshot.forEach(doc => {
+          const msg = { id: doc.id, ...doc.data() };
+          this.setState({ messages: [...this.state.messages, msg] });
+        });
       });
-    });
   }
 
   render() {
