@@ -21,6 +21,12 @@
     align-items: center;
   }
 
+  &__list {
+    border: 1px solid red;
+    overflow-y: auto;
+    flex: 1;
+  }
+
   &__main-area {
     flex: 2;
   }
