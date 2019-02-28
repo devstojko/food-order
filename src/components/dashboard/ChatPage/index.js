@@ -2,21 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Search from '@common/Search';
 import SidebarList from './SidebarList';
-import Conversation from './Conversation';
+import ConversationBody from './ConversationBody';
+import ConversationForm from './ConversationForm';
+import Avatar from '@common/Avatar';
 import firebase from '@fb';
 import './ChatPage.scss';
-
-// debounce
-const debounce = (fn, delay) => {
-  let timer = null;
-  return function(...args) {
-    const context = this;
-    timer && clearTimeout(timer);
-    timer = setTimeout(() => {
-      fn.apply(context, args);
-    }, delay);
-  };
-};
+import debounce from './debounce';
 
 class ChatPage extends Component {
   constructor(props) {
@@ -26,20 +17,19 @@ class ChatPage extends Component {
       searchTerm: '',
       activeChat: null,
       chats: [],
-      users: [{ id: 1, data: 'asdf' }, { id: 2, data: 'asdf' }], // random data for testing
-      drugiUser: { id: '123', email: 'nekiuser@gmail.com' } // temp
+      users: [],
+      otherUser: { id: 123, firstName: null, lastName: null }
     };
 
     this.getUsers = debounce(this.getUsers.bind(this), 200);
     this.handleChange = this.handleChange.bind(this);
-    // test
     this.startConversation = this.startConversation.bind(this);
-
-    this.setDrugiUser = this.setDrugiUser.bind(this);
+    this.setOtherUser = this.setOtherUser.bind(this);
     this.setActiveChat = this.setActiveChat.bind(this);
   }
 
   componentDidMount() {
+    // set listener for conversations/chats
     firebase.myConversations(this.props.authUser.id).onSnapshot(snapshot => {
       this.setState({ chats: [] });
       snapshot.forEach(doc => {
@@ -71,8 +61,8 @@ class ChatPage extends Component {
     });
   }
 
-  setDrugiUser(drugiUser) {
-    this.setState({ drugiUser });
+  setOtherUser(otherUser) {
+    this.setState({ otherUser });
   }
 
   setActiveChat(id) {
@@ -81,11 +71,11 @@ class ChatPage extends Component {
 
   // testing
   startConversation() {
-    firebase.createConversation(this.props.authUser.id, this.state.drugiUser);
+    firebase.createConversation(this.props.authUser.id, this.state.otherUser);
   }
 
   render() {
-    const { searchTerm, chats, users, activeChat } = this.state;
+    const { searchTerm, chats, users, activeChat, otherUser } = this.state;
 
     return (
       <div className="chat">
@@ -114,10 +104,21 @@ class ChatPage extends Component {
         </div>
         <div className="chat__main-area">
           {activeChat ? (
-            <Conversation
-              withUser={this.state.drugiUser}
-              activeChat={activeChat}
-            />
+            <div className="conversation">
+              <div className="conversation__header">
+                <Avatar size="large" />
+                <div className="conversation__user">
+                  <strong>
+                    {otherUser.firstName || 'not selected'}{' '}
+                    {otherUser.lastName || 'not selected'}
+                  </strong>
+                  <span>Account Manager</span>
+                </div>
+                <i className="fas fa-times" />
+              </div>
+              <ConversationBody activeChatID={activeChat} />
+              <ConversationForm activeChatID={activeChat} />
+            </div>
           ) : (
             <button onClick={this.startConversation}>
               Start Conversation with this person

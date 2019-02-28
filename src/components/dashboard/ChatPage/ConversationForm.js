@@ -20,10 +20,8 @@ class ConversationForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
     // send message to firestore
-    // active id is hardcoded for now
     if (this.state.msgText.length > 0) {
-      const activeChatID = 'lw7EHSp12goiesEO8tpS';
-      firebase.sendMessage(activeChatID, this.state.msgText);
+      firebase.sendMessage(this.props.activeChatID, this.state.msgText);
       this.setState({ msgText: '' });
     }
   }
