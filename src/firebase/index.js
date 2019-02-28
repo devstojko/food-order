@@ -66,8 +66,10 @@ class Firebase {
       .get();
   }
 
-  conversations() {
-    return this.firestore.collection('conversations');
+  myConversations(myID) {
+    return this.firestore
+      .collection('conversations')
+      .where('participants', 'array-contains', myID);
   }
 
   conversationMessages(convID) {

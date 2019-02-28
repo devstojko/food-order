@@ -40,7 +40,7 @@ class ChatPage extends Component {
   }
 
   componentDidMount() {
-    firebase.conversations().onSnapshot(snapshot => {
+    firebase.myConversations(this.props.authUser.id).onSnapshot(snapshot => {
       this.setState({ chats: [] });
       snapshot.forEach(doc => {
         const chat = { id: doc.id, ...doc.data() };
@@ -81,7 +81,7 @@ class ChatPage extends Component {
 
   // testing
   startConversation() {
-    firebase.createConversation(this.props.authUser, this.state.drugiUser);
+    firebase.createConversation(this.props.authUser.id, this.state.drugiUser);
   }
 
   render() {
@@ -114,7 +114,10 @@ class ChatPage extends Component {
         </div>
         <div className="chat__main-area">
           {activeChat ? (
-            <Conversation withUser={this.state.drugiUser} />
+            <Conversation
+              withUser={this.state.drugiUser}
+              activeChat={activeChat}
+            />
           ) : (
             <button onClick={this.startConversation}>
               Start Conversation with this person
