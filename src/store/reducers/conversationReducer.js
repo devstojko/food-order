@@ -1,4 +1,4 @@
-import { GET_CONVERSATIONS } from 'actions/types';
+import { GET_CONVERSATIONS } from '@actions/types';
 
 // dummy data
 const initialState = [

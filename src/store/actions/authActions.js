@@ -1,6 +1,6 @@
 import { toastr } from 'react-redux-toastr';
 import { SET_USER, LOG_OUT } from './types';
-import firebase from 'fb';
+import firebase from '@fb';
 
 export const setUser = user => ({
   type: SET_USER,

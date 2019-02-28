@@ -1,5 +1,5 @@
 import { GET_CONVERSATIONS } from './types';
-import firebase from 'fb';
+import firebase from '@fb';
 
 export const getConversations = () => dispatch => {
   firebase

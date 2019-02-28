@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthPageLayout from 'layout/AuthPageLayout';
+import AuthPageLayout from '@layout/AuthPageLayout';
 import ForgotPasswordForm from './ForgotPasswordForm';
 
 const ForgotPasswordPage = () => (

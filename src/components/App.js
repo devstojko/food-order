@@ -2,9 +2,9 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReduxToastr from 'react-redux-toastr';
-import { setUser } from 'actions/authActions';
-import { startLoading, finishLoading } from 'actions/loadingActions';
-import firebase from 'fb';
+import { setUser } from '@actions/authActions';
+import { startLoading, finishLoading } from '@actions/loadingActions';
+import firebase from '@fb';
 import AppRouter from './routing/AppRouter';
 
 class App extends Component {

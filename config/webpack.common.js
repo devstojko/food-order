@@ -11,12 +11,12 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx'],
     alias: {
-      common: path.resolve(__dirname, '../src/components/common'),
-      layout: path.resolve(__dirname, '../src/components/layout'),
-      images: path.resolve(__dirname, '../src/images'),
-      fb: path.resolve(__dirname, '../src/firebase'),
-      actions: path.resolve(__dirname, '../src/store/actions'),
-      reducers: path.resolve(__dirname, '../src/store/reducers')
+      '@common': path.resolve(__dirname, '../src/components/common'),
+      '@layout': path.resolve(__dirname, '../src/components/layout'),
+      '@images': path.resolve(__dirname, '../src/images'),
+      '@fb': path.resolve(__dirname, '../src/firebase'),
+      '@actions': path.resolve(__dirname, '../src/store/actions'),
+      '@reducers': path.resolve(__dirname, '../src/store/reducers')
     }
   },
   module: {

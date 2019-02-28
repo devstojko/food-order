@@ -1,4 +1,4 @@
-import { START_LOADING, FINISH_LOADING } from 'actions/types.js';
+import { START_LOADING, FINISH_LOADING } from '@actions/types.js';
 
 export default function loadingReducer(state = false, action) {
   switch (action.type) {

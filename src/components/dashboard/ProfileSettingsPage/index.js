@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PasswordChangeForm from './PasswordChangeForm';
-import firebase from 'fb';
+import firebase from '@fb';
 
 class ProfilePage extends Component {
   constructor(props) {

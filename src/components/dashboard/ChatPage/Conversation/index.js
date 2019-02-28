@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ConversationHeader from './ConversationHeader';
 import ConversationBody from './ConversationBody';
 import ConversationForm from './ConversationForm';
-import firebase from 'fb';
+import firebase from '@fb';
 import './Conversation.scss';
 
 class Conversation extends Component {

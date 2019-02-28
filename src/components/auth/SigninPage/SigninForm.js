@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toastr } from 'react-redux-toastr';
 import { Field, reduxForm } from 'redux-form';
-import InputField from 'common/InputField';
-import Button from 'common/Button';
-import { signIn } from 'actions/authActions';
-import firebase from 'fb';
+import InputField from '@common/InputField';
+import Button from '@common/Button';
+import { signIn } from '@actions/authActions';
+import firebase from '@fb';
 import validate from './validation';
 
 class SigninPage extends Component {

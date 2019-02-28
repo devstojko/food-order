@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebase from 'fb';
+import firebase from '@fb';
 
 class ConversationForm extends Component {
   constructor(props) {

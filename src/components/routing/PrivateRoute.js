@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import DashboardPage from 'layout/DashboardLayout';
+import DashboardPage from '@layout/DashboardLayout';
 
 const PrivateRoute = ({ authUser, component: Component, ...rest }) => (
   <Route

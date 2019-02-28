@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../common/Button';
+import Button from '@common/Button';
 import './NotFoundPage.scss';
 
 const NotFoundPage = ({ history }) => (
