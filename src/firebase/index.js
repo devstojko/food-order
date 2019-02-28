@@ -59,6 +59,13 @@ class Firebase {
       .get();
   }
 
+  fetchUsersByName(term) {
+    return this.firestore
+      .collection('users')
+      .where('firstName', '==', term)
+      .get();
+  }
+
   conversations() {
     return this.firestore.collection('conversations');
   }

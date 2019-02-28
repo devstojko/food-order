@@ -10,22 +10,23 @@ class Conversation extends Component {
     super(props);
 
     this.state = {
-      messages: []
+      // messages: []
+      messages: [{ id: '1', text: 'yyy' }, { id: 2, text: '234234' }] // dummy data until chats are connected
     };
   }
 
-  componentDidMount() {
-    // change the ID from static
-    firebase
-      .conversationMessages('lw7EHSp12goiesEO8tpS')
-      .onSnapshot(snapshot => {
-        this.setState({ messages: [] });
-        snapshot.forEach(doc => {
-          const msg = { id: doc.id, ...doc.data() };
-          this.setState({ messages: [...this.state.messages, msg] });
-        });
-      });
-  }
+  // componentDidMount() {
+  //   // change the ID from static
+  //   firebase
+  //     .conversationMessages('lw7EHSp12goiesEO8tpS')
+  //     .onSnapshot(snapshot => {
+  //       this.setState({ messages: [] });
+  //       snapshot.forEach(doc => {
+  //         const msg = { id: doc.id, ...doc.data() };
+  //         this.setState({ messages: [...this.state.messages, msg] });
+  //       });
+  //     });
+  // }
 
   render() {
     return (

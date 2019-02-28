@@ -7,7 +7,7 @@ const PublicRoute = ({ authUser, component: Component, ...rest }) => (
     {...rest}
     render={props =>
       // !!authUser ? <Redirect to="/" /> : <Component {...props} /> ONLY WHILE DEVELOPING CHAT
-      authUser ? <Redirect to="/chat" /> : <Component {...props} />
+      authUser ? <Redirect to="/test" /> : <Component {...props} />
     }
   />
 );
