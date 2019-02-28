@@ -84,6 +84,14 @@ class Firebase {
       .collection('messages')
       .add({ text: msg });
   }
+
+  // testing
+  createConversation(user1, user2) {
+    const conversationObj = {
+      participants: [user1, user2]
+    };
+    return this.firestore.collection('conversations').add(conversationObj);
+  }
 }
 
 const firebase = new Firebase();

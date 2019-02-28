@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Search from '@common/Search';
 import SidebarList from './SidebarList';
 import Conversation from './Conversation';
@@ -25,11 +26,17 @@ class ChatPage extends Component {
       searchTerm: '',
       activeChat: null,
       chats: [],
-      users: [{ id: 1, data: 'asdf' }, { id: 2, data: 'asdf' }] // random data for testing
+      users: [{ id: 1, data: 'asdf' }, { id: 2, data: 'asdf' }], // random data for testing
+      drugiUser: { id: '123', email: 'nekiuser@gmail.com' } // temp
     };
 
     this.getUsers = debounce(this.getUsers.bind(this), 200);
     this.handleChange = this.handleChange.bind(this);
+    // test
+    this.startConversation = this.startConversation.bind(this);
+
+    this.setDrugiUser = this.setDrugiUser.bind(this);
+    this.setActiveChat = this.setActiveChat.bind(this);
   }
 
   componentDidMount() {
@@ -64,8 +71,21 @@ class ChatPage extends Component {
     });
   }
 
+  setDrugiUser(drugiUser) {
+    this.setState({ drugiUser });
+  }
+
+  setActiveChat(id) {
+    this.setState({ activeChat: id });
+  }
+
+  // testing
+  startConversation() {
+    firebase.createConversation(this.props.authUser, this.state.drugiUser);
+  }
+
   render() {
-    const { searchTerm, chats, users } = this.state;
+    const { searchTerm, chats, users, activeChat } = this.state;
 
     return (
       <div className="chat">
@@ -78,16 +98,34 @@ class ChatPage extends Component {
             />
           </div>
           <div className="chat__list">
-            <SidebarList title="conversations" items={chats} />
-            {searchTerm && <SidebarList title="users" items={users} />}
+            <SidebarList
+              title="conversations"
+              items={chats}
+              funcOnItems={this.setActiveChat}
+            />
+            {searchTerm && (
+              <SidebarList
+                title="users"
+                items={users}
+                funcOnItems={this.setDrugiUser}
+              />
+            )}
           </div>
         </div>
         <div className="chat__main-area">
-          <Conversation />
+          {activeChat ? (
+            <Conversation withUser={this.state.drugiUser} />
+          ) : (
+            <button onClick={this.startConversation}>
+              Start Conversation with this person
+            </button>
+          )}
         </div>
       </div>
     );
   }
 }
 
-export default ChatPage;
+const mapStateToProps = ({ authUser }) => ({ authUser });
+
+export default connect(mapStateToProps)(ChatPage);

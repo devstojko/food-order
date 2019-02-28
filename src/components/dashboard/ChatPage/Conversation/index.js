@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ConversationHeader from './ConversationHeader';
 import ConversationBody from './ConversationBody';
 import ConversationForm from './ConversationForm';
+import Avatar from '@common/Avatar';
 import firebase from '@fb';
 import './Conversation.scss';
 
@@ -10,15 +10,14 @@ class Conversation extends Component {
     super(props);
 
     this.state = {
-      // messages: []
-      messages: [{ id: '1', text: 'yyy' }, { id: 2, text: '234234' }] // dummy data until chats are connected
+      messages: []
     };
   }
 
   // componentDidMount() {
   //   // change the ID from static
   //   firebase
-  //     .conversationMessages('lw7EHSp12goiesEO8tpS')
+  //     .conversationMessages(this.props.activeChat)
   //     .onSnapshot(snapshot => {
   //       this.setState({ messages: [] });
   //       snapshot.forEach(doc => {
@@ -29,9 +28,21 @@ class Conversation extends Component {
   // }
 
   render() {
+    const { withUser } = this.props;
+
     return (
       <div className="conversation">
-        <ConversationHeader />
+        <div className="conversation__header">
+          <Avatar size="large" />
+          <div className="conversation__user">
+            <strong>
+              {withUser.firstName || 'testing'}{' '}
+              {withUser.lastName || 'testingg'}
+            </strong>
+            <span>Account Manager</span>
+          </div>
+          <i className="fas fa-times" />
+        </div>
         <ConversationBody messages={this.state.messages} />
         <ConversationForm />
       </div>
