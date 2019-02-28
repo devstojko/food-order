@@ -21,7 +21,11 @@ class ConversationForm extends Component {
     e.preventDefault();
     // send message to firestore
     if (this.state.msgText.length > 0) {
-      firebase.sendMessage(this.props.activeChatID, this.state.msgText);
+      const message = {
+        text: this.state.msgText,
+        sender: this.props.authUser.id
+      };
+      firebase.sendMessage(this.props.activeChatID, message);
       this.setState({ msgText: '' });
     }
   }

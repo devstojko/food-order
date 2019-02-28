@@ -66,12 +66,6 @@ class Firebase {
       .get();
   }
 
-  myConversations(myID) {
-    return this.firestore
-      .collection('conversations')
-      .where('participants', 'array-contains', myID);
-  }
-
   conversationMessages(convID) {
     return this.firestore
       .collection('conversations')
@@ -84,15 +78,52 @@ class Firebase {
       .collection('conversations')
       .doc(convID)
       .collection('messages')
-      .add({ text: msg });
+      .add(msg);
   }
 
   // testing
   createConversation(user1, user2) {
     const conversationObj = {
-      participants: [user1, user2]
+      user1,
+      user2
     };
     return this.firestore.collection('conversations').add(conversationObj);
+  }
+
+  userReference(id) {
+    return this.firestore.collection('users').doc(id);
+  }
+
+  fetchMyConversations(myID) {
+    // return this.firestore
+    //   .collection('conversations')
+    //   .where('participants', 'array-contains', myID); // ?
+
+    const results = [];
+
+    this.firestore
+      .collection('conversations')
+      .where('user1', '==', this.userReference(myID))
+      .get()
+      .then(snapshots => {
+        snapshots.forEach(c => {
+          const chat = { id: c.id, ...c.data() };
+          results.push(chat);
+        });
+      });
+
+    this.firestore
+      .collection('conversations')
+      .where('user2', '==', this.userReference(myID))
+      .get()
+      .then(snapshots => {
+        snapshots.forEach(c => {
+          const chat = { id: c.id, ...c.data() };
+          results.push(chat);
+        });
+      });
+
+    return results;
   }
 }
 

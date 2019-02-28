@@ -30,13 +30,28 @@ class ChatPage extends Component {
 
   componentDidMount() {
     // set listener for conversations/chats
-    firebase.myConversations(this.props.authUser.id).onSnapshot(snapshot => {
-      this.setState({ chats: [] });
-      snapshot.forEach(doc => {
-        const chat = { id: doc.id, ...doc.data() };
-        this.setState({ chats: [...this.state.chats, chat] });
-      });
-    });
+    // firebase.myConversations(this.props.authUser.id).onSnapshot(snapshot => {
+    //   this.setState({ chats: [] });
+    //   snapshot.forEach(doc => {
+    //     const chat = { id: doc.id, ...doc.data() };
+    //     this.setState({ chats: [...this.state.chats, chat] });
+    //   });
+    // });
+
+    const chats = firebase.fetchMyConversations(this.props.authUser.id);
+    // console.log('Chats: ', chats);
+    setTimeout(() => {
+      console.log(chats[0]);
+      chats[0].user1
+        .get()
+        .then(res => {
+          const data = res.data();
+          console.log(data);
+        })
+        .catch(err => console.error(err));
+    }, 2000);
+    console.log(chats[0]);
+    // console.log(chats.doc);
   }
 
   getUsers(term) {
@@ -71,7 +86,10 @@ class ChatPage extends Component {
 
   // testing
   startConversation() {
-    firebase.createConversation(this.props.authUser.id, this.state.otherUser);
+    const user1 = firebase.userReference(this.props.authUser.id);
+    const user2 = firebase.userReference(this.state.otherUser);
+
+    firebase.createConversation(user1, user2);
   }
 
   render() {
@@ -97,7 +115,7 @@ class ChatPage extends Component {
               <SidebarList
                 title="users"
                 items={users}
-                funcOnItems={this.setDrugiUser}
+                funcOnItems={this.setOtherUser}
               />
             )}
           </div>
@@ -116,8 +134,14 @@ class ChatPage extends Component {
                 </div>
                 <i className="fas fa-times" />
               </div>
-              <ConversationBody activeChatID={activeChat} />
-              <ConversationForm activeChatID={activeChat} />
+              <ConversationBody
+                activeChatID={activeChat}
+                authUser={this.props.authUser}
+              />
+              <ConversationForm
+                activeChatID={activeChat}
+                authUser={this.props.authUser}
+              />
             </div>
           ) : (
             <button onClick={this.startConversation}>

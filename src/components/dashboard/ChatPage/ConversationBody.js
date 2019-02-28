@@ -32,7 +32,9 @@ class ConversationBody extends Component {
             <Message
               key={msg.id}
               msg={msg}
-              position={msg.sender === authUser.id ? 'right' : 'left'}
+              position={
+                msg.sender === this.props.authUser.id ? 'right' : 'left'
+              }
             />
           );
         })}
