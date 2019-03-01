@@ -82,10 +82,10 @@ class Firebase {
   }
 
   // testing
-  createConversation(user1, user2) {
+  createConversation(user0, user1) {
     const conversationObj = {
-      user1,
-      user2
+      user0,
+      user1
     };
     return this.firestore.collection('conversations').add(conversationObj);
   }
@@ -95,35 +95,14 @@ class Firebase {
   }
 
   fetchMyConversations(myID) {
-    // return this.firestore
-    //   .collection('conversations')
-    //   .where('participants', 'array-contains', myID); // ?
-
-    const results = [];
-
-    this.firestore
+    const firstCollection = this.firestore
       .collection('conversations')
-      .where('user1', '==', this.userReference(myID))
-      .get()
-      .then(snapshots => {
-        snapshots.forEach(c => {
-          const chat = { id: c.id, ...c.data() };
-          results.push(chat);
-        });
-      });
-
-    this.firestore
+      .where('user0', '==', this.userReference(myID));
+    const secondCollection = this.firestore
       .collection('conversations')
-      .where('user2', '==', this.userReference(myID))
-      .get()
-      .then(snapshots => {
-        snapshots.forEach(c => {
-          const chat = { id: c.id, ...c.data() };
-          results.push(chat);
-        });
-      });
+      .where('user1', '==', this.userReference(myID));
 
-    return results;
+    return [firstCollection, secondCollection];
   }
 }
 

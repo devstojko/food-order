@@ -1,21 +1,9 @@
 import React from 'react';
-import Avatar from '@common/Avatar';
 
-const SidebarList = ({ title, items, funcOnItems }) => (
+const SidebarList = ({ title, children }) => (
   <div className="list">
     <h3>{title}</h3>
-    {items.map(i => (
-      <div className="chat-item" onClick={() => funcOnItems(i.id)} key={i.id}>
-        <Avatar />
-        <div className="chat-item__text">
-          <strong>
-            {i.firstName} {i.lastName}
-          </strong>
-          <span>Last message text</span>
-        </div>
-        <div className="chat-item__time">13 min ago</div>
-      </div>
-    ))}
+    {children}
   </div>
 );
 

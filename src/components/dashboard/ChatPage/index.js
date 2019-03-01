@@ -29,29 +29,28 @@ class ChatPage extends Component {
   }
 
   componentDidMount() {
-    // set listener for conversations/chats
-    // firebase.myConversations(this.props.authUser.id).onSnapshot(snapshot => {
-    //   this.setState({ chats: [] });
-    //   snapshot.forEach(doc => {
-    //     const chat = { id: doc.id, ...doc.data() };
-    //     this.setState({ chats: [...this.state.chats, chat] });
-    //   });
-    // });
-
     const chats = firebase.fetchMyConversations(this.props.authUser.id);
-    // console.log('Chats: ', chats);
-    setTimeout(() => {
-      console.log(chats[0]);
-      chats[0].user1
-        .get()
-        .then(res => {
-          const data = res.data();
-          console.log(data);
-        })
-        .catch(err => console.error(err));
-    }, 2000);
-    console.log(chats[0]);
-    // console.log(chats.doc);
+
+    // set listeners for chats that user participates in
+    chats.forEach((chat, i) => {
+      const otherUserSelector = `user${i === 0 ? '1' : '0'}`;
+
+      chat.onSnapshot(snapshot => {
+        snapshot.forEach(c => {
+          this.setState({ chats: [] });
+          const chat = { id: c.id };
+          c.data()
+            [otherUserSelector].get()
+            .then(u => {
+              chat.otherUser = {
+                id: u.id,
+                ...u.data()
+              };
+              this.setState({ chats: [...this.state.chats, chat] });
+            });
+        });
+      });
+    });
   }
 
   getUsers(term) {
@@ -106,17 +105,41 @@ class ChatPage extends Component {
             />
           </div>
           <div className="chat__list">
-            <SidebarList
-              title="conversations"
-              items={chats}
-              funcOnItems={this.setActiveChat}
-            />
+            <SidebarList title="conversations">
+              {chats.map(chat => (
+                <div
+                  className="chat-item"
+                  onClick={() => this.setActiveChat(i.id)}
+                  key={chat.id}>
+                  <Avatar />
+                  <div className="chat-item__text">
+                    <strong>
+                      {chat.otherUser.firstName} {chat.otherUser.lastName}
+                    </strong>
+                    <span>Last message text</span>
+                  </div>
+                  <div className="chat-item__time">13 min ago</div>
+                </div>
+              ))}
+            </SidebarList>
             {searchTerm && (
-              <SidebarList
-                title="users"
-                items={users}
-                funcOnItems={this.setOtherUser}
-              />
+              <SidebarList title="users">
+                {users.map(user => (
+                  <div
+                    className="chat-item"
+                    onClick={() => this.setOtherUser(user.id)}
+                    key={user.id}>
+                    <Avatar />
+                    <div className="chat-item__text">
+                      <strong>
+                        {user.firstName} {user.lastName}
+                      </strong>
+                      <span>Last message text</span>
+                    </div>
+                    <div className="chat-item__time">13 min ago</div>
+                  </div>
+                ))}
+              </SidebarList>
             )}
           </div>
         </div>
