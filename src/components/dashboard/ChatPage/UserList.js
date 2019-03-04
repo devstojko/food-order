@@ -9,7 +9,7 @@ const UserList = ({ users, setOtherUser }) => (
         key={user.id}
         id={user.id}
         username={`${user.firstName} ${user.lastName}`}
-        onItemClick={() => setOtherUser(user.id)}
+        onItemClick={() => setOtherUser(user)}
       />
     ))}
   </div>

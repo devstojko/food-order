@@ -12,12 +12,15 @@ class ConversationBody extends Component {
   }
 
   componentDidMount() {
-    this.setMessagesListener(this.props.activeChatID);
+    if (this.props.activeChatID) {
+      this.setMessagesListener(this.props.activeChatID);
+    }
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.activeChatID !== prevProps.activeChatID) {
-      this.setMessagesListener(this.props.activeChatID);
+    const newChatID = this.props.activeChatID;
+    if (newChatID && newChatID !== prevProps.activeChatID) {
+      this.setMessagesListener(newChatID);
     }
   }
 
@@ -34,17 +37,21 @@ class ConversationBody extends Component {
   render() {
     return (
       <div className="conversation__body">
-        {this.state.messages.map(msg => {
-          return (
-            <Message
-              key={msg.id}
-              msg={msg}
-              position={
-                msg.sender === this.props.authUser.id ? 'right' : 'left'
-              }
-            />
-          );
-        })}
+        {this.props.activeChatID ? (
+          this.state.messages.map(msg => {
+            return (
+              <Message
+                key={msg.id}
+                msg={msg}
+                position={
+                  msg.sender === this.props.authUser.id ? 'right' : 'left'
+                }
+              />
+            );
+          })
+        ) : (
+          <h1>Say something to start a conversation</h1>
+        )}
       </div>
     );
   }

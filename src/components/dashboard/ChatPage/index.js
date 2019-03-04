@@ -24,7 +24,6 @@ class ChatPage extends Component {
 
     this.getUsers = debounce(this.getUsers.bind(this), 200);
     this.handleChange = this.handleChange.bind(this);
-    this.startConversation = this.startConversation.bind(this);
     this.setOtherUser = this.setOtherUser.bind(this);
     this.setActiveChat = this.setActiveChat.bind(this);
   }
@@ -77,18 +76,14 @@ class ChatPage extends Component {
   }
 
   setOtherUser(otherUser) {
-    this.setState({ otherUser });
+    this.setState({
+      otherUser,
+      activeChat: null
+    });
   }
 
   setActiveChat(id, otherUser) {
     this.setState({ activeChat: id, otherUser });
-  }
-
-  startConversation() {
-    const user1 = firebase.userReference(this.props.authUser.id);
-    const user2 = firebase.userReference(this.state.otherUser);
-
-    firebase.createConversation(user1, user2);
   }
 
   render() {
@@ -119,8 +114,7 @@ class ChatPage extends Component {
                 <Avatar size="large" />
                 <div className="conversation__user">
                   <strong>
-                    {otherUser.firstName}
-                    {otherUser.lastName}
+                    {otherUser.firstName} {otherUser.lastName}
                   </strong>
                   <span>Account Manager</span>
                 </div>
@@ -133,6 +127,7 @@ class ChatPage extends Component {
               <ConversationForm
                 activeChatID={activeChat}
                 authUser={this.props.authUser}
+                otherUser={this.state.otherUser}
               />
             </div>
           )}

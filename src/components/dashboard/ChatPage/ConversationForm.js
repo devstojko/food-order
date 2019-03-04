@@ -9,8 +9,26 @@ class ConversationForm extends Component {
       msgText: ''
     };
 
+    this.startConversation = this.startConversation.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  startConversation() {
+    const user1 = firebase.userReference(this.props.authUser.id);
+    const user2 = firebase.userReference(this.props.otherUser.id);
+
+    return firebase.createConversation(user1, user2);
+  }
+
+  sendMessage(id) {
+    const message = {
+      text: this.state.msgText,
+      sender: this.props.authUser.id
+    };
+
+    firebase.sendMessage(id, message);
+    this.setState({ msgText: '' });
   }
 
   handleChange(e) {
@@ -21,12 +39,13 @@ class ConversationForm extends Component {
     e.preventDefault();
     // send message to firestore
     if (this.state.msgText.length > 0) {
-      const message = {
-        text: this.state.msgText,
-        sender: this.props.authUser.id
-      };
-      firebase.sendMessage(this.props.activeChatID, message);
-      this.setState({ msgText: '' });
+      if (!this.props.activeChatID) {
+        this.startConversation()
+          .then(newConv => this.sendMessage(newConv.id))
+          .catch(err => console.log(err));
+      } else {
+        this.sendMessage(this.props.activeChatID);
+      }
     }
   }
 
