@@ -36,8 +36,9 @@ class ChatPage extends Component {
       const otherUserSelector = `user${i === 0 ? '1' : '0'}`;
 
       chat.onSnapshot(snapshot => {
+        this.setState({ chats: [] });
         snapshot.forEach(c => {
-          this.setState({ chats: [] });
+          // this.setState({ chats: [] });
           const chat = { id: c.id };
           c.data()
             [otherUserSelector].get()
@@ -128,6 +129,7 @@ class ChatPage extends Component {
                 activeChatID={activeChat}
                 authUser={this.props.authUser}
                 otherUser={this.state.otherUser}
+                setActiveChat={this.setActiveChat}
               />
             </div>
           )}

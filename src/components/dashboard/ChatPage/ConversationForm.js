@@ -41,7 +41,10 @@ class ConversationForm extends Component {
     if (this.state.msgText.length > 0) {
       if (!this.props.activeChatID) {
         this.startConversation()
-          .then(newConv => this.sendMessage(newConv.id))
+          .then(newConv => {
+            this.sendMessage(newConv.id);
+            this.props.setActiveChat(newConv.id, this.props.otherUser);
+          })
           .catch(err => console.log(err));
       } else {
         this.sendMessage(this.props.activeChatID);
