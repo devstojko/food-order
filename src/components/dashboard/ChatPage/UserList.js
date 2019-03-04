@@ -1,7 +1,7 @@
 import React from 'react';
 import SidebarListItem from './SidebarListItem';
 
-const UserList = ({ users, onItemClick }) => (
+const UserList = ({ users, setOtherUser }) => (
   <div className="chat__list">
     <h3>Start New Conversations</h3>
     {users.map(user => (
@@ -9,7 +9,7 @@ const UserList = ({ users, onItemClick }) => (
         key={user.id}
         id={user.id}
         username={`${user.firstName} ${user.lastName}`}
-        onItemClick={onItemClick}
+        onItemClick={() => setOtherUser(user.id)}
       />
     ))}
   </div>

@@ -12,16 +12,23 @@ class ConversationBody extends Component {
   }
 
   componentDidMount() {
-    // set listener for selected conversation messages
-    firebase
-      .conversationMessages(this.props.activeChatID)
-      .onSnapshot(snapshot => {
-        this.setState({ messages: [] });
-        snapshot.forEach(doc => {
-          const msg = { id: doc.id, ...doc.data() };
-          this.setState({ messages: [...this.state.messages, msg] });
-        });
+    this.setMessagesListener(this.props.activeChatID);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.activeChatID !== prevProps.activeChatID) {
+      this.setMessagesListener(this.props.activeChatID);
+    }
+  }
+
+  setMessagesListener(chatID) {
+    firebase.conversationMessages(chatID).onSnapshot(snapshot => {
+      this.setState({ messages: [] });
+      snapshot.forEach(doc => {
+        const msg = { id: doc.id, ...doc.data() };
+        this.setState({ messages: [...this.state.messages, msg] });
       });
+    });
   }
 
   render() {

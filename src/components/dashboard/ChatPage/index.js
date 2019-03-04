@@ -7,8 +7,8 @@ import ConversationBody from './ConversationBody';
 import ConversationForm from './ConversationForm';
 import Avatar from '@common/Avatar';
 import firebase from '@fb';
+import debounce from '@helpers/debounce';
 import './ChatPage.scss';
-import debounce from './debounce';
 
 class ChatPage extends Component {
   constructor(props) {
@@ -17,9 +17,9 @@ class ChatPage extends Component {
     this.state = {
       searchTerm: '',
       activeChat: null,
+      otherUser: null,
       chats: [],
-      users: [],
-      otherUser: { id: 123, firstName: null, lastName: null }
+      users: []
     };
 
     this.getUsers = debounce(this.getUsers.bind(this), 200);
@@ -32,7 +32,7 @@ class ChatPage extends Component {
   componentDidMount() {
     const chats = firebase.fetchMyConversations(this.props.authUser.id);
 
-    // set listeners for chats that user participates in
+    // set listeners for chats that user participates in REFACTOR
     chats.forEach((chat, i) => {
       const otherUserSelector = `user${i === 0 ? '1' : '0'}`;
 
@@ -80,11 +80,10 @@ class ChatPage extends Component {
     this.setState({ otherUser });
   }
 
-  setActiveChat(id) {
-    this.setState({ activeChat: id });
+  setActiveChat(id, otherUser) {
+    this.setState({ activeChat: id, otherUser });
   }
 
-  // testing
   startConversation() {
     const user1 = firebase.userReference(this.props.authUser.id);
     const user2 = firebase.userReference(this.state.otherUser);
@@ -106,22 +105,22 @@ class ChatPage extends Component {
             />
           </div>
           <div className="chat__list">
-            <ChatList chats={chats} onItemClick={this.setActiveChat} />
+            <ChatList chats={chats} setActiveChat={this.setActiveChat} />
 
             {searchTerm && (
-              <UserList users={users} onItemClick={this.setOtherUser} />
+              <UserList users={users} setOtherUser={this.setOtherUser} />
             )}
           </div>
         </div>
         <div className="chat__main-area">
-          {activeChat ? (
+          {otherUser && (
             <div className="conversation">
               <div className="conversation__header">
                 <Avatar size="large" />
                 <div className="conversation__user">
                   <strong>
-                    {otherUser.firstName || 'not selected'}{' '}
-                    {otherUser.lastName || 'not selected'}
+                    {otherUser.firstName}
+                    {otherUser.lastName}
                   </strong>
                   <span>Account Manager</span>
                 </div>
@@ -136,10 +135,6 @@ class ChatPage extends Component {
                 authUser={this.props.authUser}
               />
             </div>
-          ) : (
-            <button onClick={this.startConversation}>
-              Start Conversation with this person
-            </button>
           )}
         </div>
       </div>
