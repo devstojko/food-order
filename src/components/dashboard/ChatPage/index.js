@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Search from '@common/Search';
-import SidebarList from './SidebarList';
+import UserList from './UserList';
+import ChatList from './ChatList';
 import ConversationBody from './ConversationBody';
 import ConversationForm from './ConversationForm';
 import Avatar from '@common/Avatar';
@@ -105,41 +106,10 @@ class ChatPage extends Component {
             />
           </div>
           <div className="chat__list">
-            <SidebarList title="conversations">
-              {chats.map(chat => (
-                <div
-                  className="chat-item"
-                  onClick={() => this.setActiveChat(i.id)}
-                  key={chat.id}>
-                  <Avatar />
-                  <div className="chat-item__text">
-                    <strong>
-                      {chat.otherUser.firstName} {chat.otherUser.lastName}
-                    </strong>
-                    <span>Last message text</span>
-                  </div>
-                  <div className="chat-item__time">13 min ago</div>
-                </div>
-              ))}
-            </SidebarList>
+            <ChatList chats={chats} onItemClick={this.setActiveChat} />
+
             {searchTerm && (
-              <SidebarList title="users">
-                {users.map(user => (
-                  <div
-                    className="chat-item"
-                    onClick={() => this.setOtherUser(user.id)}
-                    key={user.id}>
-                    <Avatar />
-                    <div className="chat-item__text">
-                      <strong>
-                        {user.firstName} {user.lastName}
-                      </strong>
-                      <span>Last message text</span>
-                    </div>
-                    <div className="chat-item__time">13 min ago</div>
-                  </div>
-                ))}
-              </SidebarList>
+              <UserList users={users} onItemClick={this.setOtherUser} />
             )}
           </div>
         </div>
