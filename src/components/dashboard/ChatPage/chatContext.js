@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import firebase from '@fb';
 import debounce from '@helpers/debounce';
 
 const ChatContext = React.createContext();
 
-export class Provider extends Component {
+class Provider extends Component {
   constructor(props) {
     super(props);
 
@@ -86,5 +87,9 @@ export class Provider extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ authUser }) => ({ authUser });
+
+export default connect(mapStateToProps)(Provider);
 
 export const Consumer = ChatContext.Consumer;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from '@fb';
+import { Consumer } from '../chatContext';
 
 class ConversationForm extends Component {
   constructor(props) {
@@ -73,4 +74,17 @@ class ConversationForm extends Component {
   }
 }
 
-export default ConversationForm;
+const ConversationFormWithContext = props => (
+  <Consumer>
+    {({ otherUser, activeChatID, setActiveChat }) => (
+      <ConversationForm
+        otherUser={otherUser}
+        activeChatID={activeChatID}
+        setActiveChat={setActiveChat}
+        {...props}
+      />
+    )}
+  </Consumer>
+);
+
+export default ConversationFormWithContext;

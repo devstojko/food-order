@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Consumer } from '../chatContext';
 import Message from './Message';
 import firebase from '@fb';
 
@@ -57,4 +58,12 @@ class ConversationBody extends Component {
   }
 }
 
-export default ConversationBody;
+const ConversationBodyWithContext = props => (
+  <Consumer>
+    {({ activeChatID }) => (
+      <ConversationBody activeChatID={activeChatID} {...props} />
+    )}
+  </Consumer>
+);
+
+export default ConversationBodyWithContext;
