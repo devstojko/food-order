@@ -1,14 +1,14 @@
-import * as app from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
+import * as app from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 
 const config = {
-  apiKey: "AIzaSyAu7nmE6NQceSXthrAMZpEamZtwl9Ji-24",
-  authDomain: "food-order-react.firebaseapp.com",
-  databaseURL: "https://food-order-react.firebaseio.com",
-  projectId: "food-order-react",
-  storageBucket: "food-order-react.appspot.com",
-  messagingSenderId: "447817230109"
+  apiKey: 'AIzaSyAu7nmE6NQceSXthrAMZpEamZtwl9Ji-24',
+  authDomain: 'food-order-react.firebaseapp.com',
+  databaseURL: 'https://food-order-react.firebaseio.com',
+  projectId: 'food-order-react',
+  storageBucket: 'food-order-react.appspot.com',
+  messagingSenderId: '447817230109'
 };
 
 class Firebase {
@@ -47,37 +47,37 @@ class Firebase {
   // db methods
   saveUser(id, user) {
     return this.firestore
-      .collection("users")
+      .collection('users')
       .doc(id)
       .set({ ...user });
   }
 
   fetchUser(id) {
     return this.firestore
-      .collection("users")
+      .collection('users')
       .doc(id)
       .get();
   }
 
   fetchUsersByName(term) {
     return this.firestore
-      .collection("users")
-      .where("firstName", "==", term)
+      .collection('users')
+      .where('firstName', '==', term)
       .get();
   }
 
   conversationMessages(convID) {
     return this.firestore
-      .collection("conversations")
+      .collection('conversations')
       .doc(convID)
-      .collection("messages");
+      .collection('messages');
   }
 
   sendMessage(convID, msg) {
     return this.firestore
-      .collection("conversations")
+      .collection('conversations')
       .doc(convID)
-      .collection("messages")
+      .collection('messages')
       .add(msg);
   }
 
@@ -87,20 +87,20 @@ class Firebase {
       user0,
       user1
     };
-    return this.firestore.collection("conversations").add(conversationObj);
+    return this.firestore.collection('conversations').add(conversationObj);
   }
 
   userReference(id) {
-    return this.firestore.collection("users").doc(id);
+    return this.firestore.collection('users').doc(id);
   }
 
   fetchMyConversations(myID) {
     const firstCollection = this.firestore
-      .collection("conversations")
-      .where("user0", "==", this.userReference(myID));
+      .collection('conversations')
+      .where('user0', '==', this.userReference(myID));
     const secondCollection = this.firestore
-      .collection("conversations")
-      .where("user1", "==", this.userReference(myID));
+      .collection('conversations')
+      .where('user1', '==', this.userReference(myID));
 
     return [firstCollection, secondCollection];
   }
