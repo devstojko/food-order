@@ -68,26 +68,25 @@ class Firebase {
 
   conversationMessages(convID) {
     return this.firestore
-      .collection('conversations')
+      .collection('chats')
       .doc(convID)
-      .collection('messages');
+      .collection('messages')
+      .orderBy('time');
   }
 
   sendMessage(convID, msg) {
     return this.firestore
-      .collection('conversations')
+      .collection('chats')
       .doc(convID)
       .collection('messages')
       .add(msg);
   }
 
-  // testing
-  createConversation(user0, user1) {
+  createConversation(user1, user2) {
     const conversationObj = {
-      user0,
-      user1
+      participants: [user1, user2]
     };
-    return this.firestore.collection('conversations').add(conversationObj);
+    return this.firestore.collection('chats').add(conversationObj);
   }
 
   userReference(id) {
@@ -95,14 +94,10 @@ class Firebase {
   }
 
   fetchMyConversations(myID) {
-    const firstCollection = this.firestore
-      .collection('conversations')
-      .where('user0', '==', this.userReference(myID));
-    const secondCollection = this.firestore
-      .collection('conversations')
-      .where('user1', '==', this.userReference(myID));
-
-    return [firstCollection, secondCollection];
+    const ref = this.userReference(myID);
+    return this.firestore
+      .collection('chats')
+      .where('participants', 'array-contains', ref);
   }
 }
 

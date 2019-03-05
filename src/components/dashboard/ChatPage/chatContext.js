@@ -18,30 +18,60 @@ class Provider extends Component {
     };
   }
 
+  // componentDidMount() {
+  //   const chats = firebase.fetchMyConversations(this.props.authUser.id);
+
+  //   // set listeners for chats that user participates in REFACTOR
+  //   chats.forEach((chat, i) => {
+  //     const otherUserSelector = `user${i === 0 ? '1' : '0'}`;
+
+  //     chat.onSnapshot(snapshot => {
+  //       this.setState({ myChats: [] });
+  //       snapshot.forEach(c => {
+  //         // this.setState({ chats: [] });
+  //         const chat = { id: c.id };
+  //         c.data()
+  //           [otherUserSelector].get()
+  //           .then(u => {
+  //             chat.otherUser = {
+  //               id: u.id,
+  //               ...u.data()
+  //             };
+  //             this.setState({ myChats: [...this.state.myChats, chat] });
+  //           });
+  //       });
+  //     });
+  //   });
+  // }
+
   componentDidMount() {
-    const chats = firebase.fetchMyConversations(this.props.authUser.id);
-
-    // set listeners for chats that user participates in REFACTOR
-    chats.forEach((chat, i) => {
-      const otherUserSelector = `user${i === 0 ? '1' : '0'}`;
-
-      chat.onSnapshot(snapshot => {
+    firebase
+      .fetchMyConversations(this.props.authUser.id)
+      .onSnapshot(snapshot => {
         this.setState({ myChats: [] });
-        snapshot.forEach(c => {
-          // this.setState({ chats: [] });
-          const chat = { id: c.id };
-          c.data()
-            [otherUserSelector].get()
-            .then(u => {
-              chat.otherUser = {
-                id: u.id,
-                ...u.data()
-              };
-              this.setState({ myChats: [...this.state.myChats, chat] });
+        snapshot.forEach(doc => {
+          const chat = { id: doc.id };
+          // get reference to other user from database
+          const userRef =
+            doc.data().participants[0].id ===
+            firebase.userReference(this.props.authUser.id).id
+              ? doc.data().participants[1]
+              : doc.data().participants[0];
+
+          // get user data from reference
+          userRef.get().then(user => {
+            chat.otherUser = {
+              id: user.id,
+              ...user.data()
+            };
+
+            this.setState({
+              ...this.state,
+              myChats: [...this.state.myChats, chat]
             });
+          });
         });
       });
-    });
   }
 
   handleSearchChange(e) {
