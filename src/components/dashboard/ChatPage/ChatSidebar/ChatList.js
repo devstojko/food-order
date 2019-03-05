@@ -1,11 +1,11 @@
 import React from 'react';
-import SidebarListItem from './SidebarListItem';
+import ListItem from './ListItem';
 
 const ChatList = ({ chats, setActiveChat }) => (
   <div className="chat__list">
     <h3>Your Conversationss</h3>
     {chats.map(chat => (
-      <SidebarListItem
+      <ListItem
         key={chat.id}
         id={chat.id}
         username={`${chat.otherUser.firstName} ${chat.otherUser.lastName}`}
