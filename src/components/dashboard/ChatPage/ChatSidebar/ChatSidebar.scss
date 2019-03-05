@@ -1,0 +1,47 @@
+@import '../../../../styles/common/variables';
+
+.chat-sidebar {
+  height: 100%;
+
+  &__search {
+    height: 8.5rem;
+    border-bottom: 1px solid $lightgray;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+  }
+
+  &__list {
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  &__item {
+    padding: 0 2rem 0 0.5rem;
+    height: 8rem;
+    border-bottom: 1px solid $lightgray;
+    display: flex;
+    align-items: center;
+    color: $darkgray;
+
+    &:hover {
+      background: $purple-light;
+    }
+
+    &__text {
+      flex: 1;
+      height: 4.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      strong {
+        font-size: 1.5rem;
+      }
+
+      span {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}

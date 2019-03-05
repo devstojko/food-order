@@ -7,10 +7,10 @@ import './ChatPage.scss';
 const ChatPage = () => (
   <Provider>
     <div className="chat">
-      <div className="chat__sidebar">
+      <div className="chat__side">
         <ChatSidebar />
       </div>
-      <div className="chat__main-area">
+      <div className="chat__main">
         <Conversation />
       </div>
     </div>

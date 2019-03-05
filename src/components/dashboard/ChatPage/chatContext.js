@@ -81,10 +81,9 @@ class Provider extends Component {
     });
   }
 
-  handleConversationCreate() {
+  clearSearch() {
     this.setState({
-      searchTerm: '',
-      users: []
+      searchTerm: ''
     });
   }
 
@@ -95,7 +94,7 @@ class Provider extends Component {
       setOtherUser: this.setOtherUser.bind(this),
       setActiveChat: this.setActiveChat.bind(this),
       handleSearchChange: this.handleSearchChange.bind(this),
-      handleConversationCreate: this.handleConversationCreate.bind(this)
+      clearSearch: this.clearSearch.bind(this)
     };
 
     return (
