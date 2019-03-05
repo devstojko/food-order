@@ -18,7 +18,9 @@ const Conversation = ({ authUser }) => (
           <ConversationForm authUser={authUser} />
         </div>
       ) : (
-        <h1>no content</h1>
+        <div className="empty-conversation">
+          <p>Start chatting with someone by sending him a nice message</p>
+        </div>
       )
     }
   </Consumer>

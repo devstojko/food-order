@@ -51,7 +51,9 @@ class ConversationBody extends Component {
             );
           })
         ) : (
-          <h1>Say something to start a conversation</h1>
+          <div className="info-msg info-msg--big">
+            Start a conversation with this person
+          </div>
         )}
       </div>
     );

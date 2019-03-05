@@ -45,3 +45,14 @@
     margin-top: 1.4rem;
   }
 }
+
+.info-msg {
+  font-size: 1.5rem;
+  color: $gray;
+  padding: 1rem;
+  text-align: center;
+
+  &--big {
+    font-size: 1.8rem;
+  }
+}

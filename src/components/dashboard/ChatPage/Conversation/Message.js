@@ -1,9 +1,12 @@
 import React from 'react';
+import moment from 'moment';
 
 const Message = ({ msg, position }) => (
   <div className="message">
     <div className={`message__text message__text--${position}`}>{msg.text}</div>
-    <span className={`message__time message__time--${position}`}>11:03 pm</span>
+    <span className={`message__time message__time--${position}`}>
+      {moment(msg.time).calendar()}
+    </span>
   </div>
 );
 

@@ -16,6 +16,15 @@
     flex: 1;
   }
 
+  &__title {
+    margin: 0;
+    text-align: center;
+    font-size: 1.6rem;
+    padding: 1rem;
+    color: gray;
+    border-bottom: 1px solid $lightgray;
+  }
+
   &__item {
     padding: 0 2rem 0 0.5rem;
     height: 8rem;

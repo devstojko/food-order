@@ -5,8 +5,8 @@ import ListItem from './ListItem';
 const ChatList = () => (
   <Consumer>
     {({ myChats, setActiveChat }) => (
-      <div className="chat__list">
-        <h3>Your Conversationss</h3>
+      <div>
+        <h3 className="chat-sidebar__title">Your Conversations</h3>
         {myChats.map(chat => (
           <ListItem
             key={chat.id}

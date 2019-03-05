@@ -25,7 +25,8 @@ class ConversationForm extends Component {
   sendMessage(id) {
     const message = {
       text: this.state.msgText,
-      sender: this.props.authUser.id
+      sender: this.props.authUser.id,
+      time: Date.now()
     };
 
     firebase.sendMessage(id, message);
