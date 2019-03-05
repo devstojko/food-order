@@ -18,32 +18,6 @@ class Provider extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   const chats = firebase.fetchMyConversations(this.props.authUser.id);
-
-  //   // set listeners for chats that user participates in REFACTOR
-  //   chats.forEach((chat, i) => {
-  //     const otherUserSelector = `user${i === 0 ? '1' : '0'}`;
-
-  //     chat.onSnapshot(snapshot => {
-  //       this.setState({ myChats: [] });
-  //       snapshot.forEach(c => {
-  //         // this.setState({ chats: [] });
-  //         const chat = { id: c.id };
-  //         c.data()
-  //           [otherUserSelector].get()
-  //           .then(u => {
-  //             chat.otherUser = {
-  //               id: u.id,
-  //               ...u.data()
-  //             };
-  //             this.setState({ myChats: [...this.state.myChats, chat] });
-  //           });
-  //       });
-  //     });
-  //   });
-  // }
-
   componentDidMount() {
     firebase
       .fetchMyConversations(this.props.authUser.id)

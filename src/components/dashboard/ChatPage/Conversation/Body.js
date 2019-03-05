@@ -10,6 +10,8 @@ class ConversationBody extends Component {
     this.state = {
       messages: []
     };
+
+    this.conversationBodyRef = React.createRef();
   }
 
   componentDidMount() {
@@ -31,13 +33,14 @@ class ConversationBody extends Component {
       snapshot.forEach(doc => {
         const msg = { id: doc.id, ...doc.data() };
         this.setState({ messages: [...this.state.messages, msg] });
+        this.conversationBodyRef.current.scrollTop = this.conversationBodyRef.current.scrollHeight;
       });
     });
   }
 
   render() {
     return (
-      <div className="conversation__body">
+      <div className="conversation__body" ref={this.conversationBodyRef}>
         {this.props.activeChatID ? (
           this.state.messages.map(msg => {
             return (
