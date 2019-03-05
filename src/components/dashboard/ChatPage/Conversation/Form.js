@@ -45,6 +45,7 @@ class ConversationForm extends Component {
           .then(newConv => {
             this.sendMessage(newConv.id);
             this.props.setActiveChat(newConv.id, this.props.otherUser);
+            this.props.handleCreate();
           })
           .catch(err => console.log(err));
       } else {
@@ -76,11 +77,12 @@ class ConversationForm extends Component {
 
 const ConversationFormWithContext = props => (
   <Consumer>
-    {({ otherUser, activeChatID, setActiveChat }) => (
+    {({ otherUser, activeChatID, setActiveChat, handleConversationCreate }) => (
       <ConversationForm
         otherUser={otherUser}
         activeChatID={activeChatID}
         setActiveChat={setActiveChat}
+        handleCreate={handleConversationCreate}
         {...props}
       />
     )}

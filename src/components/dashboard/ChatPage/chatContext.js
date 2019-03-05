@@ -10,6 +10,7 @@ class Provider extends Component {
     super(props);
 
     this.state = {
+      searchTerm: '',
       myChats: [],
       users: [],
       activeChatID: null,
@@ -40,6 +41,12 @@ class Provider extends Component {
             });
         });
       });
+    });
+  }
+
+  handleSearchChange(e) {
+    this.setState({ searchTerm: e.target.value }, () => {
+      this.getUsers(this.state.searchTerm);
     });
   }
 
@@ -74,12 +81,21 @@ class Provider extends Component {
     });
   }
 
+  handleConversationCreate() {
+    this.setState({
+      searchTerm: '',
+      users: []
+    });
+  }
+
   render() {
     const contextValue = {
       ...this.state,
       getUsers: debounce(this.getUsers.bind(this), 300),
       setOtherUser: this.setOtherUser.bind(this),
-      setActiveChat: this.setActiveChat.bind(this)
+      setActiveChat: this.setActiveChat.bind(this),
+      handleSearchChange: this.handleSearchChange.bind(this),
+      handleConversationCreate: this.handleConversationCreate.bind(this)
     };
 
     return (
