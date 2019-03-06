@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Consumer } from '../chatContext';
 import Avatar from '@common/Avatar';
 
@@ -16,5 +17,9 @@ const ConversationHeader = ({ username }) => (
     )}
   </Consumer>
 );
+
+ConversationHeader.propTypes = {
+  username: PropTypes.string.isRequired
+};
 
 export default ConversationHeader;

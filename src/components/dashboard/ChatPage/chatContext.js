@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import firebase from '@fb';
 import debounce from '@helpers/debounce';
@@ -108,6 +109,11 @@ class Provider extends Component {
     );
   }
 }
+
+Provider.propTypes = {
+  authUser: PropTypes.object.isRequired,
+  children: PropTypes.node.isRequired
+};
 
 const mapStateToProps = ({ authUser }) => ({ authUser });
 

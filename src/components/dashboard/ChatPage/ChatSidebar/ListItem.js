@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Avatar from '@common/Avatar';
 
 const ListItem = ({ username, onItemClick }) => (
@@ -9,5 +10,10 @@ const ListItem = ({ username, onItemClick }) => (
     </div>
   </div>
 );
+
+ListItem.propTypes = {
+  username: PropTypes.string.isRequired,
+  onItemClick: PropTypes.func.isRequired
+};
 
 export default ListItem;

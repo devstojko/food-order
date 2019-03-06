@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import firebase from '@fb';
 import { Consumer } from '../chatContext';
 
@@ -75,6 +76,14 @@ class ConversationForm extends Component {
     );
   }
 }
+
+ConversationForm.propTypes = {
+  authUser: PropTypes.object.isRequired,
+  otherUser: PropTypes.object.isRequired,
+  activeChatID: PropTypes.string.isRequired,
+  setActiveChat: PropTypes.func.isRequired,
+  clearSearch: PropTypes.func.isRequired
+};
 
 const ConversationFormWithContext = props => (
   <Consumer>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Consumer } from '../chatContext';
 import ListItem from './ListItem';
 
-const UserList = ({ users, setOtherUser }) => (
+const UserList = () => (
   <Consumer>
     {({ users, setOtherUser }) => (
       <div>

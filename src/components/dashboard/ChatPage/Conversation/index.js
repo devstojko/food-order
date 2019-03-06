@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Consumer } from '../chatContext';
 import ConversationHeader from './Header';
@@ -25,6 +26,10 @@ const Conversation = ({ authUser }) => (
     }
   </Consumer>
 );
+
+Conversation.propTypes = {
+  authUser: PropTypes.object.isRequired
+};
 
 const mapStateToProps = ({ authUser }) => ({ authUser });
 

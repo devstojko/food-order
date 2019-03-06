@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Consumer } from '../chatContext';
 import Message from './Message';
 import firebase from '@fb';
@@ -62,6 +63,11 @@ class ConversationBody extends Component {
     );
   }
 }
+
+ConversationBody.propTypes = {
+  authUser: PropTypes.object.isRequired,
+  activeChatID: PropTypes.string.isRequired
+};
 
 const ConversationBodyWithContext = props => (
   <Consumer>
