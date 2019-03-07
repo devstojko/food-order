@@ -9,6 +9,7 @@ TODO:
   - open modal from the sidebar, input for creating a name
 - add avatar for every user
 - loader on redirection
+- convert textarea to text field
 - add user settings page where user can change his data
 - google users need additional menu to set their firstName, lastName... this happens only once
 - OPTIONAL - "User is typing" feature

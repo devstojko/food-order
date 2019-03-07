@@ -5,6 +5,7 @@ import Modal from '@common/Modal';
 import ChatList from './ChatList';
 import UserList from './UserList';
 import './ChatSidebar.scss';
+import GroupChatWizardForm from './GroupChatWizardForm';
 
 const ChatSidebar = () => (
   <Consumer>
@@ -27,7 +28,7 @@ const ChatSidebar = () => (
 
         {showModal && (
           <Modal title="Create Group Chat" onClose={toggleModal}>
-            Dummy Modal Content
+            <GroupChatWizardForm />
           </Modal>
         )}
       </Fragment>
