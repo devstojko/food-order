@@ -8,15 +8,19 @@ const ChatList = () => (
       <div>
         <h3 className="chat-sidebar__title">Your Conversations</h3>
         {myChats.length > 0 ? (
-          myChats.map(chat => (
-            <ListItem
-              key={chat.id}
-              username={`${chat.otherUser.firstName} ${
-                chat.otherUser.lastName
-              }`}
-              onItemClick={() => setActiveChat(chat.id, chat.otherUser)}
-            />
-          ))
+          myChats.map(chat => {
+            const username = chat.name
+              ? chat.name
+              : `${chat.otherUser.firstName} ${chat.otherUser.lastName}`;
+
+            return (
+              <ListItem
+                key={chat.id}
+                username={username}
+                onItemClick={() => setActiveChat(chat.id, chat.otherUser)}
+              />
+            );
+          })
         ) : (
           <div className="info-msg">No conversations</div>
         )}

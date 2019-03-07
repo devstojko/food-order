@@ -1,25 +1,29 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Search from '@common/Search';
 import Button from '@common/Button';
-import UserList from './UserList';
 import firebase from '@fb';
 import ListItem from './ListItem';
 
-export default class GroupChatWizardForm extends Component {
+const INITIAL_STATE = {
+  page: 1,
+  groupName: '',
+  searchTerm: '',
+  participants: [],
+  users: []
+};
+
+class GroupChatWizardForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      page: 1,
-      groupName: '',
-      searchTerm: '',
-      participants: [],
-      users: []
-    };
+    this.state = { ...INITIAL_STATE };
 
     this.changeGroupName = this.changeGroupName.bind(this);
     this.changeSearchTerm = this.changeSearchTerm.bind(this);
-    this.addToParticipants = this.addToParticipants.bind(this);
+    this.addParticipant = this.addParticipant.bind(this);
+    this.removePatricipant = this.removePatricipant.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   changePage(pageNum) {
@@ -32,10 +36,10 @@ export default class GroupChatWizardForm extends Component {
 
   changeSearchTerm(e) {
     this.setState({ searchTerm: e.target.value }, () => {
-      // search users with this term
       firebase
         .fetchUsersByName(this.state.searchTerm)
         .then(snapshots => {
+          this.setState({ users: [] });
           if (!snapshots.empty) {
             snapshots.forEach(u => {
               const user = { id: u.id, ...u.data() };
@@ -47,16 +51,28 @@ export default class GroupChatWizardForm extends Component {
     });
   }
 
-  addToParticipants(user) {
+  addParticipant(user) {
     if (!this.state.participants.find(u => u.id === user.id)) {
       this.setState({ participants: [...this.state.participants, user] });
     }
   }
 
+  removePatricipant(id) {
+    this.setState({
+      participants: this.state.participants.filter(p => p.id !== id)
+    });
+  }
+
   handleSubmit(e) {
     e.preventDefault();
 
-    console.log('submitted');
+    const participants = [firebase.userReference(this.props.authUser.id)];
+    this.state.participants.forEach(p =>
+      participants.push(firebase.userReference(p.id))
+    );
+
+    firebase.createGroupConversation(this.state.groupName, participants);
+    this.setState({ ...INITIAL_STATE });
   }
 
   render() {
@@ -88,7 +104,11 @@ export default class GroupChatWizardForm extends Component {
             />
             <h4>Conversation Participants</h4>
             {participants.map(p => (
-              <div>{p.firstName}</div>
+              <ListItem
+                key={p.id}
+                username={`${p.firstName} ${p.lastName}`}
+                onItemClick={() => this.removePatricipant(p.id)}
+              />
             ))}
 
             {searchTerm && (
@@ -98,7 +118,7 @@ export default class GroupChatWizardForm extends Component {
                   <ListItem
                     key={user.id}
                     username={`${user.firstName} ${user.lastName}`}
-                    onItemClick={() => this.addToParticipants(user)}
+                    onItemClick={() => this.addParticipant(user)}
                   />
                 ))}
               </div>
@@ -120,3 +140,7 @@ export default class GroupChatWizardForm extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ authUser }) => ({ authUser });
+
+export default connect(mapStateToProps)(GroupChatWizardForm);

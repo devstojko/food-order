@@ -27,7 +27,11 @@ class Provider extends Component {
         this.setState({ myChats: [] });
         snapshot.forEach(doc => {
           const chat = { id: doc.id };
-          // get reference to other user from database
+          // get reference to other user from database]
+          if (doc.data().name) {
+            chat.name = doc.data().name;
+          }
+
           const userRef =
             doc.data().participants[0].id ===
             firebase.userReference(this.props.authUser.id).id

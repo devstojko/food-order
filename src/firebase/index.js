@@ -78,6 +78,10 @@ class Firebase {
     return this.firestore.collection('chats').add(conversationObj);
   }
 
+  createGroupConversation(name, participants) {
+    return this.firestore.collection('chats').add({ name, participants });
+  }
+
   fetchMyConversations(myID) {
     const ref = this.userReference(myID);
     return this.firestore
