@@ -15,7 +15,8 @@ class Provider extends Component {
       myChats: [],
       users: [],
       activeChatID: null,
-      otherUser: null
+      otherUser: null,
+      showModal: false
     };
   }
 
@@ -92,6 +93,10 @@ class Provider extends Component {
     });
   }
 
+  toggleModal() {
+    this.setState({ showModal: !this.state.showModal });
+  }
+
   render() {
     const contextValue = {
       ...this.state,
@@ -99,7 +104,8 @@ class Provider extends Component {
       setOtherUser: this.setOtherUser.bind(this),
       setActiveChat: this.setActiveChat.bind(this),
       handleSearchChange: this.handleSearchChange.bind(this),
-      clearSearch: this.clearSearch.bind(this)
+      clearSearch: this.clearSearch.bind(this),
+      toggleModal: this.toggleModal.bind(this)
     };
 
     return (
