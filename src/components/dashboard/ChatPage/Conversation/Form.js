@@ -80,7 +80,7 @@ class ConversationForm extends Component {
 ConversationForm.propTypes = {
   authUser: PropTypes.object.isRequired,
   otherUser: PropTypes.object.isRequired,
-  activeChatID: PropTypes.string.isRequired,
+  activeChatID: PropTypes.string,
   setActiveChat: PropTypes.func.isRequired,
   clearSearch: PropTypes.func.isRequired
 };

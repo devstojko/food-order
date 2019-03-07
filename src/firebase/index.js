@@ -44,7 +44,11 @@ class Firebase {
     return this.auth.currentUser.updatePassword(password);
   }
 
-  // db methods
+  // db user methods
+  userReference(id) {
+    return this.firestore.collection('users').doc(id);
+  }
+
   saveUser(id, user) {
     return this.firestore
       .collection('users')
@@ -66,6 +70,21 @@ class Firebase {
       .get();
   }
 
+  // conversation messages
+  createConversation(user1, user2) {
+    const conversationObj = {
+      participants: [user1, user2]
+    };
+    return this.firestore.collection('chats').add(conversationObj);
+  }
+
+  fetchMyConversations(myID) {
+    const ref = this.userReference(myID);
+    return this.firestore
+      .collection('chats')
+      .where('participants', 'array-contains', ref);
+  }
+
   conversationMessages(convID) {
     return this.firestore
       .collection('chats')
@@ -80,24 +99,6 @@ class Firebase {
       .doc(convID)
       .collection('messages')
       .add(msg);
-  }
-
-  createConversation(user1, user2) {
-    const conversationObj = {
-      participants: [user1, user2]
-    };
-    return this.firestore.collection('chats').add(conversationObj);
-  }
-
-  userReference(id) {
-    return this.firestore.collection('users').doc(id);
-  }
-
-  fetchMyConversations(myID) {
-    const ref = this.userReference(myID);
-    return this.firestore
-      .collection('chats')
-      .where('participants', 'array-contains', ref);
   }
 }
 

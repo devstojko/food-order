@@ -66,7 +66,7 @@ class ConversationBody extends Component {
 
 ConversationBody.propTypes = {
   authUser: PropTypes.object.isRequired,
-  activeChatID: PropTypes.string.isRequired
+  activeChatID: PropTypes.string
 };
 
 const ConversationBodyWithContext = props => (
