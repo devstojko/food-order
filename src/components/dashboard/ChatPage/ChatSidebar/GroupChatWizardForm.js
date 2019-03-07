@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Search from '@common/Search';
 import Button from '@common/Button';
 import UserList from './UserList';
+import firebase from '@fb';
+import ListItem from './ListItem';
 
 export default class GroupChatWizardForm extends Component {
   constructor(props) {
@@ -17,6 +19,7 @@ export default class GroupChatWizardForm extends Component {
 
     this.changeGroupName = this.changeGroupName.bind(this);
     this.changeSearchTerm = this.changeSearchTerm.bind(this);
+    this.addToParticipants = this.addToParticipants.bind(this);
   }
 
   changePage(pageNum) {
@@ -29,9 +32,25 @@ export default class GroupChatWizardForm extends Component {
 
   changeSearchTerm(e) {
     this.setState({ searchTerm: e.target.value }, () => {
-      // this.props.getUsers(this.state.searchTerm);
-      console.log('search with this term...');
+      // search users with this term
+      firebase
+        .fetchUsersByName(this.state.searchTerm)
+        .then(snapshots => {
+          if (!snapshots.empty) {
+            snapshots.forEach(u => {
+              const user = { id: u.id, ...u.data() };
+              this.setState({ users: [...this.state.users, user] });
+            });
+          }
+        })
+        .catch(err => console.log(err));
     });
+  }
+
+  addToParticipants(user) {
+    if (!this.state.participants.find(u => u.id === user.id)) {
+      this.setState({ participants: [...this.state.participants, user] });
+    }
   }
 
   handleSubmit(e) {
@@ -41,7 +60,7 @@ export default class GroupChatWizardForm extends Component {
   }
 
   render() {
-    const { page, groupName, searchTerm, participants } = this.state;
+    const { page, groupName, searchTerm, participants, users } = this.state;
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -67,7 +86,23 @@ export default class GroupChatWizardForm extends Component {
               handleChange={this.changeSearchTerm}
               placeholder="Add users to this conversation"
             />
-            {searchTerm && <UserList />}
+            <h4>Conversation Participants</h4>
+            {participants.map(p => (
+              <div>{p.firstName}</div>
+            ))}
+
+            {searchTerm && (
+              <div>
+                <h4>Add more users</h4>
+                {users.map(user => (
+                  <ListItem
+                    key={user.id}
+                    username={`${user.firstName} ${user.lastName}`}
+                    onItemClick={() => this.addToParticipants(user)}
+                  />
+                ))}
+              </div>
+            )}
 
             <Button
               style="secondary"

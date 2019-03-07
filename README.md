@@ -16,4 +16,5 @@ TODO:
 - add user settings page where user can change his data
 - google users need additional menu to set their firstName, lastName... this happens only once
 - OPTIONAL - "User is typing" feature
+- restrict the amount of info fetched for users (don't fetch passwords)
 - change firebase auth rules and deploy the app to firebase
