@@ -16,7 +16,7 @@ const ChatSidebar = () => (
             <Search
               value={searchTerm}
               handleChange={handleSearchChange}
-              placeholder="Search Message or Name..."
+              placeholder="Search for users"
             />
             <button onClick={toggleModal}>Testing</button>
           </div>
