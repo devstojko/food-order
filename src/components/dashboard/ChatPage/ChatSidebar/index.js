@@ -1,15 +1,13 @@
 import React, { Fragment } from 'react';
 import { Consumer } from '../chatContext';
 import Search from '@common/Search';
-import Modal from '@common/Modal';
 import ChatList from './ChatList';
 import UserList from './UserList';
 import './ChatSidebar.scss';
-import GroupChatWizardForm from './GroupChatWizardForm';
 
 const ChatSidebar = () => (
   <Consumer>
-    {({ searchTerm, handleSearchChange, showModal, toggleModal }) => (
+    {({ searchTerm, handleSearchChange, toggleModal }) => (
       <Fragment>
         <div className="chat-sidebar">
           <div className="chat-sidebar__search">
@@ -25,12 +23,6 @@ const ChatSidebar = () => (
             {searchTerm && <UserList />}
           </div>
         </div>
-
-        {showModal && (
-          <Modal title="Create Group Chat" onClose={toggleModal}>
-            <GroupChatWizardForm />
-          </Modal>
-        )}
       </Fragment>
     )}
   </Consumer>

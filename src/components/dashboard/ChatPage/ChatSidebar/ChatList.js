@@ -9,8 +9,8 @@ const ChatList = () => (
         <h3 className="chat-sidebar__title">Your Conversations</h3>
         {myChats.length > 0 ? (
           myChats.map(chat => {
-            const username = chat.name
-              ? chat.name
+            const username = chat.groupName
+              ? chat.groupName
               : `${chat.otherUser.firstName} ${chat.otherUser.lastName}`;
 
             return (

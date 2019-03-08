@@ -11,8 +11,8 @@ const Conversation = ({ authUser, otherUser, activeChat }) => {
   if (otherUser || activeChat) {
     let headerTitle;
     if (activeChat) {
-      headerTitle = activeChat.name
-        ? activeChat.name
+      headerTitle = activeChat.groupName
+        ? activeChat.groupName
         : `${activeChat.otherUser.firstName} ${activeChat.otherUser.lastName}`;
     } else {
       headerTitle = `${otherUser.firstName} ${otherUser.lastName}`;

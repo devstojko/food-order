@@ -77,8 +77,8 @@ class Firebase {
       .add({ participants: [user1, user2] });
   }
 
-  createGroupChat(name, participants) {
-    return this.firestore.collection('chats').add({ name, participants });
+  createGroupChat(groupName, participants) {
+    return this.firestore.collection('chats').add({ groupName, participants });
   }
 
   fetchMyChats(myID) {

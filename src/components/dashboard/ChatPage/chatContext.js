@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import firebase from '@fb';
 import debounce from '@helpers/debounce';
+import GroupChatModal from './GroupChatModal';
 
 const ChatContext = React.createContext();
 
@@ -27,8 +28,8 @@ class Provider extends Component {
         const chat = { id: doc.id };
         // REFACTOR THIS LATER
         // get reference to other user from database]
-        if (doc.data().name) {
-          chat.name = doc.data().name;
+        if (doc.data().groupName) {
+          chat.groupName = doc.data().groupName;
         }
 
         const userRef =
@@ -115,6 +116,10 @@ class Provider extends Component {
     return (
       <ChatContext.Provider value={contextValue}>
         {this.props.children}
+
+        {this.state.showModal && (
+          <GroupChatModal handleClose={this.toggleModal.bind(this)} />
+        )}
       </ChatContext.Provider>
     );
   }

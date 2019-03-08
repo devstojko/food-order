@@ -4,7 +4,7 @@ import { Consumer } from '../chatContext';
 import Search from '@common/Search';
 import Button from '@common/Button';
 import firebase from '@fb';
-import ListItem from './ListItem';
+import ListItem from '../ChatSidebar/ListItem';
 
 const INITIAL_STATE = {
   page: 1,
@@ -14,7 +14,7 @@ const INITIAL_STATE = {
   users: []
 };
 
-class GroupChatWizardForm extends Component {
+class WizardForm extends Component {
   constructor(props) {
     super(props);
 
@@ -143,14 +143,12 @@ class GroupChatWizardForm extends Component {
   }
 }
 
-const GroupChatWizardFormWithContext = props => (
+const WizardFormWithContext = props => (
   <Consumer>
-    {({ toggleModal }) => (
-      <GroupChatWizardForm toggleModal={toggleModal} {...props} />
-    )}
+    {({ toggleModal }) => <WizardForm toggleModal={toggleModal} {...props} />}
   </Consumer>
 );
 
 const mapStateToProps = ({ authUser }) => ({ authUser });
 
-export default connect(mapStateToProps)(GroupChatWizardFormWithContext);
+export default connect(mapStateToProps)(WizardFormWithContext);
