@@ -71,7 +71,7 @@ class GroupChatWizardForm extends Component {
       participants.push(firebase.userReference(p.id))
     );
 
-    firebase.createGroupConversation(this.state.groupName, participants);
+    firebase.createGroupChat(this.state.groupName, participants);
     this.setState({ ...INITIAL_STATE });
   }
 

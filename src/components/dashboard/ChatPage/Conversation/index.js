@@ -7,30 +7,45 @@ import ConversationBody from './Body';
 import ConversationForm from './Form';
 import './Conversation.scss';
 
-const Conversation = ({ authUser }) => (
-  <Consumer>
-    {({ otherUser }) =>
-      otherUser ? (
-        <div className="conversation">
-          <ConversationHeader
-            username={`${otherUser.firstName} ${otherUser.lastName}`}
-          />
-          <ConversationBody authUser={authUser} />
-          <ConversationForm authUser={authUser} />
-        </div>
-      ) : (
-        <div className="empty-conversation">
-          <p>Start chatting with someone by sending him a nice message</p>
-        </div>
-      )
+const Conversation = ({ authUser, otherUser, activeChat }) => {
+  if (otherUser || activeChat) {
+    let headerTitle;
+    if (activeChat) {
+      headerTitle = activeChat.name
+        ? activeChat.name
+        : `${activeChat.otherUser.firstName} ${activeChat.otherUser.lastName}`;
+    } else {
+      headerTtitle = `${otherUser.firstName} ${otherUser.lastName}`;
     }
-  </Consumer>
-);
+
+    return (
+      <div className="conversation">
+        <ConversationHeader title={headerTitle} />
+        <ConversationBody authUser={authUser} />
+        <ConversationForm authUser={authUser} />
+      </div>
+    );
+  } else {
+    return (
+      <div className="empty-conversation">
+        <p>Start chatting with someone by sending him a nice message</p>
+      </div>
+    );
+  }
+};
 
 Conversation.propTypes = {
   authUser: PropTypes.object.isRequired
 };
 
+const ConversationWithContext = props => (
+  <Consumer>
+    {({ otherUser, activeChat }) => (
+      <Conversation otherUser={otherUser} activeChat={activeChat} {...props} />
+    )}
+  </Consumer>
+);
+
 const mapStateToProps = ({ authUser }) => ({ authUser });
 
-export default connect(mapStateToProps)(Conversation);
+export default connect(mapStateToProps)(ConversationWithContext);

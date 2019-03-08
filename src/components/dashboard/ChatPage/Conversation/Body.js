@@ -16,20 +16,22 @@ class ConversationBody extends Component {
   }
 
   componentDidMount() {
-    if (this.props.activeChatID) {
-      this.setMessagesListener(this.props.activeChatID);
+    if (this.props.activeChat) {
+      this.setMessagesListener(this.props.activeChat.id);
     }
   }
 
   componentDidUpdate(prevProps) {
-    const newChatID = this.props.activeChatID;
-    if (newChatID && newChatID !== prevProps.activeChatID) {
-      this.setMessagesListener(newChatID);
+    if (
+      this.props.activeChat &&
+      this.props.activeChat.id !== prevProps.activeChat.id
+    ) {
+      this.setMessagesListener(this.props.activeChat.id);
     }
   }
 
   setMessagesListener(chatID) {
-    firebase.conversationMessages(chatID).onSnapshot(snapshot => {
+    firebase.chatMessages(chatID).onSnapshot(snapshot => {
       this.setState({ messages: [] });
       snapshot.forEach(doc => {
         const msg = { id: doc.id, ...doc.data() };
@@ -42,7 +44,7 @@ class ConversationBody extends Component {
   render() {
     return (
       <div className="conversation__body" ref={this.conversationBodyRef}>
-        {this.props.activeChatID ? (
+        {this.props.activeChat && this.state.messages.length > 0 ? (
           this.state.messages.map(msg => {
             return (
               <Message
@@ -56,7 +58,7 @@ class ConversationBody extends Component {
           })
         ) : (
           <div className="info-msg info-msg--big">
-            Start a conversation with this person
+            Start a conversation by sending a message
           </div>
         )}
       </div>
@@ -66,13 +68,13 @@ class ConversationBody extends Component {
 
 ConversationBody.propTypes = {
   authUser: PropTypes.object.isRequired,
-  activeChatID: PropTypes.string
+  activeChat: PropTypes.object
 };
 
 const ConversationBodyWithContext = props => (
   <Consumer>
-    {({ activeChatID }) => (
-      <ConversationBody activeChatID={activeChatID} {...props} />
+    {({ activeChat }) => (
+      <ConversationBody activeChat={activeChat} {...props} />
     )}
   </Consumer>
 );

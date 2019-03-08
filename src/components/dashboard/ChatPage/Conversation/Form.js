@@ -20,7 +20,7 @@ class ConversationForm extends Component {
     const user1 = firebase.userReference(this.props.authUser.id);
     const user2 = firebase.userReference(this.props.otherUser.id);
 
-    return firebase.createConversation(user1, user2);
+    return firebase.createChat(user1, user2);
   }
 
   sendMessage(id) {
@@ -42,16 +42,16 @@ class ConversationForm extends Component {
     e.preventDefault();
     // send message to firestore
     if (this.state.msgText.length > 0) {
-      if (!this.props.activeChatID) {
+      if (!this.props.newChat) {
         this.startConversation()
-          .then(newConv => {
-            this.sendMessage(newConv.id);
-            this.props.setActiveChat(newConv.id, this.props.otherUser);
+          .then(newChat => {
+            this.sendMessage(newChat.id);
+            this.props.setActiveChat(newChat);
             this.props.clearSearch();
           })
           .catch(err => console.log(err));
       } else {
-        this.sendMessage(this.props.activeChatID);
+        this.sendMessage(this.props.activeChat.id);
       }
     }
   }
@@ -79,18 +79,18 @@ class ConversationForm extends Component {
 
 ConversationForm.propTypes = {
   authUser: PropTypes.object.isRequired,
-  otherUser: PropTypes.object.isRequired,
-  activeChatID: PropTypes.string,
+  otherUser: PropTypes.object,
+  activeChat: PropTypes.object,
   setActiveChat: PropTypes.func.isRequired,
   clearSearch: PropTypes.func.isRequired
 };
 
 const ConversationFormWithContext = props => (
   <Consumer>
-    {({ otherUser, activeChatID, setActiveChat, clearSearch }) => (
+    {({ otherUser, activeChat, setActiveChat, clearSearch }) => (
       <ConversationForm
         otherUser={otherUser}
-        activeChatID={activeChatID}
+        activeChat={activeChat}
         setActiveChat={setActiveChat}
         clearSearch={clearSearch}
         {...props}

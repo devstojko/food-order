@@ -14,44 +14,43 @@ class Provider extends Component {
       searchTerm: '',
       myChats: [],
       users: [],
-      activeChatID: null,
+      activeChat: null,
       otherUser: null,
       showModal: false
     };
   }
 
   componentDidMount() {
-    firebase
-      .fetchMyConversations(this.props.authUser.id)
-      .onSnapshot(snapshot => {
-        this.setState({ myChats: [] });
-        snapshot.forEach(doc => {
-          const chat = { id: doc.id };
-          // get reference to other user from database]
-          if (doc.data().name) {
-            chat.name = doc.data().name;
-          }
+    firebase.fetchMyChats(this.props.authUser.id).onSnapshot(snapshot => {
+      this.setState({ myChats: [] });
+      snapshot.forEach(doc => {
+        const chat = { id: doc.id };
+        // REFACTOR THIS LATER
+        // get reference to other user from database]
+        if (doc.data().name) {
+          chat.name = doc.data().name;
+        }
 
-          const userRef =
-            doc.data().participants[0].id ===
-            firebase.userReference(this.props.authUser.id).id
-              ? doc.data().participants[1]
-              : doc.data().participants[0];
+        const userRef =
+          doc.data().participants[0].id ===
+          firebase.userReference(this.props.authUser.id).id
+            ? doc.data().participants[1]
+            : doc.data().participants[0];
 
-          // get user data from reference
-          userRef.get().then(user => {
-            chat.otherUser = {
-              id: user.id,
-              ...user.data()
-            };
+        // get user data from reference
+        userRef.get().then(user => {
+          chat.otherUser = {
+            id: user.id,
+            ...user.data()
+          };
 
-            this.setState({
-              ...this.state,
-              myChats: [...this.state.myChats, chat]
-            });
+          this.setState({
+            ...this.state,
+            myChats: [...this.state.myChats, chat]
           });
         });
       });
+    });
   }
 
   handleSearchChange(e) {
@@ -67,10 +66,10 @@ class Provider extends Component {
       .then(snapshots => {
         if (!snapshots.empty) {
           snapshots.forEach(u => {
-            if (!this.state.myChats.find(c => c.otherUser.id === u.id)) {
-              const user = { id: u.id, ...u.data() };
-              this.setState({ users: [...this.state.users, user] });
-            }
+            // if (!this.state.myChats.find(c => c.otherUser.id === u.id)) {
+            const user = { id: u.id, ...u.data() };
+            this.setState({ users: [...this.state.users, user] });
+            // }
           });
         }
       })
@@ -80,14 +79,14 @@ class Provider extends Component {
   setOtherUser(user) {
     this.setState({
       otherUser: user,
-      activeChatID: null
+      activeChat: null
     });
   }
 
-  setActiveChat(id, otherUser) {
+  setActiveChat(chat) {
     this.setState({
-      activeChatID: id,
-      otherUser
+      activeChat: chat,
+      otherUser: null
     });
   }
 

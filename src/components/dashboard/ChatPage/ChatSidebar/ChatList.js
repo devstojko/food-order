@@ -17,7 +17,7 @@ const ChatList = () => (
               <ListItem
                 key={chat.id}
                 username={username}
-                onItemClick={() => setActiveChat(chat.id, chat.otherUser)}
+                onItemClick={() => setActiveChat(chat)}
               />
             );
           })

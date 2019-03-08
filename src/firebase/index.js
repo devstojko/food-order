@@ -70,37 +70,35 @@ class Firebase {
       .get();
   }
 
-  // conversation messages
-  createConversation(user1, user2) {
-    const conversationObj = {
-      participants: [user1, user2]
-    };
-    return this.firestore.collection('chats').add(conversationObj);
+  // chat methods
+  createChat(user1, user2) {
+    return this.firestore
+      .collection('chats')
+      .add({ participants: [user1, user2] });
   }
 
-  createGroupConversation(name, participants) {
+  createGroupChat(name, participants) {
     return this.firestore.collection('chats').add({ name, participants });
   }
 
-  fetchMyConversations(myID) {
-    const ref = this.userReference(myID);
+  fetchMyChats(myID) {
     return this.firestore
       .collection('chats')
-      .where('participants', 'array-contains', ref);
+      .where('participants', 'array-contains', this.userReference(myID));
   }
 
-  conversationMessages(convID) {
+  chatMessages(chatID) {
     return this.firestore
       .collection('chats')
-      .doc(convID)
+      .doc(chatID)
       .collection('messages')
       .orderBy('time');
   }
 
-  sendMessage(convID, msg) {
+  sendMessage(chatID, msg) {
     return this.firestore
       .collection('chats')
-      .doc(convID)
+      .doc(chatID)
       .collection('messages')
       .add(msg);
   }

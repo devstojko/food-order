@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { Consumer } from '../chatContext';
 import Avatar from '@common/Avatar';
 
-const ConversationHeader = ({ username }) => (
+const ConversationHeader = ({ title }) => (
   <Consumer>
     {({ setOtherUser }) => (
       <div className="conversation__header">
         <Avatar size="large" />
-        <div className="conversation__user">
-          <strong>{username}</strong>
+        <div className="conversation__title">
+          <strong>{title}</strong>
           <span>Account Manager</span>
         </div>
         <i className="fas fa-times" onClick={() => setOtherUser(null)} />
@@ -19,7 +19,7 @@ const ConversationHeader = ({ username }) => (
 );
 
 ConversationHeader.propTypes = {
-  username: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired
 };
 
 export default ConversationHeader;
