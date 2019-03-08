@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Consumer } from '../chatContext';
 import Search from '@common/Search';
 import Button from '@common/Button';
 import firebase from '@fb';
@@ -73,6 +74,7 @@ class GroupChatWizardForm extends Component {
 
     firebase.createGroupChat(this.state.groupName, participants);
     this.setState({ ...INITIAL_STATE });
+    this.props.toggleModal();
   }
 
   render() {
@@ -141,6 +143,14 @@ class GroupChatWizardForm extends Component {
   }
 }
 
+const GroupChatWizardFormWithContext = props => (
+  <Consumer>
+    {({ toggleModal }) => (
+      <GroupChatWizardForm toggleModal={toggleModal} {...props} />
+    )}
+  </Consumer>
+);
+
 const mapStateToProps = ({ authUser }) => ({ authUser });
 
-export default connect(mapStateToProps)(GroupChatWizardForm);
+export default connect(mapStateToProps)(GroupChatWizardFormWithContext);
