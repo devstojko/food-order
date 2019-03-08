@@ -40,26 +40,45 @@ class ConversationForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // send message to firestore
-    if (this.state.msgText.length > 0) {
-      if (!this.props.newChat) {
-        this.startConversation()
-          .then(newChat => {
-            this.sendMessage(newChat.id);
-            this.props.setActiveChat(newChat);
-            this.props.clearSearch();
-          })
-          .catch(err => console.log(err));
-      } else {
-        this.sendMessage(this.props.activeChat.id);
-      }
+
+    // REFACTOR THIS LATER
+    if (this.props.otherUser) {
+      this.startConversation()
+        .then(newChat => {
+          newChat.get().then(doc => {
+            console.log(doc.data());
+            const newChatData = doc.data();
+
+            const chat = { id: newChat.id };
+            const userRef =
+              newChatData.participants[0].id ===
+              firebase.userReference(this.props.authUser.id).id
+                ? newChatData.participants[1]
+                : newChatData.participants[0];
+
+            // get user data from reference
+            userRef.get().then(user => {
+              chat.otherUser = {
+                id: user.id,
+                ...user.data()
+              };
+
+              this.props.setActiveChat(chat);
+              this.sendMessage(chat.id);
+              this.props.handleChatCreate();
+            });
+          });
+        })
+        .catch(err => console.log(err));
+    } else {
+      this.sendMessage(this.props.activeChat.id);
     }
   }
 
   render() {
     return (
       <form className="conversation__form" onSubmit={this.handleSubmit}>
-        <textarea
+        <input
           value={this.state.msgText}
           onChange={this.handleChange}
           placeholder="Type your message here..."
@@ -82,17 +101,17 @@ ConversationForm.propTypes = {
   otherUser: PropTypes.object,
   activeChat: PropTypes.object,
   setActiveChat: PropTypes.func.isRequired,
-  clearSearch: PropTypes.func.isRequired
+  handleChatCreate: PropTypes.func.isRequired
 };
 
 const ConversationFormWithContext = props => (
   <Consumer>
-    {({ otherUser, activeChat, setActiveChat, clearSearch }) => (
+    {({ otherUser, activeChat, setActiveChat, handleChatCreate }) => (
       <ConversationForm
         otherUser={otherUser}
         activeChat={activeChat}
         setActiveChat={setActiveChat}
-        clearSearch={clearSearch}
+        handleChatCreate={handleChatCreate}
         {...props}
       />
     )}

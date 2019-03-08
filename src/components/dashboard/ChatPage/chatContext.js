@@ -90,9 +90,10 @@ class Provider extends Component {
     });
   }
 
-  clearSearch() {
+  handleChatCreate() {
     this.setState({
-      searchTerm: ''
+      searchTerm: '',
+      otherUser: null
     });
   }
 
@@ -107,7 +108,7 @@ class Provider extends Component {
       setOtherUser: this.setOtherUser.bind(this),
       setActiveChat: this.setActiveChat.bind(this),
       handleSearchChange: this.handleSearchChange.bind(this),
-      clearSearch: this.clearSearch.bind(this),
+      handleChatCreate: this.handleChatCreate.bind(this),
       toggleModal: this.toggleModal.bind(this)
     };
 

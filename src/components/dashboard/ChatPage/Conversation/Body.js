@@ -22,11 +22,13 @@ class ConversationBody extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (
-      this.props.activeChat &&
-      this.props.activeChat.id !== prevProps.activeChat.id
-    ) {
-      this.setMessagesListener(this.props.activeChat.id);
+    const currentChatID = this.props.activeChat
+      ? this.props.activeChat.id
+      : null;
+    const prevChatID = prevProps.activeChat ? prevProps.activeChat.id : null;
+
+    if (currentChatID && currentChatID !== prevChatID) {
+      this.setMessagesListener(currentChatID);
     }
   }
 

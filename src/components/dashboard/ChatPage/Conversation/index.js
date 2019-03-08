@@ -15,7 +15,7 @@ const Conversation = ({ authUser, otherUser, activeChat }) => {
         ? activeChat.name
         : `${activeChat.otherUser.firstName} ${activeChat.otherUser.lastName}`;
     } else {
-      headerTtitle = `${otherUser.firstName} ${otherUser.lastName}`;
+      headerTitle = `${otherUser.firstName} ${otherUser.lastName}`;
     }
 
     return (
