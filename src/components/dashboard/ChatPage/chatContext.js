@@ -22,34 +22,34 @@ class Provider extends Component {
   }
 
   componentDidMount() {
-    firebase.fetchMyChats(this.props.authUser.id).onSnapshot(snapshot => {
+    const authUserID = this.props.authUser.id;
+
+    firebase.fetchMyChats(authUserID).onSnapshot(snapshot => {
       this.setState({ myChats: [] });
       snapshot.forEach(doc => {
         const chat = { id: doc.id };
-        // REFACTOR THIS LATER
-        // get reference to other user from database]
-        if (doc.data().groupName) {
-          chat.groupName = doc.data().groupName;
-        }
+        const data = doc.data();
 
-        const userRef =
-          doc.data().participants[0].id ===
-          firebase.userReference(this.props.authUser.id).id
-            ? doc.data().participants[1]
-            : doc.data().participants[0];
+        if (data.groupName) {
+          // if chat is group chat, attach group name to chat
+          chat.groupName = data.groupName;
+          this.setState({ myChats: [...this.state.myChats, chat] });
+        } else {
+          // find other user and attach his data to chat
+          const otherUserRef =
+            data.participants[0].id === authUserID
+              ? data.participants[1]
+              : data.participants[0];
 
-        // get user data from reference
-        userRef.get().then(user => {
-          chat.otherUser = {
-            id: user.id,
-            ...user.data()
-          };
+          otherUserRef.get().then(user => {
+            chat.otherUser = {
+              id: user.id,
+              ...user.data()
+            };
 
-          this.setState({
-            ...this.state,
-            myChats: [...this.state.myChats, chat]
+            this.setState({ myChats: [...this.state.myChats, chat] });
           });
-        });
+        }
       });
     });
   }
@@ -67,10 +67,10 @@ class Provider extends Component {
       .then(snapshots => {
         if (!snapshots.empty) {
           snapshots.forEach(u => {
-            // if (!this.state.myChats.find(c => c.otherUser.id === u.id)) {
-            const user = { id: u.id, ...u.data() };
-            this.setState({ users: [...this.state.users, user] });
-            // }
+            if (!this.state.myChats.find(c => c.otherUser.id === u.id)) {
+              const user = { id: u.id, ...u.data() };
+              this.setState({ users: [...this.state.users, user] });
+            }
           });
         }
       })

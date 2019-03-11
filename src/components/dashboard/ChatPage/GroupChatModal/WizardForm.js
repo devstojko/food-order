@@ -68,6 +68,7 @@ class WizardForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
+    // populate participants array with references to all chat users
     const participants = [firebase.userReference(this.props.authUser.id)];
     this.state.participants.forEach(p =>
       participants.push(firebase.userReference(p.id))

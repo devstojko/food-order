@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Modal from '@common/Modal';
 import WizardForm from './WizardForm';
 import './GroupChatModal.scss';
@@ -8,5 +9,9 @@ const GroupChatModal = ({ handleClose }) => (
     <WizardForm />
   </Modal>
 );
+
+GroupChatModal.propTypes = {
+  handleClose: PropTypes.func.isRequired
+};
 
 export default GroupChatModal;

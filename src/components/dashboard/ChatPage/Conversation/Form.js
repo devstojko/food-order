@@ -41,22 +41,21 @@ class ConversationForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    // REFACTOR THIS LATER
     if (this.props.otherUser) {
       this.startConversation()
         .then(newChat => {
+          // chat was created in firestore
           newChat.get().then(doc => {
-            const newChatData = doc.data();
-
             const chat = { id: newChat.id };
-            const userRef =
-              newChatData.participants[0].id ===
-              firebase.userReference(this.props.authUser.id).id
-                ? newChatData.participants[1]
-                : newChatData.participants[0];
+            const data = doc.data();
 
-            // get user data from reference
-            userRef.get().then(user => {
+            const otherUserRef =
+              data.participants[0].id === this.props.authUser.id
+                ? data.participants[1]
+                : data.participants[0];
+
+            // attach other user data to the active chat
+            otherUserRef.get().then(user => {
               chat.otherUser = {
                 id: user.id,
                 ...user.data()
