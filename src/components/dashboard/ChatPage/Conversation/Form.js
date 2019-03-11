@@ -46,7 +46,6 @@ class ConversationForm extends Component {
       this.startConversation()
         .then(newChat => {
           newChat.get().then(doc => {
-            console.log(doc.data());
             const newChatData = doc.data();
 
             const chat = { id: newChat.id };

@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Consumer } from '../chatContext';
+import Avatar from '@common/Avatar';
 import Search from '@common/Search';
 import Button from '@common/Button';
 import firebase from '@fb';
@@ -81,62 +82,95 @@ class WizardForm extends Component {
     const { page, groupName, searchTerm, participants, users } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="group-form" onSubmit={this.handleSubmit}>
         {page === 1 && (
-          <div>
-            <h3>User avatar placeholder</h3>
-            <input value={groupName} onChange={this.changeGroupName} />
+          <Fragment>
+            <Avatar size="large" />
+
+            <div className="field">
+              <input
+                className="field__text"
+                id="group-name"
+                value={groupName}
+                onChange={this.changeGroupName}
+                required
+              />
+              <span className="field__highlight" />
+              <span className="field__bar" />
+              <label className="field__label" htmlFor="group-name">
+                Enter Group Name
+              </label>
+            </div>
 
             <Button
               text="Next"
               onClick={() => this.changePage(2)}
               disabled={!groupName.length > 0}
             />
-          </div>
+          </Fragment>
         )}
 
         {page === 2 && (
-          <div>
-            <h3>{groupName}</h3>
+          <Fragment>
+            <h3 className="group-form__title">{groupName}</h3>
 
             <Search
               value={searchTerm}
               handleChange={this.changeSearchTerm}
               placeholder="Add users to this conversation"
             />
-            <h4>Conversation Participants</h4>
-            {participants.map(p => (
-              <ListItem
-                key={p.id}
-                username={`${p.firstName} ${p.lastName}`}
-                onItemClick={() => this.removePatricipant(p.id)}
-              />
-            ))}
 
-            {searchTerm && (
-              <div>
-                <h4>Add more users</h4>
-                {users.map(user => (
+            {participants.length > 0 ? (
+              <Fragment>
+                <h5 className="group-form__title">Conversation Participants</h5>
+                {participants.map(p => (
                   <ListItem
-                    key={user.id}
-                    username={`${user.firstName} ${user.lastName}`}
-                    onItemClick={() => this.addParticipant(user)}
+                    key={p.id}
+                    username={`${p.firstName} ${p.lastName}`}
+                    onItemClick={() => this.removePatricipant(p.id)}
                   />
                 ))}
-              </div>
+              </Fragment>
+            ) : (
+              <h5 className="group-form__title">
+                Add Conversation Participants
+              </h5>
             )}
 
-            <Button
-              style="secondary"
-              text="Go Back"
-              onClick={() => this.changePage(1)}
-            />
-            <Button
-              type="submit"
-              text="Create"
-              disabled={!participants.length > 0}
-            />
-          </div>
+            {searchTerm && (
+              <Fragment>
+                <h5 className="group-form__title">Search Results</h5>
+                {users.map(user => (
+                  <div className="group-form__user">
+                    <ListItem
+                      key={user.id}
+                      username={`${user.firstName} ${user.lastName}`}
+                      onItemClick={() => this.addParticipant(user)}
+                    />
+                    <i className="fas fa-check-square" />
+                  </div>
+                ))}
+              </Fragment>
+            )}
+
+            <div className="two-item-row">
+              <div className="row-item">
+                <Button
+                  style="secondary"
+                  text="Go Back"
+                  onClick={() => this.changePage(1)}
+                />
+              </div>
+
+              <div className="row-item">
+                <Button
+                  type="submit"
+                  text="Create"
+                  disabled={!participants.length > 0}
+                />
+              </div>
+            </div>
+          </Fragment>
         )}
       </form>
     );

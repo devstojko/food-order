@@ -32,6 +32,7 @@
     display: flex;
     align-items: center;
     color: $darkgray;
+    cursor: pointer;
 
     &:hover {
       background: $purple-light;
@@ -43,6 +44,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      text-align: left;
 
       strong {
         font-size: 1.5rem;
