@@ -19,8 +19,7 @@ const ChatSidebar = () => (
             <button onClick={toggleModal}>Testing</button>
           </div>
           <div className="chat-sidebar__list">
-            <ChatList />
-            {searchTerm && <UserList />}
+            {searchTerm ? <UserList /> : <ChatList />}
           </div>
         </div>
       </Fragment>

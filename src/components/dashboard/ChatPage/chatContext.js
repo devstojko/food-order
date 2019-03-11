@@ -67,7 +67,8 @@ class Provider extends Component {
       .then(snapshots => {
         if (!snapshots.empty) {
           snapshots.forEach(u => {
-            if (!this.state.myChats.find(c => c.otherUser.id === u.id)) {
+            const privateChats = this.state.myChats.filter(c => !c.groupName);
+            if (!privateChats.find(c => c.otherUser.id === u.id)) {
               const user = { id: u.id, ...u.data() };
               this.setState({ users: [...this.state.users, user] });
             }
