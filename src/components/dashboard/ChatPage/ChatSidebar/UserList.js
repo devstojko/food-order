@@ -1,5 +1,6 @@
 import React from 'react';
 import { Consumer } from '../chatContext';
+import capitalize from '@helpers/capitalize';
 import ListItem from './ListItem';
 
 const UserList = () => (
@@ -11,7 +12,9 @@ const UserList = () => (
           users.map(user => (
             <ListItem
               key={user.id}
-              username={`${user.firstName} ${user.lastName}`}
+              username={`${capitalize(user.firstName)} ${capitalize(
+                user.lastName
+              )}`}
               onItemClick={() => setOtherUser(user)}
             />
           ))

@@ -18,8 +18,8 @@ class SignupForm extends Component {
     const { firstName, lastName, username, email, password } = values;
     const user = {
       email,
-      firstName,
-      lastName,
+      firstName: firstName.toLowerCase(),
+      lastName: lastName.toLowerCase(),
       username,
       password
     };

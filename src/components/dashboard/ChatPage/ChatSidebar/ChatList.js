@@ -1,5 +1,6 @@
 import React from 'react';
 import { Consumer } from '../chatContext';
+import capitalize from '@helpers/capitalize';
 import ListItem from './ListItem';
 
 const ChatList = () => (
@@ -11,7 +12,9 @@ const ChatList = () => (
           myChats.map(chat => {
             const username = chat.groupName
               ? chat.groupName
-              : `${chat.otherUser.firstName} ${chat.otherUser.lastName}`;
+              : `${capitalize(chat.otherUser.firstName)} ${capitalize(
+                  chat.otherUser.lastName
+                )}`;
 
             return (
               <ListItem

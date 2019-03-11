@@ -63,7 +63,7 @@ class Provider extends Component {
   getUsers(term) {
     this.setState({ users: [] });
     firebase
-      .fetchUsersByName(term)
+      .fetchUsersByName(term.toLowerCase())
       .then(snapshots => {
         if (!snapshots.empty) {
           snapshots.forEach(u => {
