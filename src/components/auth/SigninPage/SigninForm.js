@@ -26,7 +26,27 @@ class SigninPage extends Component {
   handleGoogleSignin() {
     firebase
       .doSignInWithGoogle()
-      .then(() => toastr.success('Signed in', 'Welcome to food order'))
+      .then(googleUser => {
+        firebase
+          .fetchUser(googleUser.user.uid)
+          .then(data => {
+            // create a document in users collection if it doesn't exist
+            if (!data.exists) {
+              const { email, displayName } = googleUser.user;
+              const fullName = displayName.split(' ');
+              const user = {
+                email,
+                firstName: fullName[0],
+                lastName: fullName[1]
+              };
+              firebase.saveUser(googleUser.user.uid, user);
+            }
+          })
+          .catch(err => console.log(err));
+
+        // show success notification
+        toastr.success('Signed in', 'Welcome to food order');
+      })
       .catch(err => toastr.error('There was an error', err.message));
   }
 
