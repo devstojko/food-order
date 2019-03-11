@@ -1,5 +1,5 @@
 import React from 'react';
-import Provider from './chatContext';
+import Provider from './chatContext/Provider';
 import ChatSidebar from './ChatSidebar';
 import Conversation from './Conversation';
 import './ChatPage.scss';

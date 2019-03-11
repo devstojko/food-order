@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Consumer } from '../chatContext';
+import { withChatContext } from '../chatContext/withChatContext';
 import Message from './Message';
 import firebase from '@fb';
 
@@ -16,16 +16,18 @@ class ConversationBody extends Component {
   }
 
   componentDidMount() {
-    if (this.props.activeChat) {
-      this.setMessagesListener(this.props.activeChat.id);
+    const { activeChat } = this.props.context;
+    if (activeChat) {
+      this.setMessagesListener(activeChat.id);
     }
   }
 
   componentDidUpdate(prevProps) {
-    const currentChatID = this.props.activeChat
-      ? this.props.activeChat.id
+    const { activeChat } = this.props.context;
+    const currentChatID = activeChat ? activeChat.id : null;
+    const prevChatID = prevProps.context.activeChat
+      ? prevProps.context.activeChat.id
       : null;
-    const prevChatID = prevProps.activeChat ? prevProps.activeChat.id : null;
 
     if (currentChatID && currentChatID !== prevChatID) {
       this.setMessagesListener(currentChatID);
@@ -46,7 +48,7 @@ class ConversationBody extends Component {
   render() {
     return (
       <div className="conversation__body" ref={this.conversationBodyRef}>
-        {this.props.activeChat && this.state.messages.length > 0 ? (
+        {this.props.context.activeChat && this.state.messages.length > 0 ? (
           this.state.messages.map(msg => {
             return (
               <Message
@@ -70,15 +72,7 @@ class ConversationBody extends Component {
 
 ConversationBody.propTypes = {
   authUser: PropTypes.object.isRequired,
-  activeChat: PropTypes.object
+  context: PropTypes.object.isRequired
 };
 
-const ConversationBodyWithContext = props => (
-  <Consumer>
-    {({ activeChat }) => (
-      <ConversationBody activeChat={activeChat} {...props} />
-    )}
-  </Consumer>
-);
-
-export default ConversationBodyWithContext;
+export default withChatContext(ConversationBody);

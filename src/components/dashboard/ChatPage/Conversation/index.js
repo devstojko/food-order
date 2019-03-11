@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Consumer } from '../chatContext';
+import { withChatContext } from '../chatContext/withChatContext';
 import ConversationHeader from './Header';
 import ConversationBody from './Body';
 import ConversationForm from './Form';
 import './Conversation.scss';
 
-const Conversation = ({ authUser, otherUser, activeChat }) => {
+const Conversation = ({ authUser, context }) => {
+  const { otherUser, activeChat } = context;
+
   if (otherUser || activeChat) {
     let headerTitle;
     if (activeChat) {
@@ -35,17 +37,10 @@ const Conversation = ({ authUser, otherUser, activeChat }) => {
 };
 
 Conversation.propTypes = {
-  authUser: PropTypes.object.isRequired
+  authUser: PropTypes.object.isRequired,
+  context: PropTypes.object.isRequired
 };
-
-const ConversationWithContext = props => (
-  <Consumer>
-    {({ otherUser, activeChat }) => (
-      <Conversation otherUser={otherUser} activeChat={activeChat} {...props} />
-    )}
-  </Consumer>
-);
 
 const mapStateToProps = ({ authUser }) => ({ authUser });
 
-export default connect(mapStateToProps)(ConversationWithContext);
+export default connect(mapStateToProps)(withChatContext(Conversation));

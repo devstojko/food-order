@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import firebase from '@fb';
 import debounce from '@helpers/debounce';
-import GroupChatModal from './GroupChatModal';
+import GroupChatModal from '../GroupChatModal';
 
-const ChatContext = React.createContext();
+export const ChatContext = React.createContext();
 
 class Provider extends Component {
   constructor(props) {
@@ -68,6 +68,7 @@ class Provider extends Component {
         if (!snapshots.empty) {
           snapshots.forEach(u => {
             const privateChats = this.state.myChats.filter(c => !c.groupName);
+            // add user to search results only if we don't have a private chat
             if (!privateChats.find(c => c.otherUser.id === u.id)) {
               const user = { id: u.id, ...u.data() };
               this.setState({ users: [...this.state.users, user] });
@@ -134,5 +135,3 @@ Provider.propTypes = {
 const mapStateToProps = ({ authUser }) => ({ authUser });
 
 export default connect(mapStateToProps)(Provider);
-
-export const Consumer = ChatContext.Consumer;

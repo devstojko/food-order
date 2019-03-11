@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import firebase from '@fb';
-import { Consumer } from '../chatContext';
+import { withChatContext } from '../chatContext/withChatContext';
 
 class ConversationForm extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class ConversationForm extends Component {
 
   startConversation() {
     const user1 = firebase.userReference(this.props.authUser.id);
-    const user2 = firebase.userReference(this.props.otherUser.id);
+    const user2 = firebase.userReference(this.props.context.otherUser.id);
 
     return firebase.createChat(user1, user2);
   }
@@ -41,7 +41,7 @@ class ConversationForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    if (this.props.otherUser) {
+    if (this.props.context.otherUser) {
       this.startConversation()
         .then(newChat => {
           // chat was created in firestore
@@ -61,15 +61,15 @@ class ConversationForm extends Component {
                 ...user.data()
               };
 
-              this.props.setActiveChat(chat);
+              this.props.context.setActiveChat(chat);
               this.sendMessage(chat.id);
-              this.props.handleChatCreate();
+              this.props.context.handleChatCreate();
             });
           });
         })
         .catch(err => console.log(err));
     } else {
-      this.sendMessage(this.props.activeChat.id);
+      this.sendMessage(this.props.context.activeChat.id);
     }
   }
 
@@ -96,24 +96,7 @@ class ConversationForm extends Component {
 
 ConversationForm.propTypes = {
   authUser: PropTypes.object.isRequired,
-  otherUser: PropTypes.object,
-  activeChat: PropTypes.object,
-  setActiveChat: PropTypes.func.isRequired,
-  handleChatCreate: PropTypes.func.isRequired
+  context: PropTypes.object.isRequired
 };
 
-const ConversationFormWithContext = props => (
-  <Consumer>
-    {({ otherUser, activeChat, setActiveChat, handleChatCreate }) => (
-      <ConversationForm
-        otherUser={otherUser}
-        activeChat={activeChat}
-        setActiveChat={setActiveChat}
-        handleChatCreate={handleChatCreate}
-        {...props}
-      />
-    )}
-  </Consumer>
-);
-
-export default ConversationFormWithContext;
+export default withChatContext(ConversationForm);

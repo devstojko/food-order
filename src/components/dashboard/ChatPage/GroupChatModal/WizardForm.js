@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Consumer } from '../chatContext';
+import { withChatContext } from '../chatContext/withChatContext';
 import Avatar from '@common/Avatar';
 import Search from '@common/Search';
 import Button from '@common/Button';
@@ -76,7 +77,7 @@ class WizardForm extends Component {
 
     firebase.createGroupChat(this.state.groupName, participants);
     this.setState({ ...INITIAL_STATE });
-    this.props.toggleModal();
+    this.props.context.toggleModal();
   }
 
   render() {
@@ -142,9 +143,8 @@ class WizardForm extends Component {
               <Fragment>
                 <h5 className="group-form__title">Search Results</h5>
                 {users.map(user => (
-                  <div className="group-form__user">
+                  <div className="group-form__user" key={user.id}>
                     <ListItem
-                      key={user.id}
                       username={`${user.firstName} ${user.lastName}`}
                       onItemClick={() => this.addParticipant(user)}
                     />
@@ -178,12 +178,11 @@ class WizardForm extends Component {
   }
 }
 
-const WizardFormWithContext = props => (
-  <Consumer>
-    {({ toggleModal }) => <WizardForm toggleModal={toggleModal} {...props} />}
-  </Consumer>
-);
+WizardForm.propTypes = {
+  authUser: PropTypes.object.isRequired,
+  context: PropTypes.object.isRequired
+};
 
 const mapStateToProps = ({ authUser }) => ({ authUser });
 
-export default connect(mapStateToProps)(WizardFormWithContext);
+export default connect(mapStateToProps)(withChatContext(WizardForm));
