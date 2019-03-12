@@ -5,13 +5,16 @@ import capitalize from '@helpers/capitalize';
 import ListItem from './ListItem';
 
 const ChatList = ({ context }) => {
-  const { myChats, setActiveChat } = context;
+  const { myChats, setActiveChat, toggleModal } = context;
   const groupChats = myChats.filter(c => c.groupName);
   const privateChats = myChats.filter(c => !c.groupName);
 
   return (
     <div>
-      <h3 className="chat-sidebar__title">Group Conversations</h3>
+      <h3 className="chat-sidebar__title">
+        Group Conversations
+        <i className="fas fa-plus" onClick={toggleModal} />
+      </h3>
       {groupChats.length > 0 ? (
         <Fragment>
           {groupChats.map(c => (

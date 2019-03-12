@@ -7,7 +7,7 @@ import UserList from './UserList';
 import './ChatSidebar.scss';
 
 const ChatSidebar = ({ context }) => {
-  const { searchTerm, handleSearchChange, toggleModal } = context;
+  const { searchTerm, handleSearchChange } = context;
 
   return (
     <Fragment>
@@ -18,7 +18,6 @@ const ChatSidebar = ({ context }) => {
             handleChange={handleSearchChange}
             placeholder="Search for users"
           />
-          <button onClick={toggleModal}>Testing</button>
         </div>
         <div className="chat-sidebar__list">
           {searchTerm ? <UserList /> : <ChatList />}

@@ -5,7 +5,7 @@ import { Field, reduxForm } from 'redux-form';
 import InputField from '@common/InputField';
 import Button from '@common/Button';
 import firebase from '@fb';
-import validate from './validation';
+import validate from './validate';
 
 class PasswordChangeForm extends Component {
   constructor(props) {
