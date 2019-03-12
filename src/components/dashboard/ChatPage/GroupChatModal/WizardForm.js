@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { toastr } from 'react-redux-toastr';
+import FileUploader from 'react-firebase-file-uploader';
 import { withChatContext } from '../chatContext/withChatContext';
 import Avatar from '@common/Avatar';
 import Search from '@common/Search';
@@ -13,7 +15,9 @@ const INITIAL_STATE = {
   groupName: '',
   searchTerm: '',
   participants: [],
-  users: []
+  users: [],
+  avatarUploadProgress: 0,
+  avatarSrc: ''
 };
 
 class WizardForm extends Component {
@@ -22,11 +26,29 @@ class WizardForm extends Component {
 
     this.state = { ...INITIAL_STATE };
 
+    this.handleUploadSuccess = this.handleUploadSuccess.bind(this);
+    this.handleUploadError = this.handleUploadError.bind(this);
+    this.handleProgress = this.handleProgress.bind(this);
     this.changeGroupName = this.changeGroupName.bind(this);
     this.changeSearchTerm = this.changeSearchTerm.bind(this);
     this.addParticipant = this.addParticipant.bind(this);
     this.removePatricipant = this.removePatricipant.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleUploadError() {
+    toastr.error('There was an error', 'Please try again');
+  }
+
+  handleUploadSuccess(filename) {
+    // associate this filename with the user
+    // ..
+    this.setState({ avatarSrc: filename });
+    toastr.success('Congratulations', 'Avatar image uploaded successfully');
+  }
+
+  handleProgress(progress) {
+    this.setState({ avatarUploadProgress: progress });
   }
 
   changePage(pageNum) {
@@ -81,13 +103,29 @@ class WizardForm extends Component {
   }
 
   render() {
-    const { page, groupName, searchTerm, participants, users } = this.state;
+    const {
+      page,
+      groupName,
+      searchTerm,
+      participants,
+      users,
+      avatarSrc
+    } = this.state;
 
     return (
       <form className="group-form" onSubmit={this.handleSubmit}>
         {page === 1 && (
           <Fragment>
-            <Avatar size="large" />
+            <FileUploader
+              accept="image/*"
+              name="avatar"
+              randomizeFilename
+              storageRef={firebase.storage.ref('Avatars')}
+              onUploadError={this.handleUploadError}
+              onUploadSuccess={this.handleUploadSuccess}
+              onProgress={this.handleProgress}
+            />
+            <Avatar src={avatarSrc} size="large" />
 
             <div className="field">
               <input
