@@ -14,6 +14,7 @@ const UserList = ({ context }) => {
         users.map(user => (
           <ListItem
             key={user.id}
+            avatar={user.avatar}
             username={`${capitalize(user.firstName)} ${capitalize(
               user.lastName
             )}`}

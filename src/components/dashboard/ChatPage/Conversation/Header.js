@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withChatContext } from '../chatContext/withChatContext';
 import Avatar from '@common/Avatar';
+import capitalize from '@helpers/capitalize';
 
 const ConversationHeader = ({ context }) => {
   const { otherUser, activeChat, setOtherUser } = context;
@@ -13,13 +14,15 @@ const ConversationHeader = ({ context }) => {
       title = activeChat.groupName;
       info = `${activeChat.participants.length} participants`;
     } else {
-      title = `${activeChat.otherUser.firstName} ${
+      title = `${capitalize(activeChat.otherUser.firstName)} ${capitalize(
         activeChat.otherUser.lastName
-      }`;
+      )}`;
       info = 'Account Manager';
     }
   } else {
-    title = `${otherUser.firstName} ${otherUser.lastName}`;
+    title = `${capitalize(otherUser.firstName)} ${capitalize(
+      otherUser.lastName
+    )}`;
     info = 'Account Manager';
   }
 

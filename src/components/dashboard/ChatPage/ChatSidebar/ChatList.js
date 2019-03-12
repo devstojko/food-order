@@ -36,6 +36,7 @@ const ChatList = ({ context }) => {
           {privateChats.map(c => (
             <ListItem
               key={c.id}
+              avatar={c.otherUser.avatar}
               username={`${capitalize(c.otherUser.firstName)} ${capitalize(
                 c.otherUser.lastName
               )}`}
