@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import Button from '@common/Button';
 import Modal from '@common/Modal';
-import PasswordChangeForm from './PasswordChangeForm';
+import PasswordUpdateForm from './PasswordUpdateForm';
+import InfoUpdateForm from './InfoUpdateForm';
 import firebase from '@fb';
 
 class ProfilePage extends Component {
@@ -61,21 +62,21 @@ class ProfilePage extends Component {
               text="Change your password"
               onClick={this.togglePasswordModal}
             />
+
+            {showInfoModal && (
+              <Modal title="Update Your Profile" onClose={this.toggleInfoModal}>
+                <InfoUpdateForm authUser={this.props.authUser} user={user} />
+              </Modal>
+            )}
+
+            {showPasswordModal && (
+              <Modal
+                title="Update Your Password"
+                onClose={this.togglePasswordModal}>
+                <PasswordUpdateForm />
+              </Modal>
+            )}
           </Fragment>
-        )}
-
-        {showInfoModal && (
-          <Modal title="Update Your Profile" onClose={this.toggleInfoModal}>
-            <h1>Info Form Placeholder</h1>
-          </Modal>
-        )}
-
-        {showPasswordModal && (
-          <Modal
-            title="Update Your Password"
-            onClose={this.togglePasswordModal}>
-            <PasswordChangeForm />
-          </Modal>
         )}
       </div>
     );

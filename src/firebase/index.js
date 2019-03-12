@@ -56,6 +56,13 @@ class Firebase {
       .set({ ...user });
   }
 
+  updateUser(id, data) {
+    return this.firestore
+      .collection('users')
+      .doc(id)
+      .update(data);
+  }
+
   fetchUser(id) {
     return this.firestore
       .collection('users')
