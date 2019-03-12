@@ -41,9 +41,10 @@ class WizardForm extends Component {
   }
 
   handleUploadSuccess(filename) {
-    // associate this filename with the user
-    // ..
-    this.setState({ avatarSrc: filename });
+    firebase
+      .getAvatarUrl(filename)
+      .then(url => this.setState({ avatarSrc: url }))
+      .catch(err => toastr.error('There was an error', err.message));
     toastr.success('Congratulations', 'Avatar image uploaded successfully');
   }
 
@@ -97,7 +98,13 @@ class WizardForm extends Component {
       participants.push(firebase.userReference(p.id))
     );
 
-    firebase.createGroupChat(this.state.groupName, participants);
+    const groupChat = {
+      groupName: this.state.groupName,
+      avatar: this.state.avatarSrc,
+      participants
+    };
+
+    firebase.createGroupChat(groupChat);
     this.setState({ ...INITIAL_STATE });
     this.props.context.toggleModal();
   }
@@ -116,16 +123,22 @@ class WizardForm extends Component {
       <form className="group-form" onSubmit={this.handleSubmit}>
         {page === 1 && (
           <Fragment>
-            <FileUploader
-              accept="image/*"
-              name="avatar"
-              randomizeFilename
-              storageRef={firebase.storage.ref('Avatars')}
-              onUploadError={this.handleUploadError}
-              onUploadSuccess={this.handleUploadSuccess}
-              onProgress={this.handleProgress}
-            />
-            <Avatar src={avatarSrc} size="large" />
+            <div>
+              <FileUploader
+                accept="image/*"
+                name="avatar"
+                randomizeFilename
+                storageRef={firebase.storage.ref('Avatars')}
+                onUploadError={this.handleUploadError}
+                onUploadSuccess={this.handleUploadSuccess}
+                onProgress={this.handleProgress}
+                id="groupAvatarUpload"
+                hidden
+              />
+              <label htmlFor="groupAvatarUpload" style={{ cursor: 'pointer' }}>
+                <Avatar image={avatarSrc} size="large" />
+              </label>
+            </div>
 
             <div className="field">
               <input

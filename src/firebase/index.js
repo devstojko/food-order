@@ -86,8 +86,8 @@ class Firebase {
       .add({ participants: [user1, user2] });
   }
 
-  createGroupChat(groupName, participants) {
-    return this.firestore.collection('chats').add({ groupName, participants });
+  createGroupChat(groupChat) {
+    return this.firestore.collection('chats').add(groupChat);
   }
 
   fetchMyChats(myID) {
@@ -110,6 +110,14 @@ class Firebase {
       .doc(chatID)
       .collection('messages')
       .add(msg);
+  }
+
+  // storage
+  getAvatarUrl(filename) {
+    return this.storage
+      .ref('Avatars')
+      .child(filename)
+      .getDownloadURL();
   }
 }
 

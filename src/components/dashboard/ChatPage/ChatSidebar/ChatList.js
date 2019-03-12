@@ -20,6 +20,7 @@ const ChatList = ({ context }) => {
           {groupChats.map(c => (
             <ListItem
               key={c.id}
+              avatar={c.avatar}
               username={c.groupName}
               onItemClick={() => setActiveChat(c)}
             />
