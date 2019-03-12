@@ -33,6 +33,7 @@ class Provider extends Component {
         if (data.groupName) {
           // if chat is group chat, attach group name to chat
           chat.groupName = data.groupName;
+          chat.participants = data.participants;
           this.setState({ myChats: [...this.state.myChats, chat] });
         } else {
           // find other user and attach his data to chat

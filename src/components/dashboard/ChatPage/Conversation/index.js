@@ -11,18 +11,9 @@ const Conversation = ({ authUser, context }) => {
   const { otherUser, activeChat } = context;
 
   if (otherUser || activeChat) {
-    let headerTitle;
-    if (activeChat) {
-      headerTitle = activeChat.groupName
-        ? activeChat.groupName
-        : `${activeChat.otherUser.firstName} ${activeChat.otherUser.lastName}`;
-    } else {
-      headerTitle = `${otherUser.firstName} ${otherUser.lastName}`;
-    }
-
     return (
       <div className="conversation">
-        <ConversationHeader title={headerTitle} />
+        <ConversationHeader />
         <ConversationBody authUser={authUser} />
         <ConversationForm authUser={authUser} />
       </div>
