@@ -5,6 +5,7 @@ import ReduxToastr from 'react-redux-toastr';
 import { setUser } from '@actions/authActions';
 import { startLoading, finishLoading } from '@actions/loadingActions';
 import firebase from '@fb';
+import Loading from '@common/Loading';
 import AppRouter from './routing/AppRouter';
 
 class App extends Component {
@@ -34,7 +35,7 @@ class App extends Component {
           transitionIn="fadeIn"
           transtitionOut="fadeOut"
         />
-        {this.props.loading ? <h1>Loading</h1> : <AppRouter />}
+        {this.props.loading ? <Loading /> : <AppRouter />}
       </Fragment>
     );
   }
