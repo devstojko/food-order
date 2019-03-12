@@ -36,8 +36,8 @@ class SigninPage extends Component {
               const fullName = displayName.split(' ');
               const user = {
                 email,
-                firstName: fullName[0],
-                lastName: fullName[1]
+                firstName: fullName[0].toLowerCase(),
+                lastName: fullName[1].toLowerCase()
               };
               firebase.saveUser(googleUser.user.uid, user);
             }
