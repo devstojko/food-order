@@ -2,7 +2,6 @@
 
 TODO:
 
-- try to reproduce memory leak from chat page and fix it if it happens
 - finish working on the modal for adding group chats
 - add finctionality for avatar upload to handle groups too
 - settings page should reload when data is updated

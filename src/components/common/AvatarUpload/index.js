@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import CircularProgressbar from 'react-circular-progressbar';
 import FileUploader from 'react-firebase-file-uploader';
 import { connect } from 'react-redux';
@@ -13,7 +14,8 @@ class AvatarUpload extends Component {
 
     this.state = {
       isLoading: false,
-      progress: 0
+      progress: 0,
+      imageUrl: ''
     };
 
     this.handleUploadStart = this.handleUploadStart.bind(this);
@@ -22,23 +24,46 @@ class AvatarUpload extends Component {
     this.handleProgress = this.handleProgress.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.group) {
+      this.setState({ imageUrl: this.props.initialImg });
+    } else {
+      firebase.fetchUser(this.props.authUser.id).then(doc => {
+        this.setState({ imageUrl: doc.data().avatar });
+      });
+    }
+  }
+
   handleUploadStart() {
     this.setState({ isLoading: true });
   }
 
   handleUploadSuccess(filename) {
-    firebase
-      .getAvatarUrl(filename)
-      .then(url => {
-        firebase
-          .updateUser(this.props.authUser.id, { avatar: url })
-          .then(() => {
-            this.setState({ isLoading: false, progress: 0 });
-            toastr.success('Success', 'Avatar has been updated');
-          })
-          .catch(err => toastr.error('There was an error', err.message));
-      })
-      .catch(err => toastr.error('There was an error', err.message));
+    const { group, cb, authUser } = this.props;
+
+    if (group) {
+      // handle upload for groups
+      if (cb) cb(filename);
+      firebase.getAvatarUrl(filename).then(url => {
+        this.setState({ imageUrl: url });
+      });
+      this.setState({ isLoading: false, progress: 0 });
+      toastr.success('Success', 'Avatar has been updated');
+    } else {
+      // handle upload for users
+      firebase
+        .getAvatarUrl(filename)
+        .then(url => {
+          firebase
+            .updateUser(authUser.id, { avatar: url })
+            .then(() => {
+              this.setState({ isLoading: false, progress: 0 });
+              toastr.success('Success', 'Avatar has been updated');
+            })
+            .catch(err => toastr.error('There was an error', err.message));
+        })
+        .catch(err => toastr.error('There was an error', err.message));
+    }
   }
 
   handleUploadError() {
@@ -51,10 +76,12 @@ class AvatarUpload extends Component {
   }
 
   render() {
-    const { isLoading, progress } = this.state;
+    const { isLoading, progress, imageUrl } = this.state;
+    const width = this.props.width || 60;
+    const height = this.props.height || 60;
 
     return (
-      <div className="upload">
+      <div className="upload" style={{ width, height }}>
         {isLoading && <CircularProgressbar percentage={progress} />}
         <div className="upload__wrapper">
           <FileUploader
@@ -70,13 +97,22 @@ class AvatarUpload extends Component {
             hidden
           />
           <label htmlFor="groupAvatarUpload" style={{ cursor: 'pointer' }}>
-            <Avatar image={this.props.authUser.avatar} size="large" />
+            <Avatar image={imageUrl} size="large" />
           </label>
         </div>
       </div>
     );
   }
 }
+
+AvatarUpload.propTypes = {
+  authUser: PropTypes.object.isRequired,
+  group: PropTypes.bool,
+  cb: PropTypes.func,
+  width: PropTypes.number,
+  height: PropTypes.number,
+  initialImg: PropTypes.string
+};
 
 const mapStateToProps = ({ authUser }) => ({ authUser });
 

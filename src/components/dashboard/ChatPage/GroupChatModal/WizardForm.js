@@ -1,14 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { toastr } from 'react-redux-toastr';
-import FileUploader from 'react-firebase-file-uploader';
 import { withChatContext } from '../chatContext/withChatContext';
-import Avatar from '@common/Avatar';
 import Search from '@common/Search';
 import Button from '@common/Button';
 import firebase from '@fb';
 import ListItem from '../ChatSidebar/ListItem';
+import AvatarUpload from '@common/AvatarUpload';
 
 const INITIAL_STATE = {
   page: 1,
@@ -16,8 +14,7 @@ const INITIAL_STATE = {
   searchTerm: '',
   participants: [],
   users: [],
-  avatarUploadProgress: 0,
-  avatarSrc: ''
+  avatarUrl: ''
 };
 
 class WizardForm extends Component {
@@ -26,9 +23,7 @@ class WizardForm extends Component {
 
     this.state = { ...INITIAL_STATE };
 
-    this.handleUploadSuccess = this.handleUploadSuccess.bind(this);
-    this.handleUploadError = this.handleUploadError.bind(this);
-    this.handleProgress = this.handleProgress.bind(this);
+    this.setAvatarUrl = this.setAvatarUrl.bind(this);
     this.changeGroupName = this.changeGroupName.bind(this);
     this.changeSearchTerm = this.changeSearchTerm.bind(this);
     this.addParticipant = this.addParticipant.bind(this);
@@ -36,20 +31,8 @@ class WizardForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleUploadError() {
-    toastr.error('There was an error', 'Please try again');
-  }
-
-  handleUploadSuccess(filename) {
-    firebase
-      .getAvatarUrl(filename)
-      .then(url => this.setState({ avatarSrc: url }))
-      .catch(err => toastr.error('There was an error', err.message));
-    toastr.success('Congratulations', 'Avatar image uploaded successfully');
-  }
-
-  handleProgress(progress) {
-    this.setState({ avatarUploadProgress: progress });
+  setAvatarUrl(url) {
+    this.setState({ avatarUrl: url });
   }
 
   changePage(pageNum) {
@@ -100,7 +83,7 @@ class WizardForm extends Component {
 
     const groupChat = {
       groupName: this.state.groupName,
-      avatar: this.state.avatarSrc,
+      avatar: this.state.avatarUrl,
       participants
     };
 
@@ -110,35 +93,13 @@ class WizardForm extends Component {
   }
 
   render() {
-    const {
-      page,
-      groupName,
-      searchTerm,
-      participants,
-      users,
-      avatarSrc
-    } = this.state;
+    const { page, groupName, searchTerm, participants, users } = this.state;
 
     return (
       <form className="group-form" onSubmit={this.handleSubmit}>
         {page === 1 && (
           <Fragment>
-            <div>
-              <FileUploader
-                accept="image/*"
-                name="avatar"
-                randomizeFilename
-                storageRef={firebase.storage.ref('Avatars')}
-                onUploadError={this.handleUploadError}
-                onUploadSuccess={this.handleUploadSuccess}
-                onProgress={this.handleProgress}
-                id="groupAvatarUpload"
-                hidden
-              />
-              <label htmlFor="groupAvatarUpload" style={{ cursor: 'pointer' }}>
-                <Avatar image={avatarSrc} size="large" />
-              </label>
-            </div>
+            <AvatarUpload group={true} cb={this.setAvatarUrl} />
 
             <div className="field">
               <input

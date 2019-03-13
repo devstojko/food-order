@@ -6,6 +6,7 @@ import PasswordUpdateForm from './PasswordUpdateForm';
 import InfoUpdateForm from './InfoUpdateForm';
 import AvatarUpload from '@common/AvatarUpload';
 import firebase from '@fb';
+import defaultUserImg from '@images/webpack.png';
 
 class ProfileSettingsPage extends Component {
   constructor(props) {
@@ -62,7 +63,7 @@ class ProfileSettingsPage extends Component {
               Your Account
             </h2>
 
-            <AvatarUpload />
+            <AvatarUpload initialImg={defaultUserImg} />
 
             <p>First Name: {user.firstName}</p>
             <p>Last Name: {user.lastName}</p>
@@ -90,8 +91,7 @@ class ProfileSettingsPage extends Component {
             {showPasswordModal && (
               <Modal
                 title="Update Your Password"
-                onClose={this.togglePasswordModal}
-              >
+                onClose={this.togglePasswordModal}>
                 <PasswordUpdateForm closeModal={this.togglePasswordModal} />
               </Modal>
             )}
