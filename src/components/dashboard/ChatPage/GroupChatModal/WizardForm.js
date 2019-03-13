@@ -7,6 +7,7 @@ import Button from '@common/Button';
 import firebase from '@fb';
 import ListItem from '../ChatSidebar/ListItem';
 import AvatarUpload from '@common/AvatarUpload';
+import defaultGroupImg from '@images/groupDefault.png';
 
 const INITIAL_STATE = {
   page: 1,
@@ -99,7 +100,11 @@ class WizardForm extends Component {
       <form className="group-form" onSubmit={this.handleSubmit}>
         {page === 1 && (
           <Fragment>
-            <AvatarUpload group={true} cb={this.setAvatarUrl} />
+            <AvatarUpload
+              group={true}
+              cb={this.setAvatarUrl}
+              initialImg={defaultGroupImg}
+            />
 
             <div className="field">
               <input

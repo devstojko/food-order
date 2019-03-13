@@ -6,7 +6,6 @@ import PasswordUpdateForm from './PasswordUpdateForm';
 import InfoUpdateForm from './InfoUpdateForm';
 import AvatarUpload from '@common/AvatarUpload';
 import firebase from '@fb';
-import defaultUserImg from '@images/webpack.png';
 
 class ProfileSettingsPage extends Component {
   constructor(props) {
@@ -63,7 +62,7 @@ class ProfileSettingsPage extends Component {
               Your Account
             </h2>
 
-            <AvatarUpload initialImg={defaultUserImg} />
+            <AvatarUpload />
 
             <p>First Name: {user.firstName}</p>
             <p>Last Name: {user.lastName}</p>

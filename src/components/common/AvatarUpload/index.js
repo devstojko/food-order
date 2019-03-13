@@ -43,9 +43,9 @@ class AvatarUpload extends Component {
 
     if (group) {
       // handle upload for groups
-      if (cb) cb(filename);
       firebase.getAvatarUrl(filename).then(url => {
         this.setState({ imageUrl: url });
+        if (cb) cb(url);
       });
       this.setState({ isLoading: false, progress: 0 });
       toastr.success('Success', 'Avatar has been updated');
@@ -57,7 +57,11 @@ class AvatarUpload extends Component {
           firebase
             .updateUser(authUser.id, { avatar: url })
             .then(() => {
-              this.setState({ isLoading: false, progress: 0 });
+              this.setState({
+                isLoading: false,
+                progress: 0,
+                imageUrl: url
+              });
               toastr.success('Success', 'Avatar has been updated');
             })
             .catch(err => toastr.error('There was an error', err.message));
