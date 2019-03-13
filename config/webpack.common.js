@@ -30,7 +30,7 @@ module.exports = {
         }
       },
       {
-        test: /\.scss$/,
+        test: /\.(css|scss)$/,
         use: [
           ExtractCssChunks.loader,
           'css-loader',

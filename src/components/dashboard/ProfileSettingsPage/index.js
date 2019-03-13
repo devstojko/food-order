@@ -2,12 +2,14 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { toastr } from 'react-redux-toastr';
 import FileUploader from 'react-firebase-file-uploader';
+import CircularProgressbar from 'react-circular-progressbar';
 import Button from '@common/Button';
 import Modal from '@common/Modal';
 import Avatar from '@common/Avatar';
 import PasswordUpdateForm from './PasswordUpdateForm';
 import InfoUpdateForm from './InfoUpdateForm';
 import firebase from '@fb';
+import './styles.scss';
 
 class ProfileSettingsPage extends Component {
   constructor(props) {
@@ -78,21 +80,27 @@ class ProfileSettingsPage extends Component {
               Your Account
             </h2>
 
-            <div>
-              <FileUploader
-                accept="image/*"
-                name="avatar"
-                randomizeFilename
-                storageRef={firebase.storage.ref('Avatars')}
-                onUploadError={this.handleUploadError}
-                onUploadSuccess={this.handleUploadSuccess}
-                onProgress={this.handleProgress}
-                id="groupAvatarUpload"
-                hidden
-              />
-              <label htmlFor="groupAvatarUpload" style={{ cursor: 'pointer' }}>
-                <Avatar image={user.avatar} size="large" />
-              </label>
+            <div className="uploader-container">
+              <CircularProgressbar percentage={55} />
+              <div className="uploader-wrapper">
+                <FileUploader
+                  accept="image/*"
+                  name="avatar"
+                  randomizeFilename
+                  storageRef={firebase.storage.ref('Avatars')}
+                  onUploadError={this.handleUploadError}
+                  onUploadSuccess={this.handleUploadSuccess}
+                  onProgress={this.handleProgress}
+                  id="groupAvatarUpload"
+                  hidden
+                />
+                <label
+                  htmlFor="groupAvatarUpload"
+                  style={{ cursor: 'pointer' }}
+                >
+                  <Avatar image={user.avatar} size="large" />
+                </label>
+              </div>
             </div>
 
             <p>First Name: {user.firstName || 'Not set'}</p>
@@ -115,7 +123,8 @@ class ProfileSettingsPage extends Component {
             {showPasswordModal && (
               <Modal
                 title="Update Your Password"
-                onClose={this.togglePasswordModal}>
+                onClose={this.togglePasswordModal}
+              >
                 <PasswordUpdateForm />
               </Modal>
             )}
