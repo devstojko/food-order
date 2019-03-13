@@ -18,9 +18,11 @@ class ProfileSettingsPage extends Component {
       user: null,
       showInfoModal: false,
       showPasswordModal: false,
-      avatarUploadProgress: 0
+      avatarUploadProgress: 0,
+      showProgress: false
     };
 
+    this.handleUploadStart = this.handleUploadStart.bind(this);
     this.handleUploadSuccess = this.handleUploadSuccess.bind(this);
     this.handleUploadError = this.handleUploadError.bind(this);
     this.handleProgress = this.handleProgress.bind(this);
@@ -32,6 +34,10 @@ class ProfileSettingsPage extends Component {
     this.getUserProfile();
   }
 
+  handleUploadStart() {
+    this.setState({ showProgress: true });
+  }
+
   handleUploadSuccess(filename) {
     firebase
       .getAvatarUrl(filename)
@@ -39,6 +45,7 @@ class ProfileSettingsPage extends Component {
         firebase
           .updateUser(this.props.authUser.id, { avatar: url })
           .then(() => {
+            this.setState({ showProgress: false });
             toastr.success('Success', 'Avatar has been updated');
           })
           .catch(err => toastr.error('There was an error', err.message));
@@ -70,7 +77,13 @@ class ProfileSettingsPage extends Component {
   }
 
   render() {
-    const { user, showInfoModal, showPasswordModal } = this.state;
+    const {
+      user,
+      showInfoModal,
+      showPasswordModal,
+      avatarUploadProgress,
+      showProgress
+    } = this.state;
 
     return (
       <div className="container">
@@ -81,13 +94,16 @@ class ProfileSettingsPage extends Component {
             </h2>
 
             <div className="uploader-container">
-              <CircularProgressbar percentage={55} />
+              {showProgress && (
+                <CircularProgressbar percentage={avatarUploadProgress} />
+              )}
               <div className="uploader-wrapper">
                 <FileUploader
                   accept="image/*"
                   name="avatar"
                   randomizeFilename
                   storageRef={firebase.storage.ref('Avatars')}
+                  onUploadStart={this.handleUploadStart}
                   onUploadError={this.handleUploadError}
                   onUploadSuccess={this.handleUploadSuccess}
                   onProgress={this.handleProgress}
