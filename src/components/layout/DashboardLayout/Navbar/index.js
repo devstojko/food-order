@@ -23,12 +23,14 @@ class Navbar extends Component {
     this.listener = firebase
       .userReference(this.props.authUser.id)
       .onSnapshot(user => {
-        const { firstName, lastName, avatar } = user.data();
-        this.setState({
-          firstName,
-          lastName,
-          avatar
-        });
+        if (user.exists) {
+          const { firstName, lastName, avatar } = user.data();
+          this.setState({
+            firstName,
+            lastName,
+            avatar
+          });
+        }
       });
   }
 

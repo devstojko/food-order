@@ -37,7 +37,8 @@ class SigninPage extends Component {
               const user = {
                 email,
                 firstName: fullName[0].toLowerCase(),
-                lastName: fullName[1].toLowerCase()
+                lastName: fullName[1].toLowerCase(),
+                avatar: googleUser.additionalUserInfo.profile.picture
               };
               firebase.saveUser(googleUser.user.uid, user);
             }
@@ -54,7 +55,8 @@ class SigninPage extends Component {
     return (
       <form
         className="auth-page__content__form"
-        onSubmit={this.props.handleSubmit(this.handleSubmit)}>
+        onSubmit={this.props.handleSubmit(this.handleSubmit)}
+      >
         <Field name="email" type="email" label="Email" component={InputField} />
         <Field
           name="password"
