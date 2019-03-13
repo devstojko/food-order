@@ -1,9 +1,9 @@
-.uploader-container {
+.upload {
   height: 100px;
   width: 100px;
   position: relative;
 
-  .uploader-wrapper {
+  &__wrapper {
     position: absolute;
     top: 5%;
     left: 5%;
