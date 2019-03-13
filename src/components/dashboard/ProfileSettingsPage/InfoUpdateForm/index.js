@@ -37,6 +37,7 @@ class InfoUpdateForm extends Component {
         toastr.success('Success', 'Your information has been updated');
       })
       .catch(err => toastr.error('There was an error', err.message));
+    this.props.closeModal();
   }
 
   render() {
@@ -57,7 +58,10 @@ class InfoUpdateForm extends Component {
 }
 
 InfoUpdateForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  authUser: PropTypes.object.isRequired
 };
 
 export default reduxForm({

@@ -19,6 +19,7 @@ class PasswordChangeForm extends Component {
       .doPasswordUpdate(values.passwordOne)
       .then(() => toastr.success('Success', 'Password Updated'))
       .catch(err => toastr.error('There was an error', err.message));
+    this.props.closeModal();
   }
 
   render() {
@@ -44,7 +45,8 @@ class PasswordChangeForm extends Component {
 }
 
 PasswordChangeForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired
 };
 
 export default reduxForm({ form: 'resetpw', validate })(PasswordChangeForm);

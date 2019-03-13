@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { toastr } from 'react-redux-toastr';
 import Button from '@common/Button';
 import Modal from '@common/Modal';
 import PasswordUpdateForm from './PasswordUpdateForm';
@@ -22,14 +21,26 @@ class ProfileSettingsPage extends Component {
   }
 
   componentDidMount() {
-    this.getUserProfile();
+    this.listener = firebase
+      .userReference(this.props.authUser.id)
+      .onSnapshot(user => {
+        if (user.exists) {
+          const { firstName, lastName, username, avatar, email } = user.data();
+          this.setState({
+            user: {
+              firstName,
+              lastName,
+              username,
+              avatar,
+              email
+            }
+          });
+        }
+      });
   }
 
-  getUserProfile() {
-    firebase
-      .fetchUser(this.props.authUser.id)
-      .then(doc => this.setState({ user: doc.data() }))
-      .catch(err => toastr.error('Unable to fetch the user', err.message));
+  componentWillUnmount() {
+    this.listener();
   }
 
   toggleInfoModal() {
@@ -53,10 +64,12 @@ class ProfileSettingsPage extends Component {
 
             <AvatarUpload />
 
-            <p>First Name: {user.firstName || 'Not set'}</p>
-            <p>Last Name: {user.lastName || 'Not set'}</p>
-            <p>Username: {user.username || 'Not set'}</p>
-            <p>Email Address: {user.email || 'Not set'}</p>
+            <p>First Name: {user.firstName}</p>
+            <p>Last Name: {user.lastName}</p>
+            <p>
+              Username: {user.username || `${user.firstName} ${user.lastName}`}
+            </p>
+            <p>Email Address: {user.email}</p>
 
             <Button text="Change your info" onClick={this.toggleInfoModal} />
             <Button
@@ -66,7 +79,11 @@ class ProfileSettingsPage extends Component {
 
             {showInfoModal && (
               <Modal title="Update Your Profile" onClose={this.toggleInfoModal}>
-                <InfoUpdateForm authUser={this.props.authUser} user={user} />
+                <InfoUpdateForm
+                  authUser={this.props.authUser}
+                  user={user}
+                  closeModal={this.toggleInfoModal}
+                />
               </Modal>
             )}
 
@@ -75,7 +92,7 @@ class ProfileSettingsPage extends Component {
                 title="Update Your Password"
                 onClose={this.togglePasswordModal}
               >
-                <PasswordUpdateForm />
+                <PasswordUpdateForm closeModal={this.togglePasswordModal} />
               </Modal>
             )}
           </Fragment>
