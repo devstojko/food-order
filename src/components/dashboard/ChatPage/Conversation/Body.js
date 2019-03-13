@@ -35,7 +35,7 @@ class ConversationBody extends Component {
   }
 
   setMessagesListener(chatID) {
-    firebase.chatMessages(chatID).onSnapshot(snapshot => {
+    this.listener = firebase.chatMessages(chatID).onSnapshot(snapshot => {
       this.setState({ messages: [] });
       snapshot.forEach(doc => {
         const msg = { id: doc.id, ...doc.data() };
@@ -43,6 +43,10 @@ class ConversationBody extends Component {
         this.conversationBodyRef.current.scrollTop = this.conversationBodyRef.current.scrollHeight;
       });
     });
+  }
+
+  componentWillUnmount() {
+    this.listener();
   }
 
   render() {

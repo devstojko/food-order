@@ -9,7 +9,7 @@ import PasswordUpdateForm from './PasswordUpdateForm';
 import InfoUpdateForm from './InfoUpdateForm';
 import firebase from '@fb';
 
-class ProfilePage extends Component {
+class ProfileSettingsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,6 +24,10 @@ class ProfilePage extends Component {
     this.handleProgress = this.handleProgress.bind(this);
     this.toggleInfoModal = this.toggleInfoModal.bind(this);
     this.togglePasswordModal = this.togglePasswordModal.bind(this);
+  }
+
+  componentDidMount() {
+    this.getUserProfile();
   }
 
   handleUploadSuccess(filename) {
@@ -46,14 +50,6 @@ class ProfilePage extends Component {
 
   handleProgress(progress) {
     this.setState({ avatarUploadProgress: progress });
-  }
-
-  componentDidMount() {
-    this.getUserProfile();
-  }
-
-  componentDidUpdate() {
-    this.getUserProfile();
   }
 
   getUserProfile() {
@@ -132,4 +128,4 @@ class ProfilePage extends Component {
 
 const mapStateToProps = ({ authUser }) => ({ authUser });
 
-export default connect(mapStateToProps)(ProfilePage);
+export default connect(mapStateToProps)(ProfileSettingsPage);
