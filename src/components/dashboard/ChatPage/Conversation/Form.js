@@ -8,12 +8,19 @@ class ConversationForm extends Component {
     super(props);
 
     this.state = {
-      msgText: ''
+      msgText: '',
+      myAvatar: null
     };
 
     this.startConversation = this.startConversation.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    firebase.fetchUser(this.props.authUser.id).then(doc => {
+      this.setState({ myAvatar: doc.data().avatar });
+    });
   }
 
   startConversation() {
@@ -27,6 +34,7 @@ class ConversationForm extends Component {
     const message = {
       text: this.state.msgText,
       sender: this.props.authUser.id,
+      avatar: this.state.myAvatar,
       time: Date.now()
     };
 

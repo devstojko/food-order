@@ -97,6 +97,15 @@
 
 .message {
   margin-bottom: 2rem;
+  display: flex;
+
+  .avatar {
+    display: inline-block;
+  }
+
+  &__content {
+    flex: 1;
+  }
 
   &__text {
     border-radius: 0.8rem;

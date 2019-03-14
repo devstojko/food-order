@@ -14,7 +14,7 @@ const Avatar = ({ image, size = 'normal' }) => (
 
 Avatar.propTypes = {
   image: PropTypes.string,
-  size: PropTypes.oneOf(['normal', 'large'])
+  size: PropTypes.oneOf(['normal', 'large', 'small'])
 };
 
 export default Avatar;

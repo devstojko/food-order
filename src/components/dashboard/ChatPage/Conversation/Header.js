@@ -13,10 +13,12 @@ const ConversationHeader = ({ context }) => {
   let avatar;
   if (activeChat) {
     if (activeChat.groupName) {
+      // active group chat
       title = activeChat.groupName;
       info = `${activeChat.participants.length} participants`;
       avatar = activeChat.avatar ? activeChat.avatar : defaultGroupImg;
     } else {
+      // active private chat
       title = `${capitalize(activeChat.otherUser.firstName)} ${capitalize(
         activeChat.otherUser.lastName
       )}`;
@@ -24,10 +26,12 @@ const ConversationHeader = ({ context }) => {
       avatar = activeChat.otherUser.avatar;
     }
   } else {
+    // otherUser is selected to start chatting
     title = `${capitalize(otherUser.firstName)} ${capitalize(
       otherUser.lastName
     )}`;
     info = 'Account Manager';
+    avatar = otherUser.avatar;
   }
 
   return (
