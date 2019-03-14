@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withChatContext } from '../chatContext/withChatContext';
 import capitalize from '@helpers/capitalize';
 import ListItem from './ListItem';
 import defaultGroupAvatar from '@images/groupDefault.png';
 
-const ChatList = ({ context }) => {
+const ChatList = ({ context, authUser }) => {
   const { myChats, setActiveChat, toggleModal } = context;
   const groupChats = myChats.filter(c => c.groupName);
   const privateChats = myChats.filter(c => !c.groupName);
@@ -40,7 +41,7 @@ const ChatList = ({ context }) => {
               avatar={c.otherUser.avatar}
               username={`${capitalize(c.otherUser.firstName)} ${capitalize(
                 c.otherUser.lastName
-              )}`}
+              )} ${authUser.id === c.otherUser.id ? '(you)' : ''}`}
               onItemClick={() => setActiveChat(c)}
             />
           ))}
@@ -53,7 +54,10 @@ const ChatList = ({ context }) => {
 };
 
 ChatList.propTypes = {
-  context: PropTypes.object.isRequired
+  context: PropTypes.object.isRequired,
+  authUser: PropTypes.object.isRequired
 };
 
-export default withChatContext(ChatList);
+const mapStateToProps = ({ authUser }) => ({ authUser });
+
+export default connect(mapStateToProps)(withChatContext(ChatList));

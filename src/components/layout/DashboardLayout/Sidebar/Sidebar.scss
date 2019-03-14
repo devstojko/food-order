@@ -17,7 +17,8 @@
       margin-right: 1.5rem;
     }
 
-    &:hover {
+    &:hover,
+    &.active {
       background: darken($purple-dark, 5);
       border-left: 3px solid $purple;
     }

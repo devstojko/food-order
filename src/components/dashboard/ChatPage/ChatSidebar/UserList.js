@@ -1,26 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withChatContext } from '../chatContext/withChatContext';
 import capitalize from '@helpers/capitalize';
 import ListItem from './ListItem';
 
-const UserList = ({ context }) => {
+const UserList = ({ context, authUser }) => {
   const { users, setOtherUser } = context;
 
   return (
     <div>
       <h3 className="chat-sidebar__title">Start New Conversations</h3>
       {users.length > 0 ? (
-        users.map(user => (
-          <ListItem
-            key={user.id}
-            avatar={user.avatar}
-            username={`${capitalize(user.firstName)} ${capitalize(
-              user.lastName
-            )}`}
-            onItemClick={() => setOtherUser(user)}
-          />
-        ))
+        users.map(user => {
+          const username = `${capitalize(user.firstName)} ${capitalize(
+            user.lastName
+          )} ${authUser.id === user.id ? '(you)' : ''}`;
+
+          return (
+            <ListItem
+              key={user.id}
+              avatar={user.avatar}
+              username={username}
+              onItemClick={() => setOtherUser(user)}
+            />
+          );
+        })
       ) : (
         <div className="info-msg">No users with that username</div>
       )}
@@ -29,7 +34,10 @@ const UserList = ({ context }) => {
 };
 
 UserList.propTypes = {
-  context: PropTypes.object.isRequired
+  context: PropTypes.object.isRequired,
+  authUser: PropTypes.object.isRequired
 };
 
-export default withChatContext(UserList);
+const mapStateToProps = ({ authUser }) => ({ authUser });
+
+export default connect(mapStateToProps)(withChatContext(UserList));

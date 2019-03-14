@@ -50,17 +50,18 @@ class ConversationBody extends Component {
   }
 
   render() {
+    const { authUser, context } = this.props;
+    const { activeChat } = context;
+
     return (
       <div className="conversation__body" ref={this.conversationBodyRef}>
-        {this.props.context.activeChat && this.state.messages.length > 0 ? (
+        {activeChat && this.state.messages.length > 0 ? (
           this.state.messages.map(msg => {
             return (
               <Message
                 key={msg.id}
                 msg={msg}
-                position={
-                  msg.sender === this.props.authUser.id ? 'right' : 'left'
-                }
+                position={msg.sender === authUser.id ? 'right' : 'left'}
               />
             );
           })
