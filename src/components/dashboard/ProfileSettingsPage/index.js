@@ -6,6 +6,7 @@ import PasswordUpdateForm from './PasswordUpdateForm';
 import InfoUpdateForm from './InfoUpdateForm';
 import AvatarUpload from '@common/AvatarUpload';
 import firebase from '@fb';
+import capitalize from '@helpers/capitalize';
 
 class ProfileSettingsPage extends Component {
   constructor(props) {
@@ -64,12 +65,21 @@ class ProfileSettingsPage extends Component {
 
             <AvatarUpload />
 
-            <p>First Name: {user.firstName}</p>
-            <p>Last Name: {user.lastName}</p>
             <p>
-              Username: {user.username || `${user.firstName} ${user.lastName}`}
+              First Name: <strong>{capitalize(user.firstName)}</strong>
             </p>
-            <p>Email Address: {user.email}</p>
+            <p>
+              Last Name: <strong>{capitalize(user.lastName)}</strong>
+            </p>
+            <p>
+              Username:{' '}
+              <strong>
+                {user.username || `${user.firstName} ${user.lastName}`}
+              </strong>
+            </p>
+            <p>
+              Email Address: <strong>{user.email}</strong>
+            </p>
 
             <Button text="Change your info" onClick={this.toggleInfoModal} />
             <Button

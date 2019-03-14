@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withChatContext } from '../chatContext/withChatContext';
 import capitalize from '@helpers/capitalize';
 import ListItem from './ListItem';
+import defaultGroupAvatar from '@images/groupDefault.png';
 
 const ChatList = ({ context }) => {
   const { myChats, setActiveChat, toggleModal } = context;
@@ -20,7 +21,7 @@ const ChatList = ({ context }) => {
           {groupChats.map(c => (
             <ListItem
               key={c.id}
-              avatar={c.avatar}
+              avatar={c.avatar ? c.avatar : defaultGroupAvatar}
               username={c.groupName}
               onItemClick={() => setActiveChat(c)}
             />

@@ -6,6 +6,7 @@ import InputField from '@common/InputField';
 import Button from '@common/Button';
 import firebase from '@fb';
 import validate from './validate';
+import capitalize from '@helpers/capitalize';
 
 class InfoUpdateForm extends Component {
   constructor(props) {
@@ -22,8 +23,8 @@ class InfoUpdateForm extends Component {
   handleInitialize() {
     const { firstName, lastName, username } = this.props.user;
     const initData = {
-      firstName,
-      lastName,
+      firstName: capitalize(firstName),
+      lastName: capitalize(lastName),
       username: username || 'not set'
     };
 
@@ -31,8 +32,14 @@ class InfoUpdateForm extends Component {
   }
 
   handleSubmit(values) {
+    const newUserData = {
+      firstName: values.firstName.toLowerCase(),
+      lastName: values.lastName.toLowerCase(),
+      username: values.username
+    };
+
     firebase
-      .updateUser(this.props.authUser.id, values)
+      .updateUser(this.props.authUser.id, newUserData)
       .then(() => {
         toastr.success('Success', 'Your information has been updated');
       })
