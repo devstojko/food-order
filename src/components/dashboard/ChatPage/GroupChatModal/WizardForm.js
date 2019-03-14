@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import { withChatContext } from '../chatContext/withChatContext';
 import Search from '@common/Search';
 import Button from '@common/Button';
+import Avatar from '@common/Avatar';
 import firebase from '@fb';
 import ListItem from '../ChatSidebar/ListItem';
 import AvatarUpload from '@common/AvatarUpload';
 import defaultGroupImg from '@images/groupDefault.png';
+import capitalize from '@helpers/capitalize';
 
 const INITIAL_STATE = {
   page: 1,
@@ -27,8 +29,7 @@ class WizardForm extends Component {
     this.setAvatarUrl = this.setAvatarUrl.bind(this);
     this.changeGroupName = this.changeGroupName.bind(this);
     this.changeSearchTerm = this.changeSearchTerm.bind(this);
-    this.addParticipant = this.addParticipant.bind(this);
-    this.removePatricipant = this.removePatricipant.bind(this);
+    this.toggleParticipant = this.toggleParticipant.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -61,16 +62,14 @@ class WizardForm extends Component {
     });
   }
 
-  addParticipant(user) {
+  toggleParticipant(user) {
     if (!this.state.participants.find(u => u.id === user.id)) {
       this.setState({ participants: [...this.state.participants, user] });
+    } else {
+      this.setState({
+        participants: this.state.participants.filter(p => p.id !== user.id)
+      });
     }
-  }
-
-  removePatricipant(id) {
-    this.setState({
-      participants: this.state.participants.filter(p => p.id !== id)
-    });
   }
 
   handleSubmit(e) {
@@ -131,8 +130,6 @@ class WizardForm extends Component {
 
         {page === 2 && (
           <Fragment>
-            <h3 className="group-form__title">{groupName}</h3>
-
             <Search
               value={searchTerm}
               handleChange={this.changeSearchTerm}
@@ -143,11 +140,7 @@ class WizardForm extends Component {
               <Fragment>
                 <h5 className="group-form__title">Conversation Participants</h5>
                 {participants.map(p => (
-                  <ListItem
-                    key={p.id}
-                    username={`${p.firstName} ${p.lastName}`}
-                    onItemClick={() => this.removePatricipant(p.id)}
-                  />
+                  <Avatar image={p.avatar} key={p.id} />
                 ))}
               </Fragment>
             ) : (
@@ -162,10 +155,15 @@ class WizardForm extends Component {
                 {users.map(user => (
                   <div className="group-form__user" key={user.id}>
                     <ListItem
-                      username={`${user.firstName} ${user.lastName}`}
-                      onItemClick={() => this.addParticipant(user)}
+                      avatar={user.avatar}
+                      username={`${capitalize(user.firstName)} ${capitalize(
+                        user.lastName
+                      )}`}
+                      onItemClick={() => this.toggleParticipant(user)}
                     />
-                    <i className="fas fa-check-square" />
+                    {this.state.participants.find(u => u.id === user.id) && (
+                      <i className="fas fa-check-square" />
+                    )}
                   </div>
                 ))}
               </Fragment>
