@@ -11,10 +11,9 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    padding: auto;
     display: none;
-    width: 5rem;
-    border: 1px solid red;
+    margin: 2rem;
+    color: $gray;
   }
   
   &__search {
@@ -83,7 +82,7 @@
 
   @include respond(phone) {
     &__hamburger {
-      display: block;
+      display: flex;
     }
   }
 }

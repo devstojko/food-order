@@ -22,7 +22,7 @@ const SidebarLinks = ({ showText }) =>
     </NavLink>
   ));
 
-const Sidebar = ({ show }) => (
+const Sidebar = ({ show, toggleSidebar }) => (
   <aside className={`sidebar ${show && 'show-on-mobile'}`}>
     <div className="sidebar__logo">
       <Link to="/" className="link-normal">
@@ -32,6 +32,10 @@ const Sidebar = ({ show }) => (
       <Link to="/" className="link-tablet">
         F
       </Link>
+
+      <div className="sidebar__hamburger" onClick={toggleSidebar}>
+        <i className="fas fa-bars" />
+      </div>
     </div>
 
     <div className="sidebar__links-normal">

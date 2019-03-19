@@ -88,7 +88,39 @@
   }
 
   @include respond(phone) {
+    position: absolute;
     display: none;
+    width: 80%;
+    min-width: 80%;
+    height: 100%;
+    z-index: 1000;
+
+    &__logo {
+      display: flex;
+      justify-content: space-between;
+
+      .link-normal {
+        display: inline-block;
+      }
+
+      .link-tablet {
+        display: none;
+      }
+    }
+
+    &__hamburger {
+      display: block;
+      font-size: 3rem;
+      color: $white;
+    }
+
+    &__links-normal {
+      display: block;
+    }
+  
+    &__links-tablet {
+      display: none;
+    }
 
     &.show-on-mobile {
       display: block;

@@ -1,4 +1,5 @@
 @import '../../../styles/common/variables';
+@import '../../../styles/common/mixins';
 
 .dashboard-page {
   display: flex;
@@ -15,5 +16,11 @@
     flex: 1;
     background: $purple-light;
     padding: 4rem 6rem;
+  }
+
+  @include respond(phone) {
+    &__content {
+      padding: 1.5rem 2rem;
+    }
   }
 }

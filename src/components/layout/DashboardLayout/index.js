@@ -23,7 +23,7 @@ class DashboardPage extends Component {
 
     return (
       <div className="dashboard-page">
-        <Sidebar show={showSidebar} />
+        <Sidebar show={showSidebar} toggleSidebar={this.toggleSidebar} />
         <div className="dashboard-page__right">
           <Navbar toggleSidebar={this.toggleSidebar} />
           <main className="dashboard-page__content">{this.props.children}</main>
