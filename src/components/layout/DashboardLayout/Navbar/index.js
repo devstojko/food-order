@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { logOut } from '@actions/authActions';
 import Search from '@common/Search';
 import Avatar from '@common/Avatar';
@@ -44,9 +43,6 @@ class Navbar extends Component {
 
     return (
       <nav className="navbar">
-        <div className="navbar__logo">
-          <Link to="/">Food-Order</Link>
-        </div>
         <div className="navbar__search">
           <Search placeholder="Search transactions, invoices or help" />
         </div>

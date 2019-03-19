@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Sidebar.scss';
 
 const links = [
@@ -15,6 +16,9 @@ const links = [
 
 const Sidebar = () => (
   <aside className="sidebar">
+    <div className="sidebar__logo">
+      <Link to="/">Food-Order</Link>
+    </div>
     {links.map((link, i) => (
       <NavLink key={i} to={link.to || '/404'} className="sidebar__item">
         <i className={link.iconClass} />

@@ -1,9 +1,27 @@
 @import '../../../../styles/common/variables';
+@import '../../../../styles/common/mixins';
 
 .sidebar {
   background: $purple-dark;
   width: $sidebar-width;
   min-width: $sidebar-width;
+
+  &__logo {
+    background: darken($purple-dark, 5);
+    height: $navbar-height;
+    display: flex;
+    align-items: center;
+    padding: 2.5rem;
+
+    a {
+      color: $white;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: bold;
+      font-size: 1.8rem;
+    }
+  }
 
   &__item {
     display: block;
@@ -22,5 +40,10 @@
       background: darken($purple-dark, 5);
       border-left: 3px solid $purple;
     }
+  }
+
+  @include respond(tab-land) {
+    width: $sidebar-tab-land-width;
+    min-width: $sidebar-tab-land-width;
   }
 }

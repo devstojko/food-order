@@ -1,25 +1,9 @@
 @import '../../../../styles/common/variables';
+@import '../../../../styles/common/mixins';
 
 .navbar {
   height: $navbar-height;
   display: flex;
-
-  &__logo {
-    background: darken($purple-dark, 5);
-    width: $sidebar-width;
-    display: flex;
-    align-items: center;
-    padding: 2.5rem;
-
-    a {
-      color: $white;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-weight: bold;
-      font-size: 1.8rem;
-    }
-  }
 
   &__search {
     flex: 1;
@@ -83,5 +67,9 @@
         background: $whitesmoke;
       }
     }
+  }
+
+  @include respond(tab-land) {
+    // 
   }
 }
