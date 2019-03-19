@@ -23,7 +23,7 @@ const SidebarLinks = ({ showText }) =>
   ));
 
 const Sidebar = ({ show, toggleSidebar }) => (
-  <aside className={`sidebar ${show && 'show-on-mobile'}`}>
+  <aside className={`sidebar ${show ? 'show-on-mobile' : ''}`}>
     <div className="sidebar__logo">
       <Link to="/" className="link-normal">
         Food-Order

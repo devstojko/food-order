@@ -1,11 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { logOut } from '@actions/authActions';
 import Search from '@common/Search';
 import Avatar from '@common/Avatar';
 import firebase from '@fb';
 import capitalize from '@helpers/capitalize';
 import './Navbar.scss';
+
+const Hamburger = ({ onClick }) => (
+  <div className="navbar__hamburger" onClick={onClick}>
+    <i className="fas fa-bars" />
+  </div>
+);
+
+const NavbarIcons = () => (
+  <div className="navbar__icons">
+    <i className="fas fa-question-circle" />
+    <i className="fas fa-comments" />
+    <i className="fas fa-bell" />
+  </div>
+);
+
+const NavbarDropdown = ({ logOut }) => (
+  <div className="navbar__dropdown">
+    <Link to="/profile-settings" className="navbar__dropdown-link">
+      Settings
+    </Link>
+    <div className="navbar__dropdown-link" onClick={logOut}>
+      Logout
+    </div>
+  </div>
+);
 
 class Navbar extends Component {
   constructor(props) {
@@ -14,8 +40,11 @@ class Navbar extends Component {
     this.state = {
       firstName: '',
       lastName: '',
-      avatar: ''
+      avatar: '',
+      showSubmenu: false
     };
+
+    this.toggleSubmenu = this.toggleSubmenu.bind(this);
   }
 
   componentDidMount() {
@@ -33,44 +62,52 @@ class Navbar extends Component {
       });
   }
 
+  toggleSubmenu() {
+    this.setState({ showSubmenu: !this.state.showSubmenu });
+  }
+
   componentWillUnmount() {
     this.listener();
   }
 
   render() {
     const { logOut, toggleSidebar } = this.props;
-    const { firstName, lastName, avatar } = this.state;
+    const { firstName, lastName, avatar, showSubmenu } = this.state;
 
     return (
       <nav className="navbar">
-        <div className="navbar__hamburger" onClick={toggleSidebar}>
-          <i className="fas fa-bars" />
-        </div>
+        <Hamburger onClick={toggleSidebar} />
 
         <div className="navbar__search">
           <Search placeholder="Search transactions, invoices or help" />
         </div>
 
-        <div className="navbar__links">
-          <div className="navbar__icons">
-            <i className="fas fa-question-circle" />
-            <i className="fas fa-comments" />
-            <i className="fas fa-bell" />
+        <div className="navbar__desktop">
+          <div className="navbar__links">
+            <NavbarIcons />
             <span className="navbar__separator" />
-          </div>
-
-          <div className="navbar__user">
-            {`${capitalize(firstName)} ${capitalize(lastName)}`}
-            <i className="fas fa-angle-down" />
-            <Avatar image={avatar} />
-            <div className="navbar__dropdown">
-              <div className="navbar__dropdown-link">Random Link 1</div>
-              <div className="navbar__dropdown-link">Random Link 2</div>
-              <div className="navbar__dropdown-link" onClick={logOut}>
-                Logout
-              </div>
+            <div className="navbar__user">
+              {`${capitalize(firstName)} ${capitalize(lastName)}`}
+              <i className="fas fa-angle-down" />
+              <Avatar image={avatar} />
+              <NavbarDropdown logOut={logOut} />
             </div>
           </div>
+        </div>
+
+        <div className="navbar__smaller-screens">
+          <Avatar
+            image={avatar}
+            onClick={this.toggleSubmenu}
+            style={{ cursor: 'pointer' }}
+          />
+
+          {showSubmenu && (
+            <div className="navbar__submenu">
+              <NavbarIcons />
+              <NavbarDropdown logOut={logOut} />
+            </div>
+          )}
         </div>
       </nav>
     );
