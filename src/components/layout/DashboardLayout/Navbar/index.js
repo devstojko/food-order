@@ -38,11 +38,15 @@ class Navbar extends Component {
   }
 
   render() {
-    const { logOut } = this.props;
+    const { logOut, toggleSidebar } = this.props;
     const { firstName, lastName, avatar } = this.state;
 
     return (
       <nav className="navbar">
+        <div className="navbar__hamburger" onClick={toggleSidebar}>
+          <i className="fas fa-bars" />
+        </div>
+
         <div className="navbar__search">
           <Search placeholder="Search transactions, invoices or help" />
         </div>

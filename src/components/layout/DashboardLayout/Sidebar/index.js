@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './Sidebar.scss';
@@ -23,12 +22,8 @@ const SidebarLinks = ({ showText }) =>
     </NavLink>
   ));
 
-SidebarLinks.propTypes = {
-  showText: PropTypes.bool
-};
-
-const Sidebar = () => (
-  <aside className="sidebar">
+const Sidebar = ({ show }) => (
+  <aside className={`sidebar ${show && 'show-on-mobile'}`}>
     <div className="sidebar__logo">
       <Link to="/" className="link-normal">
         Food-Order
