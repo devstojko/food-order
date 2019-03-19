@@ -13,7 +13,8 @@
     align-items: center;
     padding: 2.5rem;
 
-    a {
+    .link-normal,
+    .link-tablet {
       color: $white;
       text-decoration: none;
       text-transform: uppercase;
@@ -21,6 +22,18 @@
       font-weight: bold;
       font-size: 1.8rem;
     }
+
+    .link-tablet {
+      display: none;
+    }
+  }
+
+  &__links-normal {
+    display: block;
+  }
+
+  &__links-tablet {
+    display: none;
   }
 
   &__item {
@@ -45,5 +58,32 @@
   @include respond(tab-land) {
     width: $sidebar-tab-land-width;
     min-width: $sidebar-tab-land-width;
+  }
+
+  @include respond(tab-port) {
+    width: 8rem;
+    min-width: 8rem;
+
+    &__logo {
+      justify-content: center;
+
+      .link-normal {
+        display: none;
+      }
+
+      .link-tablet {
+        display: block;
+        font-size: 3rem;
+        text-align: center;
+      }
+    }
+
+    &__links-normal {
+      display: none;
+    }
+
+    &__links-tablet {
+      display: block;
+    }
   }
 }
