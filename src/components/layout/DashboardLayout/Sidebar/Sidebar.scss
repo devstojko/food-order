@@ -93,7 +93,8 @@
 
   @include respond(phone) {
     position: absolute;
-    display: none;
+    left: -80%;
+    transition: 0.3s ease-in;
     width: 80%;
     min-width: 80%;
     height: 100%;
@@ -126,8 +127,8 @@
       display: none;
     }
 
-    &.show-on-mobile {
-      display: block;
+    &.open-on-mobile {
+      left: 0;
     }
   }
 }
