@@ -2,11 +2,13 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import Button from '@common/Button';
 import Modal from '@common/Modal';
+import Loading from '@common/Loading';
 import PasswordUpdateForm from './PasswordUpdateForm';
 import InfoUpdateForm from './InfoUpdateForm';
 import AvatarUpload from '@common/AvatarUpload';
 import firebase from '@fb';
 import capitalize from '@helpers/capitalize';
+import './ProfileSettingsPage.scss';
 
 class ProfileSettingsPage extends Component {
   constructor(props) {
@@ -56,36 +58,32 @@ class ProfileSettingsPage extends Component {
     const { user, showInfoModal, showPasswordModal } = this.state;
 
     return (
-      <div className="container">
-        {user && (
+      <div className="settings-page">
+        {user ? (
           <Fragment>
-            <h2 className="title-primary" style={{ textAlign: 'left' }}>
-              Your Account
-            </h2>
-
             <AvatarUpload />
-
-            <p>
-              First Name: <strong>{capitalize(user.firstName)}</strong>
-            </p>
-            <p>
-              Last Name: <strong>{capitalize(user.lastName)}</strong>
-            </p>
-            <p>
-              Username:{' '}
-              <strong>
-                {user.username || `${user.firstName} ${user.lastName}`}
-              </strong>
-            </p>
+            <div className="username">
+              {`${capitalize(user.firstName)} ${capitalize(user.lastName)}`}
+            </div>
+            {user.username && <h3 className="subtitle">{user.username}</h3>}
             <p>
               Email Address: <strong>{user.email}</strong>
             </p>
 
-            <Button text="Change your info" onClick={this.toggleInfoModal} />
-            <Button
-              text="Change your password"
-              onClick={this.togglePasswordModal}
-            />
+            <div className="two-item-row">
+              <div className="row-item">
+                <Button
+                  text="Change your info"
+                  onClick={this.toggleInfoModal}
+                />
+              </div>
+              <div className="row-item">
+                <Button
+                  text="Change password"
+                  onClick={this.togglePasswordModal}
+                />
+              </div>
+            </div>
 
             {showInfoModal && (
               <Modal title="Update Your Profile" onClose={this.toggleInfoModal}>
@@ -105,6 +103,8 @@ class ProfileSettingsPage extends Component {
               </Modal>
             )}
           </Fragment>
+        ) : (
+          <Loading />
         )}
       </div>
     );

@@ -6,7 +6,11 @@ const PublicRoute = ({ authUser, component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      !!authUser ? <Redirect to="/chat" /> : <Component {...props} />
+      !!authUser ? (
+        <Redirect to="/profile-settings" />
+      ) : (
+        <Component {...props} />
+      )
     }
   />
   // change later to /
