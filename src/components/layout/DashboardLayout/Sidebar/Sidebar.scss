@@ -92,13 +92,17 @@
   }
 
   @include respond(phone) {
-    position: absolute;
+    position: fixed;
     left: -80%;
     transition: 0.3s ease-in;
     width: 80%;
     min-width: 80%;
     height: 100%;
     z-index: 2000;
+
+    &.open-on-mobile {
+      left: 0;
+    }
 
     &__logo {
       display: flex;
@@ -114,9 +118,10 @@
     }
 
     &__hamburger {
-      display: block;
-      font-size: 3rem;
       color: $white;
+      display: flex;
+      font-size: 2.4rem;
+      margin: 0;
     }
 
     &__links-normal {
@@ -127,8 +132,14 @@
       display: none;
     }
 
-    &.open-on-mobile {
-      left: 0;
+    &__item {
+      padding: 1.5rem 2.5rem;
+      font-size: 1.6rem;
+  
+      &:hover,
+      &.active {
+        border-left: 2px solid $purple;
+      }
     }
   }
 }

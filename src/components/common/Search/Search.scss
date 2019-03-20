@@ -1,4 +1,5 @@
 @import '../../../styles/common/variables';
+@import '../../../styles/common/mixins';
 
 .search {
   flex: 1;
@@ -26,6 +27,19 @@
 
     &::placeholder {
       color: $purple-dark;
+    }
+  }
+
+  @include respond(phone) {
+    height: 3rem;
+
+    .fa-search {
+      font-size: 1.8rem;
+    }
+
+    .input {
+      font-size: 1.2rem;
+      padding: 4px;
     }
   }
 }
