@@ -5,7 +5,7 @@ import Avatar from '@common/Avatar';
 import capitalize from '@helpers/capitalize';
 import defaultGroupImg from '@images/groupDefault.png';
 
-const ConversationHeader = ({ context }) => {
+const ConversationHeader = ({ context, toggleSidebar }) => {
   const { otherUser, activeChat, setOtherUser } = context;
 
   let title;
@@ -41,13 +41,16 @@ const ConversationHeader = ({ context }) => {
         <strong>{title}</strong>
         <span>{info}</span>
       </div>
+
+      <i className="fas fa-comments" onClick={toggleSidebar} />
       <i className="fas fa-times" onClick={() => setOtherUser(null)} />
     </div>
   );
 };
 
 ConversationHeader.propTypes = {
-  context: PropTypes.object.isRequired
+  context: PropTypes.object.isRequired,
+  toggleSidebar: PropTypes.func.isRequired
 };
 
 export default withChatContext(ConversationHeader);

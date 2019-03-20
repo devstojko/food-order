@@ -15,8 +15,7 @@ const Button = ({
     type={type}
     disabled={disabled}
     className={`btn btn--${style}`}
-    style={inlineStyles}
-  >
+    style={inlineStyles}>
     {text}
   </button>
 );

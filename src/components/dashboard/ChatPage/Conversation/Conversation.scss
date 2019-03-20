@@ -1,4 +1,5 @@
 @import '../../../../styles/common/variables';
+@import '../../../../styles/common/mixins';
 
 .conversation {
   height: 100%;
@@ -12,11 +13,20 @@
     align-items: center;
     border-bottom: 1px solid $lightgray;
 
-    .fa-times {
+    .fa-times,
+    .fa-comments {
       margin: 1.5rem 1.5rem auto;
       color: $gray;
       font-size: 2rem;
       cursor: pointer;
+    }
+
+    .fa-comments {
+      display: none;
+
+      @include respond(tab-port) {
+        display: block;
+      }
     }
   }
 
@@ -147,10 +157,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   padding: 3rem;
 
   p {
     font-size: 1.7rem;
     color: $darkgray;
+  }
+
+  .btn {
+    display: none;
+  }
+
+  @include respond(tab-port) {
+    .btn {
+      display: block;
+    }
   }
 }

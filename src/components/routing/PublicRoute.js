@@ -6,9 +6,10 @@ const PublicRoute = ({ authUser, component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      !!authUser ? <Redirect to="/" /> : <Component {...props} />
+      !!authUser ? <Redirect to="/chat" /> : <Component {...props} />
     }
   />
+  // change later to /
 );
 
 const mapStateToProps = ({ authUser }) => ({ authUser });

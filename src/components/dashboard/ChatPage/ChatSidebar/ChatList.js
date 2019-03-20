@@ -6,7 +6,7 @@ import capitalize from '@helpers/capitalize';
 import ListItem from './ListItem';
 import defaultGroupAvatar from '@images/groupDefault.png';
 
-const ChatList = ({ context, authUser }) => {
+const ChatList = ({ context, authUser, toggleSidebar }) => {
   const { myChats, setActiveChat, toggleModal } = context;
   const groupChats = myChats.filter(c => c.groupName);
   const privateChats = myChats.filter(c => !c.groupName);
@@ -24,7 +24,10 @@ const ChatList = ({ context, authUser }) => {
               key={c.id}
               avatar={c.avatar ? c.avatar : defaultGroupAvatar}
               username={c.groupName}
-              onItemClick={() => setActiveChat(c)}
+              onItemClick={() => {
+                setActiveChat(c);
+                toggleSidebar();
+              }}
             />
           ))}
         </Fragment>
@@ -42,7 +45,10 @@ const ChatList = ({ context, authUser }) => {
               username={`${capitalize(c.otherUser.firstName)} ${capitalize(
                 c.otherUser.lastName
               )} ${authUser.id === c.otherUser.id ? '(you)' : ''}`}
-              onItemClick={() => setActiveChat(c)}
+              onItemClick={() => {
+                setActiveChat(c);
+                toggleSidebar();
+              }}
             />
           ))}
         </Fragment>
@@ -55,7 +61,8 @@ const ChatList = ({ context, authUser }) => {
 
 ChatList.propTypes = {
   context: PropTypes.object.isRequired,
-  authUser: PropTypes.object.isRequired
+  authUser: PropTypes.object.isRequired,
+  toggleSidebar: PropTypes.func.isRequired
 };
 
 const mapStateToProps = ({ authUser }) => ({ authUser });

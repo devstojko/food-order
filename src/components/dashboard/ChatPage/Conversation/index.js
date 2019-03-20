@@ -5,15 +5,16 @@ import { withChatContext } from '../chatContext/withChatContext';
 import ConversationHeader from './Header';
 import ConversationBody from './Body';
 import ConversationForm from './Form';
+import Button from '@common/Button';
 import './Conversation.scss';
 
-const Conversation = ({ authUser, context }) => {
+const Conversation = ({ authUser, context, toggleSidebar }) => {
   const { otherUser, activeChat } = context;
 
   if (otherUser || activeChat) {
     return (
       <div className="conversation">
-        <ConversationHeader />
+        <ConversationHeader toggleSidebar={toggleSidebar} />
         <ConversationBody authUser={authUser} />
         <ConversationForm authUser={authUser} />
       </div>
@@ -22,6 +23,7 @@ const Conversation = ({ authUser, context }) => {
     return (
       <div className="empty-conversation">
         <p>Start chatting with someone by sending him a nice message</p>
+        <Button onClick={toggleSidebar} text="Show Chats" />
       </div>
     );
   }
@@ -29,7 +31,8 @@ const Conversation = ({ authUser, context }) => {
 
 Conversation.propTypes = {
   authUser: PropTypes.object.isRequired,
-  context: PropTypes.object.isRequired
+  context: PropTypes.object.isRequired,
+  toggleSidebar: PropTypes.func.isRequired
 };
 
 const mapStateToProps = ({ authUser }) => ({ authUser });

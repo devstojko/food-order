@@ -6,7 +6,7 @@ import ChatList from './ChatList';
 import UserList from './UserList';
 import './ChatSidebar.scss';
 
-const ChatSidebar = ({ context }) => {
+const ChatSidebar = ({ context, toggleSidebar }) => {
   const { searchTerm, handleSearchChange } = context;
 
   return (
@@ -20,7 +20,11 @@ const ChatSidebar = ({ context }) => {
           />
         </div>
         <div className="chat-sidebar__list">
-          {searchTerm ? <UserList /> : <ChatList />}
+          {searchTerm ? (
+            <UserList toggleSidebar={toggleSidebar} />
+          ) : (
+            <ChatList toggleSidebar={toggleSidebar} />
+          )}
         </div>
       </div>
     </Fragment>
@@ -28,7 +32,8 @@ const ChatSidebar = ({ context }) => {
 };
 
 ChatSidebar.propTypes = {
-  context: PropTypes.object.isRequired
+  context: PropTypes.object.isRequired,
+  toggleSidebar: PropTypes.func.isRequired
 };
 
 export default withChatContext(ChatSidebar);

@@ -22,11 +22,19 @@
     max-height: calc(100vh - #{$navbar-height} - 4.5rem);
 
     &__side {
-      border: 1px solid blue;
+      display: none;
+
+      &.open {
+        display: block;
+      }
     }
   
     &__main {
-      border: 1px solid red;
+      display: none;
+
+      &.open {
+        display: block;
+      }
     }
   }
 

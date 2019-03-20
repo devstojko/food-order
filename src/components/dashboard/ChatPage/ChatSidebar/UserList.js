@@ -5,8 +5,10 @@ import { withChatContext } from '../chatContext/withChatContext';
 import capitalize from '@helpers/capitalize';
 import ListItem from './ListItem';
 
-const UserList = ({ context, authUser }) => {
+const UserList = ({ context, authUser, toggleSidebar }) => {
   const { users, setOtherUser } = context;
+  console.log('----------');
+  console.log(toggleSidebar);
 
   return (
     <div>
@@ -22,7 +24,11 @@ const UserList = ({ context, authUser }) => {
               key={user.id}
               avatar={user.avatar}
               username={username}
-              onItemClick={() => setOtherUser(user)}
+              onItemClick={() => {
+                setOtherUser(user);
+                console.log('called');
+                toggleSidebar();
+              }}
             />
           );
         })
@@ -35,7 +41,8 @@ const UserList = ({ context, authUser }) => {
 
 UserList.propTypes = {
   context: PropTypes.object.isRequired,
-  authUser: PropTypes.object.isRequired
+  authUser: PropTypes.object.isRequired,
+  toggleSidebar: PropTypes.func.isRequired
 };
 
 const mapStateToProps = ({ authUser }) => ({ authUser });
