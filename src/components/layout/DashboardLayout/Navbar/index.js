@@ -85,7 +85,6 @@ class Navbar extends Component {
         <div className="navbar__desktop">
           <div className="navbar__links">
             <NavbarIcons />
-            <span className="navbar__separator" />
             <div className="navbar__user">
               {`${capitalize(firstName)} ${capitalize(lastName)}`}
               <i className="fas fa-angle-down" />

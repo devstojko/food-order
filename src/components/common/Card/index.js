@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import userImg from '@images/user.png';
+import Avatar from '../Avatar';
 import './Card.scss';
 
 const Card = ({ status }) => (
@@ -11,7 +11,7 @@ const Card = ({ status }) => (
     </div>
     <div className="card__content">Add order</div>
     <div className="card__footer">
-      <img className="card__user" src={userImg} alt="user" />
+      <Avatar />
       <div className="card__info">
         <p>
           <strong>David Lee</strong> is ordering food

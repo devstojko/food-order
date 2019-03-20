@@ -20,6 +20,9 @@
     font-size: 1.4rem;
     width: 100%;
     padding: 6px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
 
     &:focus {
       outline: none;

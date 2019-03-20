@@ -49,12 +49,6 @@
     }
   }
 
-  &__separator {
-    height: 4rem;
-    border-left: 1px solid $lightgray;
-    margin-right: 2rem;
-  }
-
   &__user {
     height: $navbar-height;
     position: relative;
@@ -151,7 +145,7 @@
     &__hamburger {
       display: flex;
       font-size: 2.4rem;
-      margin: 1rem;
+      margin: 1.2rem;
       color: $gray;
     }
 

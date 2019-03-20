@@ -1,8 +1,10 @@
 @import '../../../styles/common/variables';
+@import '../../../styles/common/mixins';
 
 .chat {
   display: flex;
-  height: 100%;
+  height: calc(100vh - #{$navbar-height} - 8.5rem);
+  max-height: calc(100vh - #{$navbar-height} - 8.5rem);
   background: $white;
   border: 1px solid $lightgray;
 
@@ -14,4 +16,27 @@
   &__main {
     flex: 2;
   }
+
+  @include respond(tab-port) {
+    height: calc(100vh - #{$navbar-height} - 4.5rem);
+    max-height: calc(100vh - #{$navbar-height} - 4.5rem);
+
+    &__side {
+      border: 1px solid blue;
+    }
+  
+    &__main {
+      border: 1px solid red;
+    }
+  }
+
+  // @include respond(phone) {
+  //   &__side {
+      
+  //   }
+  
+  //   &__main {
+      
+  //   }
+  // }
 }
