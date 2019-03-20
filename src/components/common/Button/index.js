@@ -7,13 +7,16 @@ const Button = ({
   onClick,
   style = 'primary',
   type = 'button',
-  disabled = false
+  disabled = false,
+  inlineStyles
 }) => (
   <button
     onClick={onClick ? onClick : null}
     type={type}
     disabled={disabled}
-    className={`btn btn--${style}`}>
+    className={`btn btn--${style}`}
+    style={inlineStyles}
+  >
     {text}
   </button>
 );
@@ -23,7 +26,8 @@ Button.propTypes = {
   text: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   type: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  inlineStyles: PropTypes.object.isRequired
 };
 
 export default Button;

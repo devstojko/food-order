@@ -58,7 +58,11 @@ class InfoUpdateForm extends Component {
         />
         <Field name="lastName" label="Last Name" component={InputField} />
         <Field name="username" label="Username" component={InputField} />
-        <Button text="Update" type="submit" />
+        <Button
+          text="Update"
+          type="submit"
+          inlineStyles={{ marginBottom: 0 }}
+        />
       </form>
     );
   }

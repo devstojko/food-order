@@ -38,7 +38,12 @@ class PasswordChangeForm extends Component {
           component={InputField}
         />
 
-        <Button text="Reset Password" style="primary" type="submit" />
+        <Button
+          text="Reset Password"
+          style="primary"
+          type="submit"
+          inlineStyles={{ marginBottom: 0 }}
+        />
       </form>
     );
   }

@@ -1,4 +1,5 @@
 @import '../../../styles/common/variables';
+@import '../../../styles/common/mixins';
 
 .modal {
   background-color: rgba($black, 0.5);
@@ -47,5 +48,17 @@
     padding: 3rem 1.6rem;
     font-size: 1.6rem;
     text-align: center;
+  }
+
+  @include respond(tab-port) {
+    &__content {
+      width: 50%;
+    }
+  }
+
+  @include respond(phone) {
+    &__content {
+      width: 90%;
+    }
   }
 }
