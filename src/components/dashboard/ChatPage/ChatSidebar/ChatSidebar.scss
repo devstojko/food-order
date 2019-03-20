@@ -1,4 +1,5 @@
 @import '../../../../styles/common/variables';
+@import '../../../../styles/common/mixins';
 
 .chat-sidebar {
   height: 100%;
@@ -64,6 +65,27 @@
 
       span {
         font-size: 1.3rem;
+      }
+    }
+  }
+
+  @include respond(phone) {
+    &__search {
+      height: 6rem;
+      padding: 0 1.5rem;
+    }
+  
+    &__title {
+      font-size: 1.4rem;
+      padding: .8rem;
+    }
+  
+    &__item {
+      padding: 0;
+      height: 7rem;
+
+      &__text {
+        height: 4rem;
       }
     }
   }

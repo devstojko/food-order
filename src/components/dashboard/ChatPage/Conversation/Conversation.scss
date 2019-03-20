@@ -23,10 +23,6 @@
 
     .fa-comments {
       display: none;
-
-      @include respond(tab-port) {
-        display: block;
-      }
     }
   }
 
@@ -103,6 +99,56 @@
       }
     }
   }
+
+  @include respond(tab-port) {
+    .fa-comments {
+      display: block;
+    }
+  }
+
+  @include respond(phone) {
+
+    &__header {
+      height: 6rem;
+    }
+
+    &__title {
+      height: 4.5rem;
+
+      strong {
+        font-size: 1.6rem;
+      }
+
+      span {
+        font-size: 1.4rem;
+      }
+    }
+
+    &__body {
+      padding: 1rem;
+    }
+
+    &__form {
+      height: 13rem;
+      padding: 1rem;
+
+      input {
+        font-size: 1.4rem;
+      }
+
+      .buttons {
+
+        .fas {
+          font-size: 2rem;
+          margin-left: .8rem;
+        }
+
+        button {
+          height: 2.6rem;
+        }
+      }
+    }
+  }
 }
 
 .message {
@@ -150,6 +196,15 @@
       float: right;
     }
   }
+
+  @include respond(phone) {
+    margin-bottom: 1rem;
+
+    &__text {
+      width: 70%;
+      padding: .8rem;
+    }
+  }
 }
 
 .empty-conversation {
@@ -170,6 +225,12 @@
   }
 
   @include respond(tab-port) {
+    padding: 2rem;
+
+    p {
+      font-size: 1.4rem;
+    }
+
     .btn {
       display: block;
     }
