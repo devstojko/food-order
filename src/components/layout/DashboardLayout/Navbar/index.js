@@ -102,12 +102,10 @@ class Navbar extends Component {
             style={{ cursor: 'pointer' }}
           />
 
-          {showSubmenu && (
-            <div className="navbar__submenu">
-              <NavbarIcons />
-              <NavbarDropdown logOut={logOut} />
-            </div>
-          )}
+          <div className={`navbar__submenu ${showSubmenu ? 'open' : ''}`}>
+            <NavbarIcons />
+            <NavbarDropdown logOut={logOut} />
+          </div>
         </div>
       </nav>
     );

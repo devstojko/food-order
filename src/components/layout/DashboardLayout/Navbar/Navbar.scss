@@ -115,8 +115,15 @@
       top: $navbar-height;
       left: 8rem;
       width: calc(100% - 8rem);
+      height: 0;
+      overflow: hidden;
       text-align: center;
       z-index: 1000;
+      transition: 0.3s linear;
+
+      &.open {
+        height: 16rem;
+      }
     }
 
     &__dropdown {
