@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import userImg from '@images/user.png';
 import './Card.scss';
 
@@ -21,6 +22,8 @@ const Card = ({ status }) => (
   </div>
 );
 
-// proptypes ?
+Card.propTypes = {
+  status: PropTypes.string
+};
 
 export default Card;

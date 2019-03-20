@@ -1,8 +1,8 @@
 @import '../../../styles/common/variables';
 
 .homepage {
-  background: $purple-light;
   width: 100%;
+  border: 1px solid red;
 
   .homepage__title {
     color: $purple-dark;
