@@ -5,16 +5,26 @@ import { withChatContext } from '../chatContext/withChatContext';
 import capitalize from '@helpers/capitalize';
 import ListItem from './ListItem';
 import defaultGroupAvatar from '@images/groupDefault.png';
+import { useTranslation } from 'react-i18next';
+
+//test
 
 const ChatList = ({ context, authUser, toggleSidebar }) => {
+  const { t, i18n } = useTranslation();
   const { myChats, setActiveChat, toggleModal } = context;
   const groupChats = myChats.filter(c => c.groupName);
   const privateChats = myChats.filter(c => !c.groupName);
+
+  const changeLanguage = lng => {
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <div>
       <h3 className="chat-sidebar__title">
         Group Conversations
+        {t('sava')}
+        <button onClick={() => changeLanguage('sr')}>test</button>
         <i className="fas fa-plus" onClick={toggleModal} />
       </h3>
       {groupChats.length > 0 ? (

@@ -10,18 +10,20 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    height: 100vh;
   }
 
   &__content {
-    flex: 1;
+    flex: 2;
     background: $purple-light;
     padding: 4rem 6rem;
+    height: 100%;
   }
 
   @include respond(tab-port) {
     &__content {
       padding: 2rem;
-      max-height: 100vw;
+      max-height: 100%;
     }
   }
 

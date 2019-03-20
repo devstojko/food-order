@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import App from './components/App';
+import './translation/i18n';
 import 'react-circular-progressbar/dist/styles.css';
 import './styles/global/index.scss';
 
