@@ -48,7 +48,7 @@ class WizardForm extends Component {
   changeSearchTerm(e) {
     this.setState({ searchTerm: e.target.value }, () => {
       firebase
-        .fetchUsersByName(this.state.searchTerm)
+        .fetchUsersByName(this.state.searchTerm.toLowerCase())
         .then(snapshots => {
           this.setState({ users: [] });
           if (!snapshots.empty) {
@@ -158,7 +158,7 @@ class WizardForm extends Component {
                       avatar={user.avatar}
                       username={`${capitalize(user.firstName)} ${capitalize(
                         user.lastName
-                      )}`}
+                      )} ${this.props.authUser.id === user.id ? '(you)' : ''}`}
                       onItemClick={() => this.toggleParticipant(user)}
                     />
                     {this.state.participants.find(u => u.id === user.id) && (

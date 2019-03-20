@@ -50,7 +50,7 @@
     text-align: center;
   }
 
-  @include respond(tab-port) {
+  @include respond(tab-land) {
     &__content {
       width: 50%;
     }

@@ -23,6 +23,7 @@
 
     &__side {
       display: none;
+      border-right: none;
 
       &.open {
         display: block;

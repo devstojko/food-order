@@ -7,8 +7,6 @@ import ListItem from './ListItem';
 
 const UserList = ({ context, authUser, toggleSidebar }) => {
   const { users, setOtherUser } = context;
-  console.log('----------');
-  console.log(toggleSidebar);
 
   return (
     <div>
@@ -26,7 +24,6 @@ const UserList = ({ context, authUser, toggleSidebar }) => {
               username={username}
               onItemClick={() => {
                 setOtherUser(user);
-                console.log('called');
                 toggleSidebar();
               }}
             />

@@ -69,15 +69,17 @@
     }
   }
 
+  @include respond(tab-land) {
+    &__title {
+      font-size: 1.4rem;
+      padding: .8rem;
+    }
+  }
+
   @include respond(phone) {
     &__search {
       height: 6rem;
       padding: 0 1.5rem;
-    }
-  
-    &__title {
-      font-size: 1.4rem;
-      padding: .8rem;
     }
   
     &__item {

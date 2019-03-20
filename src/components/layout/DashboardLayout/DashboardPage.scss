@@ -21,6 +21,7 @@
   @include respond(tab-port) {
     &__content {
       padding: 2rem;
+      max-height: 100vw;
     }
   }
 

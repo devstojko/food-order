@@ -1,3 +1,5 @@
+@import '../../../styles/common/mixins';
+
 .settings-page {
   text-align: center;
   width: 90%;
@@ -13,6 +15,11 @@
 
   .btn {
     margin: 0;
+  }
+
+  .two-item-row {
+    max-width: 40rem;
+    margin: 1.5rem auto;
   }
 }
 
