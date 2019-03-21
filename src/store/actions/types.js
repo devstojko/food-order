@@ -8,3 +8,7 @@ export const FINISH_LOADING = 'FINISH_LOADING';
 
 // conversations
 export const GET_CONVERSATIONS = 'GET_CONVERSATIONS';
+
+// language
+export const SET_EN = 'SET_EN';
+export const SET_SR = 'SET_SR';

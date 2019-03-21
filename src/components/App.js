@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { IntlProvider } from 'react-intl';
 import { connect } from 'react-redux';
 import ReduxToastr from 'react-redux-toastr';
 import { setUser } from '@actions/authActions';
 import { startLoading, finishLoading } from '@actions/loadingActions';
 import firebase from '@fb';
+import translations from '../translations';
 import Loading from '@common/Loading';
 import AppRouter from './routing/AppRouter';
 
@@ -28,15 +30,19 @@ class App extends Component {
   }
 
   render() {
+    const { language } = this.props;
+
     return (
-      <Fragment>
-        <ReduxToastr
-          position="bottom-right"
-          transitionIn="fadeIn"
-          transtitionOut="fadeOut"
-        />
-        {this.props.loading ? <Loading /> : <AppRouter />}
-      </Fragment>
+      <IntlProvider locale={language} messages={translations[language]}>
+        <Fragment>
+          <ReduxToastr
+            position="bottom-right"
+            transitionIn="fadeIn"
+            transtitionOut="fadeOut"
+          />
+          {this.props.loading ? <Loading /> : <AppRouter />}
+        </Fragment>
+      </IntlProvider>
     );
   }
 }
@@ -48,7 +54,7 @@ App.propTypes = {
   finishLoading: PropTypes.func.isRequired
 };
 
-const mapStateToProps = ({ loading }) => ({ loading });
+const mapStateToProps = ({ loading, language }) => ({ loading, language });
 
 export default connect(
   mapStateToProps,
