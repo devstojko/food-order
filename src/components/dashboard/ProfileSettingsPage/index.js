@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import Button from '@common/Button';
 import Modal from '@common/Modal';
@@ -67,21 +68,16 @@ class ProfileSettingsPage extends Component {
             </div>
             {user.username && <h3 className="subtitle">{user.username}</h3>}
             <p>
-              Email Address: <strong>{user.email}</strong>
+              <FormattedMessage id="email" defaultMessage="Email Address" />:{' '}
+              <strong>{user.email}</strong>
             </p>
 
             <div className="two-item-row">
               <div className="row-item">
-                <Button
-                  text="Change your info"
-                  onClick={this.toggleInfoModal}
-                />
+                <Button text="changeInfo" onClick={this.toggleInfoModal} />
               </div>
               <div className="row-item">
-                <Button
-                  text="Change password"
-                  onClick={this.togglePasswordModal}
-                />
+                <Button text="changePw" onClick={this.togglePasswordModal} />
               </div>
             </div>
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { withChatContext } from '../chatContext/withChatContext';
 import capitalize from '@helpers/capitalize';
@@ -10,12 +11,23 @@ const UserList = ({ context, authUser, toggleSidebar }) => {
 
   return (
     <div>
-      <h3 className="chat-sidebar__title">Start New Conversations</h3>
+      <h3 className="chat-sidebar__title">
+        <FormattedMessage
+          id="startNewChat"
+          defaultMessage="Start New Conversation"
+        />
+      </h3>
       {users.length > 0 ? (
         users.map(user => {
           const username = `${capitalize(user.firstName)} ${capitalize(
             user.lastName
-          )} ${authUser.id === user.id ? '(you)' : ''}`;
+          )} ${
+            authUser.id === user.id ? (
+              <FormattedMessage id="you" defaultMessage="(you)" />
+            ) : (
+              ''
+            )
+          }`;
 
           return (
             <ListItem
@@ -30,7 +42,12 @@ const UserList = ({ context, authUser, toggleSidebar }) => {
           );
         })
       ) : (
-        <div className="info-msg">No users with that username</div>
+        <div className="info-msg">
+          <FormattedMessage
+            id="noUsersFound"
+            defaultMessage="No users with that username"
+          />
+        </div>
       )}
     </div>
   );

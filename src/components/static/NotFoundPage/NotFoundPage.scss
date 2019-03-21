@@ -4,4 +4,8 @@
   height: 100vh;
   background-color: $whitesmoke;
   padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }

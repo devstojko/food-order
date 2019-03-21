@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import './InputField.scss';
 
 const InputField = ({
@@ -25,7 +26,7 @@ const InputField = ({
       <span className="field__highlight" />
       <span className="field__bar" />
       <label className="field__label" htmlFor={input.name}>
-        {label}
+        <FormattedMessage id={label} />
       </label>
       {touched && error && <span className="field__error">{error}</span>}
     </div>

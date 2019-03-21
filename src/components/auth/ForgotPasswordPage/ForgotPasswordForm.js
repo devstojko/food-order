@@ -31,8 +31,8 @@ class ForgotPasswordForm extends Component {
       <form
         className="auth-page__content__form"
         onSubmit={this.props.handleSubmit(this.handleSubmit)}>
-        <Field type="email" name="email" label="Email" component={InputField} />
-        <Button style="primary" type="submit" text="Send request" />
+        <Field type="email" name="email" label="email" component={InputField} />
+        <Button style="primary" type="submit" text="sendEmail" />
       </form>
     );
   }

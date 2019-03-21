@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import AuthPageLayout from '@layout/AuthPageLayout';
 import ForgotPasswordForm from './ForgotPasswordForm';
 
@@ -8,7 +9,10 @@ const ForgotPasswordPage = () => (
     imagePosition="right">
     <h1 className="title-primary">food-order</h1>
     <p className="subtitle">
-      Enter your email and we send you a password reset link
+      <FormattedMessage
+        id="pwResetEmail"
+        defaultMessage="Enter your email and we send you a password reset link"
+      />
     </p>
     <ForgotPasswordForm />
   </AuthPageLayout>

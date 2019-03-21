@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import { withChatContext } from '../chatContext/withChatContext';
 import Message from './Message';
 import firebase from '@fb';
@@ -67,7 +68,10 @@ class ConversationBody extends Component {
           })
         ) : (
           <div className="info-msg info-msg--big">
-            Start a conversation by sending a message
+            <FormattedMessage
+              id="startChat"
+              defaultMessage="Start a conversation by sending a message"
+            />
           </div>
         )}
       </div>

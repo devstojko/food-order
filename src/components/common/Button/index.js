@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import './Button.scss';
 
 const Button = ({
@@ -16,7 +17,7 @@ const Button = ({
     disabled={disabled}
     className={`btn btn--${style}`}
     style={inlineStyles}>
-    {text}
+    <FormattedMessage id={text} />
   </button>
 );
 

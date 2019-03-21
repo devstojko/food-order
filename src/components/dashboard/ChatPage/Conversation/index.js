@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { withChatContext } from '../chatContext/withChatContext';
 import ConversationHeader from './Header';
@@ -22,8 +23,13 @@ const Conversation = ({ authUser, context, toggleSidebar }) => {
   } else {
     return (
       <div className="empty-conversation">
-        <p>Start chatting with someone by sending him a nice message</p>
-        <Button onClick={toggleSidebar} text="Show Chats" />
+        <p>
+          <FormattedMessage
+            id="startChat"
+            defaultMessage="Start a conversation by sending a message"
+          />
+        </p>
+        <Button onClick={toggleSidebar} text="showChats" />
       </div>
     );
   }

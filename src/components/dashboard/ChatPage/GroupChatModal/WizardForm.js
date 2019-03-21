@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { withChatContext } from '../chatContext/withChatContext';
 import Search from '@common/Search';
@@ -116,7 +117,10 @@ class WizardForm extends Component {
               <span className="field__highlight" />
               <span className="field__bar" />
               <label className="field__label" htmlFor="group-name">
-                Enter Group Name
+                <FormattedMessage
+                  id="enterGroupName"
+                  defaultMessage="Enter Group Name"
+                />
               </label>
             </div>
 
@@ -138,20 +142,33 @@ class WizardForm extends Component {
 
             {participants.length > 0 ? (
               <Fragment>
-                <h5 className="group-form__title">Conversation Participants</h5>
+                <h5 className="group-form__title">
+                  <FormattedMessage
+                    id="participants"
+                    defaultMessage="Conversation Participants"
+                  />
+                </h5>
                 {participants.map(p => (
                   <Avatar image={p.avatar} key={p.id} />
                 ))}
               </Fragment>
             ) : (
               <h5 className="group-form__title">
-                Add Conversation Participants
+                <FormattedMessage
+                  id="addChatParticipants"
+                  defaultMessage="Add Conversation Participants"
+                />
               </h5>
             )}
 
             {searchTerm && (
               <Fragment>
-                <h5 className="group-form__title">Search Results</h5>
+                <h5 className="group-form__title">
+                  <FormattedMessage
+                    id="searchResults"
+                    defaultMessage="Search Results"
+                  />
+                </h5>
                 {users.map(user => (
                   <div className="group-form__user" key={user.id}>
                     <ListItem
@@ -173,7 +190,7 @@ class WizardForm extends Component {
               <div className="row-item">
                 <Button
                   style="secondary"
-                  text="Go Back"
+                  text="goBack"
                   onClick={() => this.changePage(1)}
                 />
               </div>
@@ -181,7 +198,7 @@ class WizardForm extends Component {
               <div className="row-item">
                 <Button
                   type="submit"
-                  text="Create"
+                  text="create"
                   disabled={!participants.length > 0}
                 />
               </div>

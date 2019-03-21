@@ -46,31 +46,26 @@ class SignupForm extends Component {
         <Field
           inline
           name="firstName"
-          label="First Name"
+          label="firstName"
           component={InputField}
         />
-        <Field
-          inline
-          name="lastName"
-          label="Last Name"
-          component={InputField}
-        />
-        <Field name="username" label="Username" component={InputField} />
-        <Field type="email" name="email" label="Email" component={InputField} />
+        <Field inline name="lastName" label="lastName" component={InputField} />
+        <Field name="username" label="username" component={InputField} />
+        <Field type="email" name="email" label="email" component={InputField} />
         <Field
           type="password"
           name="password"
-          label="Password"
+          label="password"
           component={InputField}
         />
         <Field
           type="password"
           name="confirmPassword"
-          label="Confirm Password"
+          label="confirmPassword"
           component={InputField}
         />
 
-        <Button text="Sign Up" style="primary" type="submit" />
+        <Button text="signup" style="primary" type="submit" />
       </form>
     );
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 import AuthPageLayout from '@layout/AuthPageLayout';
 import SigninForm from './SigninForm';
 
@@ -11,7 +12,7 @@ const SigninPage = () => (
     <p className="subtitle">Welcome back! Please login to your account.</p>
     <SigninForm />
     <Link className="link" to="/signup">
-      Don't have an account? Sign up.
+      <FormattedMessage id="notRegistered" />
     </Link>
   </AuthPageLayout>
 );

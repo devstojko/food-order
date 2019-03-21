@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './Sidebar.scss';
@@ -18,7 +19,12 @@ const SidebarLinks = ({ showText }) =>
   links.map((link, i) => (
     <NavLink key={i} to={link.to || '/404'} className="sidebar__item">
       <i className={link.iconClass} />
-      {showText && link.text}
+      {showText && (
+        <FormattedMessage
+          id={link.text.toLowerCase()}
+          defaultMessage={link.text}
+        />
+      )}
     </NavLink>
   ));
 

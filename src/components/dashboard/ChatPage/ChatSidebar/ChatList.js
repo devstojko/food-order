@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { withChatContext } from '../chatContext/withChatContext';
 import capitalize from '@helpers/capitalize';
@@ -14,7 +15,10 @@ const ChatList = ({ context, authUser, toggleSidebar }) => {
   return (
     <div>
       <h3 className="chat-sidebar__title">
-        Group Conversations
+        <FormattedMessage
+          id="groupChats"
+          defaultMessage="Group Conversations"
+        />
         <i className="fas fa-plus" onClick={toggleModal} />
       </h3>
       {groupChats.length > 0 ? (
@@ -32,10 +36,17 @@ const ChatList = ({ context, authUser, toggleSidebar }) => {
           ))}
         </Fragment>
       ) : (
-        <div className="info-msg">No conversations</div>
+        <div className="info-msg">
+          <FormattedMessage id="noChats" defaultMessage="No conversations" />
+        </div>
       )}
 
-      <h3 className="chat-sidebar__title">Private Conversations</h3>
+      <h3 className="chat-sidebar__title">
+        <FormattedMessage
+          id="privateChats"
+          defaultMessage="Private Conversations"
+        />
+      </h3>
       {privateChats.length > 0 ? (
         <Fragment>
           {privateChats.map(c => (
@@ -53,7 +64,9 @@ const ChatList = ({ context, authUser, toggleSidebar }) => {
           ))}
         </Fragment>
       ) : (
-        <div className="info-msg">No conversations</div>
+        <div className="info-msg">
+          <FormattedMessage id="noChats" defaultMessage="No conversations" />
+        </div>
       )}
     </div>
   );
