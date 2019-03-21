@@ -3,9 +3,13 @@ import PropTypes from 'prop-types';
 import AuthPageImage from './AuthPageImage';
 import AuthPageFooter from './AuthPageFooter';
 import './AuthPageWrapper.scss';
+import Language from '@common/Language';
 
 const AuthPageWrapper = ({ image, imagePosition, children }) => (
   <div className="auth-page">
+    <div className="auth-page__language-picker">
+      <Language />
+    </div>
     {imagePosition === 'left' ? (
       <Fragment>
         <AuthPageImage src={image} />

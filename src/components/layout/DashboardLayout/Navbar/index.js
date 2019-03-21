@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { logOut } from '@actions/authActions';
 import Search from '@common/Search';
 import Avatar from '@common/Avatar';
+import Language from '@common/Language';
 import firebase from '@fb';
 import capitalize from '@helpers/capitalize';
 import './Navbar.scss';
@@ -24,6 +25,9 @@ const NavbarIcons = () => (
 
 const NavbarDropdown = ({ logOut }) => (
   <div className="navbar__dropdown">
+    <div className="navbar__dropdown-link">
+      <Language />
+    </div>
     <Link to="/profile-settings" className="navbar__dropdown-link">
       Settings
     </Link>
