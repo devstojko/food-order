@@ -5,7 +5,7 @@ import defaultImg from '@images/default.jpg';
 const AuthPageImage = ({ src }) => (
   <img
     className="auth-page__image"
-    src={src}
+    src={src ? src : defaultImg}
     onError={e => (e.target.src = defaultImg)}
     alt="auth"
   />
