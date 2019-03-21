@@ -51,6 +51,7 @@ export default {
     enterGroupName: 'Enter Group Name',
     goBack: 'Go Back',
     create: 'Create',
+    next: 'Next',
     participants: 'Conversation Participants',
     addChatParticipants: 'Add Conversation Participants',
     searchResults: 'Search Results',
@@ -61,6 +62,64 @@ export default {
     notFound: 'Page Not Found'
   },
   sr: {
-    welcome: 'Dobrodosli'
+    // auth
+    welcomeBack: 'Dobrodošli! Prijavite se na svoj nalog.',
+    createAcc: 'Kreiraj svoj nalog',
+    firstName: 'Ime',
+    lastName: 'Prezime',
+    username: 'Korisničko ime',
+    email: 'Email Adresa',
+    password: 'Lozinka',
+    confirmPassword: 'Potvrdi lozinku',
+    signup: 'Registruj se',
+    login: 'Prijavi se',
+    googleLogin: 'Prijavi se sa Google nalogom',
+    forgotPw: 'Zaboravili ste lozinku',
+    rememberMe: 'zapamti me',
+    alreadyRegistered: 'Već imate nalog? Prijavite se.',
+    notRegistered: 'Nemate nalog? Registrujte se.',
+    pwResetEmail: 'Unesite svoju email adresu',
+    sendEmail: 'Pošalji mi link',
+    terms: 'Uslovi korišćenja. Pravila o privatnosti',
+    // dashboard sidebar
+    rooms: 'Sobe',
+    inbox: 'Sanduče',
+    products: 'Proizvodi',
+    invoices: 'Fakture',
+    customers: 'Kupci',
+    chat: 'Razgovori',
+    calendar: 'Kalendar',
+    settings: 'Podešavanja',
+    search: 'Pretraga',
+    // home page
+    welcome: 'Dobrodošli',
+    active: 'aktivan',
+    ordering: 'naručivanje',
+    addOrder: 'dodajte porudžbinu ',
+    isOrdering: 'naručiuje hranu',
+    // settings page
+    changeInfo: 'Izmeni svoje podatke',
+    changePw: 'Promeni lozinku',
+    updateProfile: 'Ažuriraj nalog',
+    update: 'Ažuriraj',
+    updatePw: 'Promeni lozinku',
+    resetPw: 'Promeni lozinku',
+    // chat page
+    groupChats: 'Grupni razgovori',
+    privateChats: 'Privatni razgovori',
+    noChats: 'Nema razgovora',
+    startChat: 'Pokreni razgovor slanjem poruke',
+    startNewChat: 'Započni novi razgovor',
+    enterGroupName: 'Unesi ime grupe',
+    goBack: 'Nazad',
+    next: 'Dalje',
+    create: 'Kreiraj',
+    participants: 'Učesnici razgovora',
+    addChatParticipants: 'Dodaj učesnike',
+    searchResults: 'Rezultati pretrage',
+    noUsersFound: 'Nema korisnika sa tim imenom',
+    showChats: 'Prikaži razgovore',
+    // 404
+    notFound: 'Stranica nije pronadjena'
   }
 };

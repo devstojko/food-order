@@ -10,7 +10,7 @@ const links = [
   { iconClass: 'fab fa-product-hunt', text: 'Products' },
   { iconClass: 'fas fa-receipt', text: 'Invoices' },
   { iconClass: 'far fa-user', text: 'Customers' },
-  { iconClass: 'far fa-comments', text: 'Chat Room', to: '/chat' },
+  { iconClass: 'far fa-comments', text: 'Chat', to: '/chat' },
   { iconClass: 'far fa-calendar-alt', text: 'Calendar' },
   { iconClass: 'fas fa-cog', text: 'Settings', to: '/profile-settings' }
 ];

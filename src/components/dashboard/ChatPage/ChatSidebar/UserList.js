@@ -21,13 +21,7 @@ const UserList = ({ context, authUser, toggleSidebar }) => {
         users.map(user => {
           const username = `${capitalize(user.firstName)} ${capitalize(
             user.lastName
-          )} ${
-            authUser.id === user.id ? (
-              <FormattedMessage id="you" defaultMessage="(you)" />
-            ) : (
-              ''
-            )
-          }`;
+          )} ${authUser.id === user.id ? '(you)' : ''}`;
 
           return (
             <ListItem

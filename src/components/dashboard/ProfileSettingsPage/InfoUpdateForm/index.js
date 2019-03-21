@@ -52,14 +52,14 @@ class InfoUpdateForm extends Component {
       <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
         <Field
           name="firstName"
-          label="First Name"
+          label="firstName"
           component={InputField}
           value="test"
         />
-        <Field name="lastName" label="Last Name" component={InputField} />
-        <Field name="username" label="Username" component={InputField} />
+        <Field name="lastName" label="lastName" component={InputField} />
+        <Field name="username" label="username" component={InputField} />
         <Button
-          text="Update"
+          text="update"
           type="submit"
           inlineStyles={{ marginBottom: 0 }}
         />

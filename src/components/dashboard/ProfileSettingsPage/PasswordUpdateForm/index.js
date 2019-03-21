@@ -28,18 +28,18 @@ class PasswordChangeForm extends Component {
         <Field
           type="password"
           name="passwordOne"
-          label="New Password"
+          label="password"
           component={InputField}
         />
         <Field
           type="password"
           name="passwordTwo"
-          label="Confirm Password"
+          label="confirmPassword"
           component={InputField}
         />
 
         <Button
-          text="Reset Password"
+          text="resetPw"
           style="primary"
           type="submit"
           inlineStyles={{ marginBottom: 0 }}

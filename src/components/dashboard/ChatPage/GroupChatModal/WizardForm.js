@@ -125,7 +125,7 @@ class WizardForm extends Component {
             </div>
 
             <Button
-              text="Next"
+              text="next"
               onClick={() => this.changePage(2)}
               disabled={!groupName.length > 0}
             />
