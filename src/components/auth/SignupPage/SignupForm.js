@@ -21,7 +21,8 @@ class SignupForm extends Component {
       firstName: firstName.toLowerCase(),
       lastName: lastName.toLowerCase(),
       username,
-      password
+      password,
+      avatar: 'default'
     };
 
     firebase

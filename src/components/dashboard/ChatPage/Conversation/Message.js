@@ -19,11 +19,11 @@ const Message = ({ msg, position }) => {
       {position === 'left' ? (
         <Fragment>
           <Avatar image={avatar} size="small" />
-          <MessageContent text={text} pos={position} />
+          <MessageContent text={text} pos={position} time={time} />
         </Fragment>
       ) : (
         <Fragment>
-          <MessageContent text={text} pos={position} />
+          <MessageContent text={text} pos={position} time={time} />
           <Avatar image={msg.avatar} size="small" />
         </Fragment>
       )}
